@@ -4,19 +4,11 @@ import path from 'path';
 
 const SCAMS_FILE = path.join(process.cwd(), 'content', 'scams.json');
 
-const ensureFile = () => {
-  const dir = path.dirname(SCAMS_FILE);
-  if (!fs.existsSync(dir)) {
-    fs.mkdirSync(dir, { recursive: true });
-  }
-  if (!fs.existsSync(SCAMS_FILE)) {
-    fs.writeFileSync(SCAMS_FILE, JSON.stringify([]), 'utf-8');
-  }
-};
-
 export async function GET() {
   try {
-    ensureFile();
+    if (!fs.existsSync(SCAMS_FILE)) {
+      return NextResponse.json({ success: true, scams: [] });
+    }
     const content = fs.readFileSync(SCAMS_FILE, 'utf-8');
     const scams = JSON.parse(content);
     return NextResponse.json({ success: true, scams });

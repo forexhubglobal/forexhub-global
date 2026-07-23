@@ -22,16 +22,11 @@ function getDirectoryPath(collection: string) {
   return path.join(process.cwd(), `content/${collection}`);
 }
 
-function ensureDirectoryExists(collection: string) {
+export function getAllData(collection: string): BaseMetadata[] {
   const dirPath = getDirectoryPath(collection);
   if (!fs.existsSync(dirPath)) {
-    fs.mkdirSync(dirPath, { recursive: true });
+    return [];
   }
-}
-
-export function getAllData(collection: string): BaseMetadata[] {
-  ensureDirectoryExists(collection);
-  const dirPath = getDirectoryPath(collection);
   const fileNames = fs.readdirSync(dirPath);
   
   const allData = fileNames
