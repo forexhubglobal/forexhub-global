@@ -410,12 +410,12 @@ export default function AdminPage() {
     }
   };
 
-  const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>, isCover: boolean = false) => {
+  const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>, targetType: 'markdown' | 'cover' | 'sponsorLogo' | 'heroAd' | 'articleAd' | 'mobileAd') => {
     const file = e.target.files?.[0];
     if (!file) return;
 
-    if (isCover) setCoverUploadStatus('Memuat naik...');
-    else setUploadStatus('Memuat naik...');
+    if (targetType === 'markdown') setUploadStatus('Memuat naik...');
+    else setCoverUploadStatus('Memuat naik...');
 
     const formData = new FormData();
     formData.append('file', file);
@@ -425,25 +425,36 @@ export default function AdminPage() {
       const data = await res.json();
 
       if (res.ok) {
-        if (isCover) {
+        if (targetType === 'cover') {
           setCoverUploadStatus('');
           if (contentType === 'articles') setCoverImage(data.url);
           else setLogo(data.url);
+        } else if (targetType === 'sponsorLogo') {
+          setCoverUploadStatus('');
+          setSponsoredBrokerLogo(data.url);
+        } else if (targetType === 'heroAd') {
+          setCoverUploadStatus('');
+          setHeroAdImage(data.url);
+        } else if (targetType === 'articleAd') {
+          setCoverUploadStatus('');
+          setArticleAdImage(data.url);
+        } else if (targetType === 'mobileAd') {
+          setCoverUploadStatus('');
+          setMobileAdImage(data.url);
         } else {
           setUploadStatus('Berjaya dimuat naik!');
           setContent(prev => prev + `\n![Gambar](${data.url})\n`);
         }
       } else {
-        if (isCover) setCoverUploadStatus('Gagal memuat naik.');
-        else setUploadStatus('Gagal: ' + data.error);
+        if (targetType === 'markdown') setUploadStatus('Gagal: ' + data.error);
+        else setCoverUploadStatus('Gagal memuat naik.');
       }
     } catch (error) {
-      if (isCover) setCoverUploadStatus('Ralat rangkaian.');
-      else setUploadStatus('Ralat rangkaian.');
+      if (targetType === 'markdown') setUploadStatus('Ralat rangkaian.');
+      else setCoverUploadStatus('Ralat rangkaian.');
     }
 
-    if (isCover && coverInputRef.current) coverInputRef.current.value = '';
-    if (!isCover && fileInputRef.current) fileInputRef.current.value = '';
+    e.target.value = ''; // Reset directly on the event target
   };
 
   const handleDeleteReview = async (slug: string, id: string) => {
@@ -822,7 +833,7 @@ export default function AdminPage() {
                             >
                               {coverUploadStatus || 'Pilih Gambar...'}
                             </button>
-                            <input type="file" ref={coverInputRef} onChange={(e) => handleImageUpload(e, true)} accept="image/*" className="hidden" />
+                            <input type="file" ref={coverInputRef} onChange={(e) => handleImageUpload(e, 'cover')} accept="image/*" className="hidden" />
                           </div>
                         )}
                       </div>
@@ -896,7 +907,13 @@ export default function AdminPage() {
                                 <input type="text" className="w-full border border-slate-300 rounded-xl px-4 py-3 bg-white focus:ring-2 focus:ring-primary-500 outline-none" value={sponsoredBrokerName} onChange={(e) => setSponsoredBrokerName(e.target.value)} placeholder="Cth: Exness" />
                               </div>
                               <div>
-                                <label className="block text-sm font-bold text-slate-700 mb-2">URL Logo Broker</label>
+                                <div className="flex items-center justify-between mb-2">
+                                  <label className="block text-sm font-bold text-slate-700">URL Logo Broker</label>
+                                  <label className="cursor-pointer bg-primary-100 hover:bg-primary-200 text-primary-700 text-xs font-bold py-1 px-2 rounded">
+                                    {coverUploadStatus && sponsoredBrokerLogo === '' ? 'Memuat naik...' : 'Upload'}
+                                    <input type="file" onChange={(e) => handleImageUpload(e, 'sponsorLogo')} accept="image/*" className="hidden" />
+                                  </label>
+                                </div>
                                 <input type="text" className="w-full border border-slate-300 rounded-xl px-4 py-3 bg-white focus:ring-2 focus:ring-primary-500 outline-none" value={sponsoredBrokerLogo} onChange={(e) => setSponsoredBrokerLogo(e.target.value)} placeholder="https://..." />
                               </div>
                               <div className="md:col-span-2">
@@ -910,7 +927,13 @@ export default function AdminPage() {
                             <h5 className="font-bold text-sm text-primary-700 mb-3 border-b border-primary-200 pb-1">2. Banner Muka Depan (Hero Banner)</h5>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                               <div>
-                                <label className="block text-sm font-bold text-slate-700 mb-2">URL Gambar Banner</label>
+                                <div className="flex items-center justify-between mb-2">
+                                  <label className="block text-sm font-bold text-slate-700">URL Gambar Banner</label>
+                                  <label className="cursor-pointer bg-primary-100 hover:bg-primary-200 text-primary-700 text-xs font-bold py-1 px-2 rounded">
+                                    Upload
+                                    <input type="file" onChange={(e) => handleImageUpload(e, 'heroAd')} accept="image/*" className="hidden" />
+                                  </label>
+                                </div>
                                 <input type="text" className="w-full border border-slate-300 rounded-xl px-4 py-3 bg-white focus:ring-2 focus:ring-primary-500 outline-none" value={heroAdImage} onChange={(e) => setHeroAdImage(e.target.value)} placeholder="https://..." />
                               </div>
                               <div>
@@ -924,7 +947,13 @@ export default function AdminPage() {
                             <h5 className="font-bold text-sm text-primary-700 mb-3 border-b border-primary-200 pb-1">3. Banner Dalam Artikel (Blog/Berita)</h5>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                               <div>
-                                <label className="block text-sm font-bold text-slate-700 mb-2">URL Gambar Banner</label>
+                                <div className="flex items-center justify-between mb-2">
+                                  <label className="block text-sm font-bold text-slate-700">URL Gambar Banner</label>
+                                  <label className="cursor-pointer bg-primary-100 hover:bg-primary-200 text-primary-700 text-xs font-bold py-1 px-2 rounded">
+                                    Upload
+                                    <input type="file" onChange={(e) => handleImageUpload(e, 'articleAd')} accept="image/*" className="hidden" />
+                                  </label>
+                                </div>
                                 <input type="text" className="w-full border border-slate-300 rounded-xl px-4 py-3 bg-white focus:ring-2 focus:ring-primary-500 outline-none" value={articleAdImage} onChange={(e) => setArticleAdImage(e.target.value)} placeholder="https://..." />
                               </div>
                               <div>
@@ -938,7 +967,13 @@ export default function AdminPage() {
                             <h5 className="font-bold text-sm text-primary-700 mb-3 border-b border-primary-200 pb-1">4. Banner Telefon Terapung (Mobile Sticky)</h5>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                               <div>
-                                <label className="block text-sm font-bold text-slate-700 mb-2">URL Gambar Banner</label>
+                                <div className="flex items-center justify-between mb-2">
+                                  <label className="block text-sm font-bold text-slate-700">URL Gambar Banner</label>
+                                  <label className="cursor-pointer bg-primary-100 hover:bg-primary-200 text-primary-700 text-xs font-bold py-1 px-2 rounded">
+                                    Upload
+                                    <input type="file" onChange={(e) => handleImageUpload(e, 'mobileAd')} accept="image/*" className="hidden" />
+                                  </label>
+                                </div>
                                 <input type="text" className="w-full border border-slate-300 rounded-xl px-4 py-3 bg-white focus:ring-2 focus:ring-primary-500 outline-none" value={mobileAdImage} onChange={(e) => setMobileAdImage(e.target.value)} placeholder="https://..." />
                               </div>
                               <div>
@@ -1186,7 +1221,7 @@ export default function AdminPage() {
                         <button type="button" onClick={() => fileInputRef.current?.click()} className="bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-bold py-1.5 px-3 rounded-lg border border-slate-200">
                           Gambar Dalam
                         </button>
-                        <input type="file" ref={fileInputRef} onChange={(e) => handleImageUpload(e, false)} accept="image/*" className="hidden" />
+                        <input type="file" ref={fileInputRef} onChange={(e) => handleImageUpload(e, 'markdown')} accept="image/*" className="hidden" />
                       </div>
                     </div>
                     <textarea 
