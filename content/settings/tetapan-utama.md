@@ -1,5 +1,5 @@
 ---
-id: "1784826395330"
+id: "1784827066505"
 slug: "tetapan-utama"
 date: "2026-07-23"
 title: "Tetapan Utama"
@@ -15,7 +15,7 @@ articleAdLink: ""
 mobileAdImage: ""
 mobileAdLink: ""
 sponsoredBrokerName: ""
-sponsoredBrokerLogo: ""
+sponsoredBrokerLogo: "/images/1784827061012-cashback-square--1-.png"
 sponsoredBrokerLink: ""
 ---
 
