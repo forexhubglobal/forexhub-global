@@ -94,7 +94,7 @@ export default function BrokerReviews({ slug }: { slug: string }) {
     : '0.0';
 
   return (
-    <section className="bg-white rounded-2xl p-6 shadow-sm border border-slate-200 mt-8">
+    <section className="bg-white rounded-2xl p-4 sm:p-6 shadow-sm border border-slate-200 mt-8">
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
         <div>
           <h2 className="text-2xl font-bold text-slate-900">Ulasan Pengguna</h2>
@@ -111,7 +111,7 @@ export default function BrokerReviews({ slug }: { slug: string }) {
         </div>
       </div>
 
-      <div className="grid md:grid-cols-3 gap-10">
+      <div className="flex flex-col-reverse md:grid md:grid-cols-3 gap-8 md:gap-10">
         
         {/* Submit Review Form */}
         <div className="md:col-span-1">
@@ -215,7 +215,7 @@ export default function BrokerReviews({ slug }: { slug: string }) {
           ) : (
             reviews.map((review) => (
               <div key={review.id} className="border-b border-slate-100 last:border-0 pb-6 last:pb-0">
-                <div className="flex justify-between items-start mb-2">
+                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center items-start mb-3 gap-2">
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 rounded-full bg-slate-200 flex items-center justify-center text-slate-600 font-bold">
                       {review.name.charAt(0).toUpperCase()}
