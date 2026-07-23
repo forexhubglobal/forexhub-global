@@ -9,7 +9,7 @@ import { getDataBySlug } from '@/lib/markdown';
 export const dynamic = 'force-dynamic';
 
 export default async function Home() {
-  const settings = await getDataBySlug('settings', 'main');
+  const settings = await getDataBySlug('settings', 'tetapan-utama');
   
   return (
     <>

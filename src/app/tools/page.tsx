@@ -4,7 +4,7 @@ import { getDataBySlug } from '@/lib/markdown';
 export const dynamic = 'force-dynamic';
 
 export default async function ToolsList() {
-  const settings = await getDataBySlug('settings', 'main');
+  const settings = await getDataBySlug('settings', 'tetapan-utama');
   const sponsorName = settings?.sponsoredBrokerName;
   const sponsorLogo = settings?.sponsoredBrokerLogo;
   const sponsorLink = settings?.sponsoredBrokerLink;

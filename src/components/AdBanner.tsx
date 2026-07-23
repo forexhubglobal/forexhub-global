@@ -1,7 +1,7 @@
 import { getDataBySlug } from '@/lib/markdown';
 
 export default async function AdBanner({ slot }: { slot: 'hero' | 'article' | 'mobile' }) {
-  const settings = await getDataBySlug('settings', 'main');
+  const settings = await getDataBySlug('settings', 'tetapan-utama');
   
   if (!settings) return null;
 
