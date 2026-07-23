@@ -1,15 +1,17 @@
 import ScamList from '@/components/ScamList';
 
+import fs from 'fs';
+import path from 'path';
+
 export const dynamic = 'force-dynamic';
 
 export default async function ScamAlertPage() {
   // Fetch scams
   let scams = [];
   try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000'}/api/scams`, { cache: 'no-store' });
-    if (res.ok) {
-      const data = await res.json();
-      scams = data.scams || [];
+    const scamsPath = path.join(process.cwd(), 'content', 'scams.json');
+    if (fs.existsSync(scamsPath)) {
+      scams = JSON.parse(fs.readFileSync(scamsPath, 'utf-8'));
     }
   } catch (err) {
     console.error('Error fetching scams:', err);
