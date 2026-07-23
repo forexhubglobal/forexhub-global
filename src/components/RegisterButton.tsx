@@ -98,7 +98,7 @@ export default function RegisterButton() {
                 <h3 className="text-3xl font-bold text-slate-900 mb-3">Tahniah! 🎉</h3>
                 <p className="text-slate-600 mb-8 leading-relaxed">Pendaftaran anda berjaya. Sila klik butang di bawah untuk menyertai komuniti Telegram VIP kami sekarang.</p>
                 <a 
-                  href="https://t.me/" 
+                  href="https://t.me/forexhubglobal" 
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex w-full justify-center items-center py-4 bg-[#0088cc] hover:bg-[#0077b3] text-white font-bold rounded-xl shadow-lg shadow-[#0088cc]/30 transition-all transform hover:-translate-y-1 text-lg"
