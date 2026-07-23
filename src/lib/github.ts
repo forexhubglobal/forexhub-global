@@ -57,6 +57,54 @@ export async function saveToGitHub(filePath: string, content: string, commitMess
   }
 }
 
+export async function saveImageToGitHub(filePath: string, buffer: Buffer, commitMessage: string) {
+  if (!GITHUB_TOKEN) {
+    console.warn('GITHUB_TOKEN not found, skipping GitHub commit for image', filePath);
+    return;
+  }
+
+  const posixPath = filePath.replace(/\\/g, '/');
+  
+  const getUrl = `https://api.github.com/repos/${GITHUB_USERNAME}/${GITHUB_REPO}/contents/${posixPath}?ref=${BRANCH}`;
+  let sha: string | undefined;
+
+  try {
+    const res = await fetch(getUrl, {
+      headers: {
+        'Authorization': `token ${GITHUB_TOKEN}`,
+        'Accept': 'application/vnd.github.v3+json',
+      },
+    });
+    if (res.ok) {
+      const data = await res.json();
+      sha = data.sha;
+    }
+  } catch (err) {}
+
+  const putUrl = `https://api.github.com/repos/${GITHUB_USERNAME}/${GITHUB_REPO}/contents/${posixPath}`;
+  const body = JSON.stringify({
+    message: commitMessage,
+    content: buffer.toString('base64'),
+    branch: BRANCH,
+    ...(sha ? { sha } : {}),
+  });
+
+  const res = await fetch(putUrl, {
+    method: 'PUT',
+    headers: {
+      'Authorization': `token ${GITHUB_TOKEN}`,
+      'Accept': 'application/vnd.github.v3+json',
+    },
+    body,
+  });
+
+  if (!res.ok) {
+    const errorText = await res.text();
+    console.error(`GitHub API error saving image ${posixPath}:`, res.status, errorText);
+    throw new Error(`Failed to save image to GitHub: ${res.status}`);
+  }
+}
+
 export async function deleteFromGitHub(filePath: string, commitMessage: string) {
   if (!GITHUB_TOKEN) {
     console.warn('GITHUB_TOKEN not found, skipping GitHub delete for', filePath);

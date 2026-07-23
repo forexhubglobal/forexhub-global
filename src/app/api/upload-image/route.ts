@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import fs from 'fs';
 import path from 'path';
+import { saveImageToGitHub } from '@/lib/github';
 
 export async function POST(request: Request) {
   try {
@@ -19,15 +20,20 @@ export async function POST(request: Request) {
     const cleanName = originalName.replace(/[^a-zA-Z0-9.-]/g, '-').toLowerCase();
     const uniqueName = `${Date.now()}-${cleanName}`;
 
-    // Pastikan folder public/images wujud
-    const dir = path.join(process.cwd(), 'public/images');
-    if (!fs.existsSync(dir)) {
-      fs.mkdirSync(dir, { recursive: true });
-    }
+    if (process.env.GITHUB_TOKEN) {
+      // Save directly to GitHub if on Vercel
+      await saveImageToGitHub(`public/images/${uniqueName}`, buffer, `CMS: Upload image ${uniqueName}`);
+    } else {
+      // Pastikan folder public/images wujud
+      const dir = path.join(process.cwd(), 'public/images');
+      if (!fs.existsSync(dir)) {
+        fs.mkdirSync(dir, { recursive: true });
+      }
 
-    // Tulis fail ke public/images/
-    const filePath = path.join(dir, uniqueName);
-    fs.writeFileSync(filePath, buffer);
+      // Tulis fail ke public/images/
+      const filePath = path.join(dir, uniqueName);
+      fs.writeFileSync(filePath, buffer);
+    }
 
     // Pulangkan pautan (URL) gambar
     return NextResponse.json({ 
