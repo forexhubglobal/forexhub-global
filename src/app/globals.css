@@ -1,0 +1,125 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-background: #09090b; /* Very dark background */
+  --color-foreground: #f8fafc; /* Light text on dark bg */
+  
+  --color-primary-50: #eff6ff;
+  --color-primary-100: #dbeafe;
+  --color-primary-500: #3b82f6;
+  --color-primary-600: #2563eb;
+  --color-primary-700: #1d4ed8;
+
+  --color-gold-400: #fbbf24;
+  --color-gold-500: #f59e0b;
+  
+  --color-success-500: #10b981;
+  --color-danger-500: #ef4444;
+
+  /* Cyberpunk Neon Colors */
+  --color-neon-blue: #00f3ff;
+  --color-neon-purple: #bc13fe;
+  --color-neon-green: #00ff9d;
+  --color-neon-pink: #ff007f;
+}
+
+/* Animations for Cyberpunk effects */
+@keyframes glow {
+  0%, 100% { box-shadow: 0 0 10px rgba(0, 243, 255, 0.5), 0 0 20px rgba(188, 19, 254, 0.3); }
+  50% { box-shadow: 0 0 20px rgba(0, 243, 255, 0.8), 0 0 30px rgba(188, 19, 254, 0.6); }
+}
+.animate-glow {
+  animation: glow 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+:root {
+  --background: #f8fafc;
+  --foreground: #0f172a;
+}
+
+body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Google Translate Widget Styling */
+.skiptranslate iframe {
+  display: none !important;
+}
+body {
+  top: 0 !important;
+}
+.goog-te-gadget {
+  font-family: inherit !important;
+  color: transparent !important;
+  font-size: 0px !important;
+  display: flex !important;
+  align-items: center;
+}
+.goog-te-gadget > span > a {
+  display: none !important;
+}
+.goog-te-gadget img {
+  display: none !important;
+}
+.goog-te-gadget .goog-te-combo {
+  color: #334155 !important;
+  border-radius: 0.5rem;
+  border: 1px solid #e2e8f0;
+  padding: 0.5rem 1rem;
+  outline: none;
+  font-size: 0.875rem !important;
+  font-weight: 600;
+  background-color: #f8fafc;
+  cursor: pointer;
+  margin: 0 !important;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23334155%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.7rem top 50%;
+  background-size: 0.65rem auto;
+  padding-right: 2rem;
+}
+.goog-te-gadget .goog-te-combo:hover {
+  border-color: #cbd5e1;
+  background-color: #f1f5f9;
+}
+
+/* Hide Google Translate Tooltip & Highlight */
+#goog-gt-tt, 
+.goog-te-balloon-frame,
+.goog-tooltip { 
+  display: none !important; 
+}
+.goog-text-highlight,
+.goog-text-highlight * { 
+  background: transparent !important; 
+  background-color: transparent !important; 
+  box-shadow: none !important; 
+  border: none !important; 
+}
+/* Prevent hover events on Google Translate's generated font tags */
+font {
+  background: transparent !important;
+  background-color: transparent !important;
+}
+body {
+  top: 0 !important;
+}
