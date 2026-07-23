@@ -39,18 +39,24 @@ export default function RegisterButton() {
       </button>
 
       {isOpen && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm">
-          <div className="bg-white rounded-3xl w-full max-w-md p-8 shadow-2xl relative transform transition-all">
+        <div 
+          className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm"
+          onClick={() => setIsOpen(false)}
+        >
+          <div 
+            className="bg-white rounded-3xl w-full max-w-md p-8 shadow-2xl relative transform transition-all max-h-[90vh] overflow-y-auto"
+            onClick={(e) => e.stopPropagation()}
+          >
             <button 
               onClick={() => setIsOpen(false)}
-              className="absolute top-4 right-4 p-2 bg-slate-100 rounded-full text-slate-400 hover:text-slate-600 hover:bg-slate-200 transition-colors"
+              className="absolute top-4 right-4 p-2 bg-slate-100 rounded-full text-slate-400 hover:text-slate-600 hover:bg-slate-200 transition-colors z-10"
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path></svg>
             </button>
             
             {!success ? (
               <>
-                <div className="mb-8 text-center">
+                <div className="mb-8 text-center mt-2">
                   <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary-50 text-primary-600 mb-4">
                     <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
                   </div>
@@ -81,13 +87,24 @@ export default function RegisterButton() {
                       placeholder="Contoh: 0123456789"
                     />
                   </div>
-                  <button 
-                    type="submit" 
-                    disabled={loading}
-                    className="w-full py-4 mt-2 bg-gradient-to-r from-primary-600 to-primary-500 hover:from-primary-700 hover:to-primary-600 text-white font-bold rounded-xl shadow-lg shadow-primary-500/30 transition-all transform hover:-translate-y-1 disabled:opacity-70 disabled:transform-none"
-                  >
-                    {loading ? 'Memproses...' : 'Dapatkan Akses Sekarang 🚀'}
-                  </button>
+                  
+                  <div className="flex flex-col gap-3 pt-2">
+                    <button 
+                      type="submit" 
+                      disabled={loading}
+                      className="w-full py-4 bg-gradient-to-r from-primary-600 to-primary-500 hover:from-primary-700 hover:to-primary-600 text-white font-bold rounded-xl shadow-lg shadow-primary-500/30 transition-all transform hover:-translate-y-1 disabled:opacity-70 disabled:transform-none"
+                    >
+                      {loading ? 'Memproses...' : 'Dapatkan Akses Sekarang 🚀'}
+                    </button>
+                    
+                    <button 
+                      type="button" 
+                      onClick={() => setIsOpen(false)}
+                      className="w-full py-3 text-slate-500 font-semibold hover:text-slate-700 hover:bg-slate-100 rounded-xl transition-colors"
+                    >
+                      Tutup / Batal
+                    </button>
+                  </div>
                 </form>
               </>
             ) : (
