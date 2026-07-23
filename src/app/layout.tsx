@@ -51,6 +51,7 @@ import LiveTicker from '@/components/LiveTicker';
 import FloatingWhatsApp from '@/components/FloatingWhatsApp';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+import AdBanner from '@/components/AdBanner';
 import { getDataBySlug } from '@/lib/markdown';
 
 export default async function RootLayout({
@@ -110,6 +111,7 @@ export default async function RootLayout({
         </div>
 
         <Footer />
+        <AdBanner slot="mobile" />
         <FloatingWhatsApp phoneNumber={whatsappNumber} message={whatsappMessage} />
       </body>
     </html>

@@ -3,10 +3,14 @@ import TopBrokers from '@/components/TopBrokers';
 import AIFinder from '@/components/AIFinder';
 import ToolsPreview from '@/components/ToolsPreview';
 import RecentArticles from '@/components/RecentArticles';
+import AdBanner from '@/components/AdBanner';
+import { getDataBySlug } from '@/lib/markdown';
 
 export const dynamic = 'force-dynamic';
 
-export default function Home() {
+export default async function Home() {
+  const settings = await getDataBySlug('settings', 'main');
+  
   return (
     <>
       <main className="bg-[#09090b] text-slate-100 min-h-screen selection:bg-neon-blue selection:text-black">
@@ -18,8 +22,13 @@ export default function Home() {
           
           <div className="relative z-10">
             <Hero />
+            <AdBanner slot="hero" />
             <TopBrokers />
-            <AIFinder />
+            <AIFinder 
+              sponsoredName={settings?.sponsoredBrokerName} 
+              sponsoredLogo={settings?.sponsoredBrokerLogo} 
+              sponsoredLink={settings?.sponsoredBrokerLink} 
+            />
             <ToolsPreview />
             <RecentArticles />
           </div>

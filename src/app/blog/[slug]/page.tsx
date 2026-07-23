@@ -1,6 +1,7 @@
 import { notFound } from 'next/navigation';
 import { getArticleData } from '@/lib/markdown';
 import { Metadata } from 'next';
+import AdBanner from '@/components/AdBanner';
 
 export const dynamic = 'force-dynamic';
 
@@ -88,6 +89,8 @@ export default async function BlogDetail({ params }: { params: Promise<{ slug: s
             <p className="lead text-xl text-slate-600 font-medium mb-8">
               {article.excerpt}
             </p>
+            
+            <AdBanner slot="article" />
             
             {/* Markdown Content */}
             <div 

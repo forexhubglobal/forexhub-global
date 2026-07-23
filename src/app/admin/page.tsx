@@ -95,6 +95,17 @@ export default function AdminPage() {
   const [businessEmail, setBusinessEmail] = useState('partners@forexhub.com.my');
   const [operatingHours, setOperatingHours] = useState('Isnin - Jumaat, 9:00 Pagi - 6:00 Petang');
 
+  // Ad Settings State
+  const [heroAdImage, setHeroAdImage] = useState('');
+  const [heroAdLink, setHeroAdLink] = useState('');
+  const [articleAdImage, setArticleAdImage] = useState('');
+  const [articleAdLink, setArticleAdLink] = useState('');
+  const [mobileAdImage, setMobileAdImage] = useState('');
+  const [mobileAdLink, setMobileAdLink] = useState('');
+  const [sponsoredBrokerName, setSponsoredBrokerName] = useState('');
+  const [sponsoredBrokerLogo, setSponsoredBrokerLogo] = useState('');
+  const [sponsoredBrokerLink, setSponsoredBrokerLink] = useState('');
+
   // PAMM State
   const [manager, setManager] = useState('');
   const [strategy, setStrategy] = useState('');
@@ -209,6 +220,16 @@ export default function AdminPage() {
              setSupportEmail(data.item.supportEmail || 'support@forexhub.com.my');
              setBusinessEmail(data.item.businessEmail || 'partners@forexhub.com.my');
              setOperatingHours(data.item.operatingHours || 'Isnin - Jumaat, 9:00 Pagi - 6:00 Petang');
+             
+             setHeroAdImage(data.item.heroAdImage || '');
+             setHeroAdLink(data.item.heroAdLink || '');
+             setArticleAdImage(data.item.articleAdImage || '');
+             setArticleAdLink(data.item.articleAdLink || '');
+             setMobileAdImage(data.item.mobileAdImage || '');
+             setMobileAdLink(data.item.mobileAdLink || '');
+             setSponsoredBrokerName(data.item.sponsoredBrokerName || '');
+             setSponsoredBrokerLogo(data.item.sponsoredBrokerLogo || '');
+             setSponsoredBrokerLink(data.item.sponsoredBrokerLink || '');
            }
          })
       } else {
@@ -335,7 +356,8 @@ export default function AdminPage() {
       payload = { 
         collection: 'settings', originalSlug: 'main', title: 'Tetapan Utama', 
         whatsappNumber, whatsappMessage, 
-        supportEmail, businessEmail, operatingHours 
+        supportEmail, businessEmail, operatingHours,
+        heroAdImage, heroAdLink, articleAdImage, articleAdLink, mobileAdImage, mobileAdLink, sponsoredBrokerName, sponsoredBrokerLogo, sponsoredBrokerLink
       };
     }
 
@@ -857,6 +879,75 @@ export default function AdminPage() {
                             <label className="block text-sm font-bold text-slate-700 mb-2">Waktu Operasi</label>
                             <input type="text" className="w-full border border-slate-300 rounded-xl px-4 py-3 bg-white focus:ring-2 focus:ring-primary-500 outline-none" value={operatingHours} onChange={(e) => setOperatingHours(e.target.value)} />
                           </div>
+                        </div>
+                      </div>
+
+                      <div className="p-6 bg-gold-50 rounded-xl border border-gold-200">
+                        <h4 className="font-bold text-slate-900 mb-4 flex items-center gap-2">
+                          <span className="text-xl">💰</span> Tetapan Ruang Iklan (Sponsorship)
+                        </h4>
+                        
+                        <div className="space-y-6">
+                          <div>
+                            <h5 className="font-bold text-sm text-primary-700 mb-3 border-b border-primary-200 pb-1">1. AI Finder & Tools (Sponsor Utama)</h5>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                              <div>
+                                <label className="block text-sm font-bold text-slate-700 mb-2">Nama Broker Penaja</label>
+                                <input type="text" className="w-full border border-slate-300 rounded-xl px-4 py-3 bg-white focus:ring-2 focus:ring-primary-500 outline-none" value={sponsoredBrokerName} onChange={(e) => setSponsoredBrokerName(e.target.value)} placeholder="Cth: Exness" />
+                              </div>
+                              <div>
+                                <label className="block text-sm font-bold text-slate-700 mb-2">URL Logo Broker</label>
+                                <input type="text" className="w-full border border-slate-300 rounded-xl px-4 py-3 bg-white focus:ring-2 focus:ring-primary-500 outline-none" value={sponsoredBrokerLogo} onChange={(e) => setSponsoredBrokerLogo(e.target.value)} placeholder="https://..." />
+                              </div>
+                              <div className="md:col-span-2">
+                                <label className="block text-sm font-bold text-slate-700 mb-2">Affiliate Link / Referral</label>
+                                <input type="text" className="w-full border border-slate-300 rounded-xl px-4 py-3 bg-white focus:ring-2 focus:ring-primary-500 outline-none" value={sponsoredBrokerLink} onChange={(e) => setSponsoredBrokerLink(e.target.value)} placeholder="https://..." />
+                              </div>
+                            </div>
+                          </div>
+
+                          <div>
+                            <h5 className="font-bold text-sm text-primary-700 mb-3 border-b border-primary-200 pb-1">2. Banner Muka Depan (Hero Banner)</h5>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                              <div>
+                                <label className="block text-sm font-bold text-slate-700 mb-2">URL Gambar Banner</label>
+                                <input type="text" className="w-full border border-slate-300 rounded-xl px-4 py-3 bg-white focus:ring-2 focus:ring-primary-500 outline-none" value={heroAdImage} onChange={(e) => setHeroAdImage(e.target.value)} placeholder="https://..." />
+                              </div>
+                              <div>
+                                <label className="block text-sm font-bold text-slate-700 mb-2">Link Banner (Destinasi)</label>
+                                <input type="text" className="w-full border border-slate-300 rounded-xl px-4 py-3 bg-white focus:ring-2 focus:ring-primary-500 outline-none" value={heroAdLink} onChange={(e) => setHeroAdLink(e.target.value)} placeholder="https://..." />
+                              </div>
+                            </div>
+                          </div>
+
+                          <div>
+                            <h5 className="font-bold text-sm text-primary-700 mb-3 border-b border-primary-200 pb-1">3. Banner Dalam Artikel (Blog/Berita)</h5>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                              <div>
+                                <label className="block text-sm font-bold text-slate-700 mb-2">URL Gambar Banner</label>
+                                <input type="text" className="w-full border border-slate-300 rounded-xl px-4 py-3 bg-white focus:ring-2 focus:ring-primary-500 outline-none" value={articleAdImage} onChange={(e) => setArticleAdImage(e.target.value)} placeholder="https://..." />
+                              </div>
+                              <div>
+                                <label className="block text-sm font-bold text-slate-700 mb-2">Link Banner (Destinasi)</label>
+                                <input type="text" className="w-full border border-slate-300 rounded-xl px-4 py-3 bg-white focus:ring-2 focus:ring-primary-500 outline-none" value={articleAdLink} onChange={(e) => setArticleAdLink(e.target.value)} placeholder="https://..." />
+                              </div>
+                            </div>
+                          </div>
+
+                          <div>
+                            <h5 className="font-bold text-sm text-primary-700 mb-3 border-b border-primary-200 pb-1">4. Banner Telefon Terapung (Mobile Sticky)</h5>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                              <div>
+                                <label className="block text-sm font-bold text-slate-700 mb-2">URL Gambar Banner</label>
+                                <input type="text" className="w-full border border-slate-300 rounded-xl px-4 py-3 bg-white focus:ring-2 focus:ring-primary-500 outline-none" value={mobileAdImage} onChange={(e) => setMobileAdImage(e.target.value)} placeholder="https://..." />
+                              </div>
+                              <div>
+                                <label className="block text-sm font-bold text-slate-700 mb-2">Link Banner (Destinasi)</label>
+                                <input type="text" className="w-full border border-slate-300 rounded-xl px-4 py-3 bg-white focus:ring-2 focus:ring-primary-500 outline-none" value={mobileAdLink} onChange={(e) => setMobileAdLink(e.target.value)} placeholder="https://..." />
+                              </div>
+                            </div>
+                          </div>
+
                         </div>
                       </div>
                     </div>

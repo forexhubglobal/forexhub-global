@@ -1,6 +1,13 @@
 import Link from 'next/link';
+import { getDataBySlug } from '@/lib/markdown';
 
-export default function ToolsList() {
+export const dynamic = 'force-dynamic';
+
+export default async function ToolsList() {
+  const settings = await getDataBySlug('settings', 'main');
+  const sponsorName = settings?.sponsoredBrokerName;
+  const sponsorLogo = settings?.sponsoredBrokerLogo;
+  const sponsorLink = settings?.sponsoredBrokerLink;
   const tools = [
     { name: 'Kalkulator Pip', slug: 'pip-calculator', desc: 'Kira nilai satu pip untuk mana-mana pasangan matawang.', icon: 'M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z' },
     { name: 'Kalkulator Lot Size', slug: 'lot-size-calculator', desc: 'Kira saiz lot yang tepat berdasarkan peratusan risiko anda.', icon: 'M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z' },
@@ -17,6 +24,16 @@ export default function ToolsList() {
             <p className="text-lg text-slate-600 max-w-2xl mx-auto">
               Kalkulator penting untuk membantu anda menguruskan risiko dan merancang entry dengan lebih tepat.
             </p>
+            {sponsorName && (
+              <a href={sponsorLink || '#'} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-3 bg-white border border-slate-200 px-5 py-2.5 rounded-full shadow-sm hover:shadow-md hover:border-primary-200 transition-all mt-6">
+                <span className="text-xs font-bold text-slate-500 uppercase tracking-wider">Dibawakan Khas Oleh</span>
+                {sponsorLogo ? (
+                  <img src={sponsorLogo} alt={sponsorName} className="h-6 object-contain" />
+                ) : (
+                  <span className="font-black text-primary-600 text-lg">{sponsorName}</span>
+                )}
+              </a>
+            )}
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
