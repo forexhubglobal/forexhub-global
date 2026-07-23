@@ -1,7 +1,7 @@
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
 const GITHUB_USERNAME = 'forexhubglobal';
 const GITHUB_REPO = 'forexhub-global';
-const BRANCH = 'master'; // Vercel defaults to master or main, we used master earlier
+const BRANCH = 'main'; // Vercel defaults to main
 
 export async function saveToGitHub(filePath: string, content: string, commitMessage: string) {
   if (!GITHUB_TOKEN) {
