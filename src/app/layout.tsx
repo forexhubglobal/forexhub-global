@@ -41,6 +41,9 @@ export const metadata: Metadata = {
   icons: {
     icon: '/favicon.ico',
   },
+  verification: {
+    google: 'Cu8OyhGtnoR2hZMmOnYmtepPOSv76SH89LOWaSLyw8I',
+  },
 };
 
 import Script from 'next/script';
