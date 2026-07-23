@@ -1,11 +1,13 @@
 import { NextResponse } from 'next/server';
 import fs from 'fs';
 import path from 'path';
+import { saveToGitHub } from '@/lib/github';
 
 const REVIEWS_DIR = path.join(process.cwd(), 'content', 'reviews');
 
 // Helper to ensure directory exists
 const ensureDir = () => {
+  if (process.env.GITHUB_TOKEN) return; // Skip in prod
   if (!fs.existsSync(REVIEWS_DIR)) {
     fs.mkdirSync(REVIEWS_DIR, { recursive: true });
   }
@@ -14,6 +16,10 @@ const ensureDir = () => {
 export async function GET() {
   try {
     ensureDir();
+    if (!fs.existsSync(REVIEWS_DIR)) {
+      return NextResponse.json({ success: true, reviews: [] });
+    }
+    
     const files = fs.readdirSync(REVIEWS_DIR);
     let allReviews: any[] = [];
 
@@ -64,7 +70,11 @@ export async function PUT(req: Request) {
     // Update the review with admin reply
     reviews[reviewIndex].adminReply = adminReply;
 
-    fs.writeFileSync(filePath, JSON.stringify(reviews, null, 2), 'utf-8');
+    if (process.env.GITHUB_TOKEN) {
+      await saveToGitHub(`content/reviews/${slug}.json`, JSON.stringify(reviews, null, 2), `CMS: Admin reply to review on ${slug}`);
+    } else {
+      fs.writeFileSync(filePath, JSON.stringify(reviews, null, 2), 'utf-8');
+    }
 
     return NextResponse.json({ success: true });
   } catch (error: any) {
@@ -94,7 +104,11 @@ export async function DELETE(req: Request) {
     // Filter out the review to delete
     reviews = reviews.filter((r: any) => r.id !== id);
 
-    fs.writeFileSync(filePath, JSON.stringify(reviews, null, 2), 'utf-8');
+    if (process.env.GITHUB_TOKEN) {
+      await saveToGitHub(`content/reviews/${slug}.json`, JSON.stringify(reviews, null, 2), `CMS: Delete review on ${slug}`);
+    } else {
+      fs.writeFileSync(filePath, JSON.stringify(reviews, null, 2), 'utf-8');
+    }
 
     return NextResponse.json({ success: true });
   } catch (error: any) {

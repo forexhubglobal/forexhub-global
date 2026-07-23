@@ -45,9 +45,9 @@ export function getAllData(collection: string): BaseMetadata[] {
 
       return {
         slug,
-        ...(matterResult.data as Omit<BaseMetadata, 'slug'>),
+        ...(matterResult.data as any),
       };
-    });
+    }) as unknown as BaseMetadata[];
 
   // Sort by date (descending)
   return allData.sort((a, b) => {
@@ -76,8 +76,8 @@ export async function getDataBySlug(collection: string, slug: string): Promise<B
     slug,
     contentHtml,
     rawContent: matterResult.content,
-    ...(matterResult.data as Omit<BaseMetadata, 'slug'>),
-  };
+    ...(matterResult.data as any),
+  } as unknown as BaseContent;
 }
 
 // --- LEGACY WRAPPERS (For Articles) ---

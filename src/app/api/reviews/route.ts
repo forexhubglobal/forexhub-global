@@ -1,11 +1,12 @@
 import { NextResponse } from 'next/server';
 import fs from 'fs';
 import path from 'path';
+import { saveToGitHub } from '@/lib/github';
 
 const REVIEWS_DIR = path.join(process.cwd(), 'content', 'reviews');
 
 // Ensure directory exists
-if (!fs.existsSync(REVIEWS_DIR)) {
+if (!process.env.GITHUB_TOKEN && !fs.existsSync(REVIEWS_DIR)) {
   fs.mkdirSync(REVIEWS_DIR, { recursive: true });
 }
 
@@ -63,7 +64,11 @@ export async function POST(req: Request) {
     // Add new review at the beginning of the array (newest first)
     reviews.unshift(newReview);
 
-    fs.writeFileSync(filePath, JSON.stringify(reviews, null, 2), 'utf-8');
+    if (process.env.GITHUB_TOKEN) {
+      await saveToGitHub(`content/reviews/${slug}.json`, JSON.stringify(reviews, null, 2), `User Submitted Review for ${slug}`);
+    } else {
+      fs.writeFileSync(filePath, JSON.stringify(reviews, null, 2), 'utf-8');
+    }
 
     return NextResponse.json({ success: true, review: newReview });
   } catch (error: any) {

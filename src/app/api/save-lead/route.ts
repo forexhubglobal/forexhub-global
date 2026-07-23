@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import fs from 'fs';
 import path from 'path';
+import { saveToGitHub } from '@/lib/github';
 
 export async function POST(req: Request) {
   try {
@@ -11,17 +12,9 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: 'Name and phone are required' }, { status: 400 });
     }
 
-    const contentDir = path.join(process.cwd(), 'content', 'leads');
-    
-    // Ensure directory exists
-    if (!fs.existsSync(contentDir)) {
-      fs.mkdirSync(contentDir, { recursive: true });
-    }
-
     const timestamp = Date.now();
     const fileName = `${timestamp}.json`;
-    const filePath = path.join(contentDir, fileName);
-
+    
     const leadData = {
       id: timestamp.toString(),
       date: new Date().toISOString(),
@@ -32,7 +25,16 @@ export async function POST(req: Request) {
       requirements
     };
 
-    fs.writeFileSync(filePath, JSON.stringify(leadData, null, 2), 'utf-8');
+    if (process.env.GITHUB_TOKEN) {
+      await saveToGitHub(`content/leads/${fileName}`, JSON.stringify(leadData, null, 2), `User Submitted Lead ${name}`);
+    } else {
+      const contentDir = path.join(process.cwd(), 'content', 'leads');
+      if (!fs.existsSync(contentDir)) {
+        fs.mkdirSync(contentDir, { recursive: true });
+      }
+      const filePath = path.join(contentDir, fileName);
+      fs.writeFileSync(filePath, JSON.stringify(leadData, null, 2), 'utf-8');
+    }
 
     return NextResponse.json({ success: true, leadId: leadData.id });
   } catch (error: any) {

@@ -436,6 +436,18 @@ export default function AdminPage() {
     }
   };
 
+  const handleDeleteScam = async (id: string) => {
+    if (!confirm('Pasti ingin memadam rekod scam ini?')) return;
+    try {
+      const res = await fetch(`/api/admin/scams?id=${id}`, { method: 'DELETE' });
+      if (res.ok) {
+        setScamsList(prev => prev.filter(s => s.id !== id));
+      }
+    } catch (err) {
+      console.error('Error deleting scam:', err);
+    }
+  };
+
   const handleReplyReview = async (slug: string, id: string) => {
     if (!replyText.trim()) return;
     try {

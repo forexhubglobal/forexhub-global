@@ -2,11 +2,12 @@ import { NextResponse } from 'next/server';
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
+import { saveToGitHub, deleteFromGitHub } from '@/lib/github';
 
 const contentDir = path.join(process.cwd(), 'content/prop-firms');
 
-// Ensure directory exists
-if (!fs.existsSync(contentDir)) {
+// Ensure directory exists (only local)
+if (!process.env.GITHUB_TOKEN && !fs.existsSync(contentDir)) {
   fs.mkdirSync(contentDir, { recursive: true });
 }
 
@@ -21,8 +22,6 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: 'Slug and Title are required' }, { status: 400 });
     }
 
-    const filePath = path.join(contentDir, `${slug}.md`);
-
     const frontmatter = {
       id: Date.now().toString(),
       slug,
@@ -36,7 +35,13 @@ export async function POST(req: Request) {
     };
 
     const fileContent = matter.stringify(content || '', frontmatter);
-    fs.writeFileSync(filePath, fileContent);
+    
+    if (process.env.GITHUB_TOKEN) {
+      await saveToGitHub(`content/prop-firms/${slug}.md`, fileContent, `CMS: Update prop firm ${slug}`);
+    } else {
+      const filePath = path.join(contentDir, `${slug}.md`);
+      fs.writeFileSync(filePath, fileContent);
+    }
 
     return NextResponse.json({ success: true, slug });
   } catch (error) {
@@ -54,13 +59,17 @@ export async function DELETE(req: Request) {
       return NextResponse.json({ error: 'Slug is required' }, { status: 400 });
     }
 
-    const filePath = path.join(contentDir, `${slug}.md`);
-    
-    if (fs.existsSync(filePath)) {
-      fs.unlinkSync(filePath);
+    if (process.env.GITHUB_TOKEN) {
+      await deleteFromGitHub(`content/prop-firms/${slug}.md`, `CMS: Delete prop firm ${slug}`);
       return NextResponse.json({ success: true });
     } else {
-      return NextResponse.json({ error: 'Prop Firm not found' }, { status: 404 });
+      const filePath = path.join(contentDir, `${slug}.md`);
+      if (fs.existsSync(filePath)) {
+        fs.unlinkSync(filePath);
+        return NextResponse.json({ success: true });
+      } else {
+        return NextResponse.json({ error: 'Prop Firm not found' }, { status: 404 });
+      }
     }
   } catch (error) {
     console.error('Error deleting prop firm:', error);

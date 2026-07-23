@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import fs from 'fs';
 import path from 'path';
+import { saveToGitHub, deleteFromGitHub } from '@/lib/github';
 
 export async function POST(request: Request) {
   try {
@@ -35,24 +36,33 @@ image: "${finalImage}"
 ${content}
 `;
 
-    // Tulis fail ke public/images/ (wait this is save-article, it writes to content/articles)
-    // Pastikan folder wujud
     const dir = path.join(process.cwd(), 'content/articles');
-    if (!fs.existsSync(dir)) {
-      fs.mkdirSync(dir, { recursive: true });
+    
+    if (!process.env.GITHUB_TOKEN) {
+      if (!fs.existsSync(dir)) {
+        fs.mkdirSync(dir, { recursive: true });
+      }
     }
 
     // Buang fail lama jika slug bertukar (edit)
     if (originalSlug && originalSlug !== slug) {
-      const oldFilePath = path.join(dir, `${originalSlug}.md`);
-      if (fs.existsSync(oldFilePath)) {
-        fs.unlinkSync(oldFilePath);
+      if (process.env.GITHUB_TOKEN) {
+        await deleteFromGitHub(`content/articles/${originalSlug}.md`, `CMS: Rename article ${originalSlug} to ${slug}`);
+      } else {
+        const oldFilePath = path.join(dir, `${originalSlug}.md`);
+        if (fs.existsSync(oldFilePath)) {
+          fs.unlinkSync(oldFilePath);
+        }
       }
     }
 
     // Tulis fail
-    const filePath = path.join(dir, `${slug}.md`);
-    fs.writeFileSync(filePath, markdownContent, 'utf8');
+    if (process.env.GITHUB_TOKEN) {
+      await saveToGitHub(`content/articles/${slug}.md`, markdownContent, `CMS: Update article ${slug}`);
+    } else {
+      const filePath = path.join(dir, `${slug}.md`);
+      fs.writeFileSync(filePath, markdownContent, 'utf8');
+    }
 
     return NextResponse.json({ success: true, slug });
   } catch (error) {
