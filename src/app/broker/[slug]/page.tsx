@@ -178,7 +178,7 @@ export default async function BrokerDetail({ params }: { params: Promise<{ slug:
 
             {/* Sidebar Sticky */}
             <div className="md:col-span-1">
-              <div className="sticky top-28 bg-white rounded-2xl p-6 shadow-sm border border-slate-200">
+              <div className="md:sticky md:top-28 bg-white rounded-2xl p-6 shadow-sm border border-slate-200">
                 <h3 className="font-bold text-slate-900 mb-4 text-lg">Bandingkan {broker.title}</h3>
                 <p className="text-sm text-slate-500 mb-4">Adakah ini broker terbaik untuk anda? Bandingkan dengan broker popular lain.</p>
                 <div className="space-y-3">

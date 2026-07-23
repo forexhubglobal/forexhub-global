@@ -115,7 +115,7 @@ export default function BrokerReviews({ slug }: { slug: string }) {
         
         {/* Submit Review Form */}
         <div className="md:col-span-1">
-          <div className="bg-slate-50 p-5 rounded-xl border border-slate-200 sticky top-28">
+          <div className="bg-slate-50 p-5 rounded-xl border border-slate-200 md:sticky md:top-28">
             <h3 className="font-bold text-slate-900 mb-4">Tinggalkan Ulasan</h3>
             
             {message.text && (
