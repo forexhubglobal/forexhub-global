@@ -1,5 +1,5 @@
 import Link from 'next/link';
-
+import RegisterButton from './RegisterButton';
 export default function Header() {
   const navItems = [
     { label: 'HOME', href: '/' },
@@ -48,9 +48,7 @@ export default function Header() {
             <div id="google_translate_element" className="flex items-center mt-1 scale-90 origin-right shrink-0"></div>
             
             {/* CTA Button (Hidden on smaller screens to save space) */}
-            <button className="hidden md:inline-flex bg-primary-600 hover:bg-primary-700 text-white px-4 py-2 rounded-lg font-semibold transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5 whitespace-nowrap text-sm shrink-0">
-              Daftar Percuma
-            </button>
+            <RegisterButton />
 
             {/* Mobile menu button */}
             <button className="lg:hidden text-slate-500 hover:text-slate-700 focus:outline-none shrink-0 p-2">
