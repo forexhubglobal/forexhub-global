@@ -34,59 +34,59 @@ export default async function CompareResult({ params }: { params: Promise<{ slug
 
   return (
     <>
-      <main className="bg-slate-50 min-h-screen py-10">
+      <main className="bg-[#09090b] min-h-screen py-10">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           
-          <div className="flex items-center gap-2 text-sm text-slate-500 mb-8">
-            <Link href="/" className="hover:text-primary-600">Home</Link>
+          <div className="flex items-center gap-2 text-sm text-slate-400 mb-8">
+            <Link href="/" className="hover:text-neon-blue">Home</Link>
             <span>/</span>
-            <Link href="/compare" className="hover:text-primary-600">Compare</Link>
+            <Link href="/compare" className="hover:text-neon-blue">Compare</Link>
             <span>/</span>
-            <span className="text-slate-900 font-medium">{broker1.name} vs {broker2.name}</span>
+            <span className="text-white font-medium">{broker1.name} vs {broker2.name}</span>
           </div>
 
           <div className="text-center mb-12">
-            <h1 className="text-3xl md:text-5xl font-bold text-slate-900 mb-4">
+            <h1 className="text-3xl md:text-5xl font-bold text-white mb-4">
               {broker1.name} <span className="text-slate-400 font-medium text-3xl">vs</span> {broker2.name}
             </h1>
-            <p className="text-lg text-slate-600">Bandingkan ciri-ciri utama sebelah-menyebelah</p>
+            <p className="text-lg text-slate-400">Bandingkan ciri-ciri utama sebelah-menyebelah</p>
           </div>
 
-          <div className="bg-white rounded-3xl shadow-sm border border-slate-200 overflow-hidden">
+          <div className="bg-black/40 backdrop-blur-md rounded-3xl shadow-sm border border-white/10 overflow-hidden">
             {/* Table Header */}
-            <div className="grid grid-cols-3 border-b border-slate-200 bg-slate-50">
+            <div className="grid grid-cols-3 border-b border-white/10 bg-[#09090b]">
               <div className="p-6 flex items-center justify-center">
-                <Link href="/compare" className="text-sm font-semibold text-primary-600 hover:text-primary-700 underline">
+                <Link href="/compare" className="text-sm font-semibold text-neon-blue hover:text-neon-blue underline">
                   Tukar Broker
                 </Link>
               </div>
-              <div className="p-6 text-center border-l border-slate-200">
+              <div className="p-6 text-center border-l border-white/10">
                 <div className={`w-16 h-16 mx-auto rounded-2xl bg-gradient-to-br ${broker1.color} flex items-center justify-center text-white font-bold text-xl shadow-md mb-4`}>
                   {broker1.logo}
                 </div>
-                <h2 className="font-bold text-xl text-slate-900 mb-4">{broker1.name}</h2>
-                <button className="w-full bg-slate-900 hover:bg-slate-800 text-white py-2 rounded-lg font-semibold transition-colors text-sm">Buka Akaun</button>
+                <h2 className="font-bold text-xl text-white mb-4">{broker1.name}</h2>
+                <button className="w-full bg-black hover:bg-black/60 text-white py-2 rounded-lg font-semibold transition-colors text-sm">Buka Akaun</button>
               </div>
-              <div className="p-6 text-center border-l border-slate-200">
+              <div className="p-6 text-center border-l border-white/10">
                 <div className={`w-16 h-16 mx-auto rounded-2xl bg-gradient-to-br ${broker2.color} flex items-center justify-center text-white font-bold text-xl shadow-md mb-4`}>
                   {broker2.logo}
                 </div>
-                <h2 className="font-bold text-xl text-slate-900 mb-4">{broker2.name}</h2>
-                <button className="w-full bg-slate-900 hover:bg-slate-800 text-white py-2 rounded-lg font-semibold transition-colors text-sm">Buka Akaun</button>
+                <h2 className="font-bold text-xl text-white mb-4">{broker2.name}</h2>
+                <button className="w-full bg-black hover:bg-black/60 text-white py-2 rounded-lg font-semibold transition-colors text-sm">Buka Akaun</button>
               </div>
             </div>
 
             {/* Comparison Rows */}
             <div className="divide-y divide-slate-100">
               {comparisonPoints.map((point) => (
-                <div key={point.key} className="grid grid-cols-3 hover:bg-slate-50 transition-colors">
-                  <div className="p-4 md:p-6 text-sm font-bold text-slate-700 bg-slate-50/50">
+                <div key={point.key} className="grid grid-cols-3 hover:bg-[#09090b] transition-colors">
+                  <div className="p-4 md:p-6 text-sm font-bold text-slate-300 bg-[#09090b]/50">
                     {point.label}
                   </div>
-                  <div className="p-4 md:p-6 text-sm text-slate-900 text-center font-medium border-l border-slate-100">
+                  <div className="p-4 md:p-6 text-sm text-white text-center font-medium border-l border-white/10">
                     {point.format ? point.format((broker1 as any)[point.key]) : (broker1 as any)[point.key]}
                   </div>
-                  <div className="p-4 md:p-6 text-sm text-slate-900 text-center font-medium border-l border-slate-100">
+                  <div className="p-4 md:p-6 text-sm text-white text-center font-medium border-l border-white/10">
                     {point.format ? point.format((broker2 as any)[point.key]) : (broker2 as any)[point.key]}
                   </div>
                 </div>
@@ -94,9 +94,9 @@ export default async function CompareResult({ params }: { params: Promise<{ slug
             </div>
 
             {/* Pros & Cons Section */}
-            <div className="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-slate-200 border-t border-slate-200 bg-slate-50">
+            <div className="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-slate-200 border-t border-white/10 bg-[#09090b]">
               <div className="p-8">
-                <h3 className="font-bold text-slate-900 mb-6 text-center">Kelebihan {broker1.name}</h3>
+                <h3 className="font-bold text-white mb-6 text-center">Kelebihan {broker1.name}</h3>
                 <ul className="space-y-3">
                   {broker1.pros.map((pro, i) => (
                     <li key={i} className="flex items-start gap-2 text-success-700 text-sm">
@@ -107,7 +107,7 @@ export default async function CompareResult({ params }: { params: Promise<{ slug
                 </ul>
               </div>
               <div className="p-8">
-                <h3 className="font-bold text-slate-900 mb-6 text-center">Kelebihan {broker2.name}</h3>
+                <h3 className="font-bold text-white mb-6 text-center">Kelebihan {broker2.name}</h3>
                 <ul className="space-y-3">
                   {broker2.pros.map((pro, i) => (
                     <li key={i} className="flex items-start gap-2 text-success-700 text-sm">

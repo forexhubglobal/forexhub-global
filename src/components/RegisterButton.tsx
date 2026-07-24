@@ -33,23 +33,23 @@ export default function RegisterButton() {
     <>
       <button 
         onClick={() => setIsOpen(true)}
-        className="hidden md:inline-flex bg-primary-600 hover:bg-primary-700 text-white px-4 py-2 rounded-lg font-semibold transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5 whitespace-nowrap text-sm shrink-0"
+        className="hidden md:inline-flex bg-neon-blue text-black font-bold hover:bg-neon-blue/80 hover:shadow-[0_0_15px_rgba(0,243,255,0.5)] text-white px-4 py-2 rounded-lg font-semibold transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5 whitespace-nowrap text-sm shrink-0"
       >
         Daftar Percuma
       </button>
 
       {isOpen && (
         <div 
-          className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm"
+          className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm"
           onClick={() => setIsOpen(false)}
         >
           <div 
-            className="bg-white rounded-3xl w-full max-w-md p-8 shadow-2xl relative transform transition-all max-h-[90vh] overflow-y-auto"
+            className="bg-black/40 backdrop-blur-md rounded-3xl w-full max-w-md p-8 shadow-2xl relative transform transition-all max-h-[90vh] overflow-y-auto"
             onClick={(e) => e.stopPropagation()}
           >
             <button 
               onClick={() => setIsOpen(false)}
-              className="absolute top-4 right-4 p-2 bg-slate-100 rounded-full text-slate-400 hover:text-slate-600 hover:bg-slate-200 transition-colors z-10"
+              className="absolute top-4 right-4 p-2 bg-white/5 rounded-full text-slate-400 hover:text-slate-400 hover:bg-slate-200 transition-colors z-10"
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path></svg>
             </button>
@@ -57,33 +57,33 @@ export default function RegisterButton() {
             {!success ? (
               <>
                 <div className="mb-8 text-center mt-2">
-                  <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-primary-50 text-primary-600 mb-4">
+                  <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-neon-blue/10 text-neon-blue mb-4">
                     <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
                   </div>
-                  <h3 className="text-2xl font-bold text-slate-900 mb-2">Akses VIP Percuma!</h3>
-                  <p className="text-slate-500">Daftar sekarang untuk dapatkan akses eksklusif ke Group Signal VIP & Indicator Premium.</p>
+                  <h3 className="text-2xl font-bold text-white mb-2">Akses VIP Percuma!</h3>
+                  <p className="text-slate-400">Daftar sekarang untuk dapatkan akses eksklusif ke Group Signal VIP & Indicator Premium.</p>
                 </div>
                 
                 <form onSubmit={handleSubmit} className="space-y-5">
                   <div>
-                    <label className="block text-sm font-semibold text-slate-700 mb-1.5">Nama Penuh</label>
+                    <label className="block text-sm font-semibold text-slate-300 mb-1.5">Nama Penuh</label>
                     <input 
                       type="text" 
                       required
                       value={formData.name}
                       onChange={(e) => setFormData({...formData, name: e.target.value})}
-                      className="w-full px-4 py-3.5 rounded-xl border border-slate-200 focus:border-primary-500 focus:ring-2 focus:ring-primary-200 outline-none transition-all bg-slate-50 focus:bg-white"
+                      className="w-full px-4 py-3.5 rounded-xl border border-white/10 focus:border-neon-blue/50 focus:ring-2 focus:ring-primary-200 outline-none transition-all bg-[#09090b] focus:bg-black/40 backdrop-blur-md"
                       placeholder="Contoh: Ahmad Ali"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-semibold text-slate-700 mb-1.5">Nombor WhatsApp</label>
+                    <label className="block text-sm font-semibold text-slate-300 mb-1.5">Nombor WhatsApp</label>
                     <input 
                       type="tel" 
                       required
                       value={formData.phone}
                       onChange={(e) => setFormData({...formData, phone: e.target.value})}
-                      className="w-full px-4 py-3.5 rounded-xl border border-slate-200 focus:border-primary-500 focus:ring-2 focus:ring-primary-200 outline-none transition-all bg-slate-50 focus:bg-white"
+                      className="w-full px-4 py-3.5 rounded-xl border border-white/10 focus:border-neon-blue/50 focus:ring-2 focus:ring-primary-200 outline-none transition-all bg-[#09090b] focus:bg-black/40 backdrop-blur-md"
                       placeholder="Contoh: 0123456789"
                     />
                   </div>
@@ -100,7 +100,7 @@ export default function RegisterButton() {
                     <button 
                       type="button" 
                       onClick={() => setIsOpen(false)}
-                      className="w-full py-3 text-slate-500 font-semibold hover:text-slate-700 hover:bg-slate-100 rounded-xl transition-colors"
+                      className="w-full py-3 text-slate-400 font-semibold hover:text-slate-300 hover:bg-white/10 rounded-xl transition-colors"
                     >
                       Tutup / Batal
                     </button>
@@ -112,8 +112,8 @@ export default function RegisterButton() {
                 <div className="w-24 h-24 bg-green-100 text-green-500 rounded-full flex items-center justify-center mx-auto mb-6">
                   <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>
                 </div>
-                <h3 className="text-3xl font-bold text-slate-900 mb-3">Tahniah! 🎉</h3>
-                <p className="text-slate-600 mb-8 leading-relaxed">Pendaftaran anda berjaya. Sila klik butang di bawah untuk menyertai komuniti Telegram VIP kami sekarang.</p>
+                <h3 className="text-3xl font-bold text-white mb-3">Tahniah! 🎉</h3>
+                <p className="text-slate-400 mb-8 leading-relaxed">Pendaftaran anda berjaya. Sila klik butang di bawah untuk menyertai komuniti Telegram VIP kami sekarang.</p>
                 <a 
                   href="https://t.me/forexhubglobal" 
                   target="_blank"
@@ -125,7 +125,7 @@ export default function RegisterButton() {
                 </a>
                 <button 
                   onClick={() => setIsOpen(false)}
-                  className="mt-6 text-sm font-semibold text-slate-500 hover:text-slate-700"
+                  className="mt-6 text-sm font-semibold text-slate-400 hover:text-slate-300"
                 >
                   Tutup paparan ini
                 </button>

@@ -20,7 +20,7 @@ export default function FloatingWhatsApp({
         className="group flex items-center gap-3 bg-[#25D366] hover:bg-[#1ebd5a] text-white p-4 rounded-full shadow-2xl hover:shadow-[#25D366]/40 transition-all duration-300 transform hover:-translate-y-2"
         aria-label="Chat with us on WhatsApp"
       >
-        <div className="absolute right-full mr-4 bg-white text-slate-800 text-sm font-bold py-2 px-4 rounded-xl shadow-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
+        <div className="absolute right-full mr-4 bg-black/40 backdrop-blur-md text-slate-200 text-sm font-bold py-2 px-4 rounded-xl shadow-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
           Perlukan bantuan? Chat kami!
           {/* Tooltip triangle */}
           <div className="absolute top-1/2 -right-2 -translate-y-1/2 border-[8px] border-transparent border-l-white"></div>

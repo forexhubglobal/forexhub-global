@@ -60,11 +60,11 @@ export default function QuizPage() {
 
   return (
     <>
-      <main className="bg-slate-50 min-h-screen py-20">
+      <main className="bg-[#09090b] min-h-screen py-20">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           
-          <div className="bg-white rounded-3xl shadow-xl border border-slate-200 overflow-hidden relative">
-            <div className="h-2 w-full bg-slate-100">
+          <div className="bg-black/40 backdrop-blur-md rounded-3xl shadow-xl border border-white/10 overflow-hidden relative">
+            <div className="h-2 w-full bg-white/5">
               <div 
                 className="h-full bg-primary-500 transition-all duration-500"
                 style={{ width: `${step === 99 ? 100 : (step / questions.length) * 100}%` }}
@@ -74,15 +74,15 @@ export default function QuizPage() {
             <div className="p-8 md:p-12">
               {step < 99 ? (
                 <div key="quiz-questions" className="animate-fade-in-up">
-                  <div className="text-sm font-bold text-primary-600 mb-4">Soalan {step} dari {questions.length}</div>
-                  <h2 className="text-3xl font-bold text-slate-900 mb-8">{questions[step-1].question}</h2>
+                  <div className="text-sm font-bold text-neon-blue mb-4">Soalan {step} dari {questions.length}</div>
+                  <h2 className="text-3xl font-bold text-white mb-8">{questions[step-1].question}</h2>
                   
                   <div className="space-y-4">
                     {questions[step-1].options.map((opt) => (
                       <button 
                         key={opt.value}
                         onClick={() => handleAnswer(opt.value)}
-                        className="w-full text-left p-6 rounded-2xl border-2 border-slate-200 hover:border-primary-500 hover:bg-primary-50 font-semibold text-slate-700 hover:text-primary-700 transition-all"
+                        className="w-full text-left p-6 rounded-2xl border-2 border-white/10 hover:border-neon-blue/50 hover:bg-neon-blue/10 font-semibold text-slate-300 hover:text-neon-blue transition-all"
                       >
                         {opt.label}
                       </button>
@@ -94,19 +94,19 @@ export default function QuizPage() {
                   <div className="w-20 h-20 bg-success-100 text-success-500 rounded-full flex items-center justify-center mx-auto mb-6">
                     <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>
                   </div>
-                  <h2 className="text-3xl font-bold text-slate-900 mb-4">Analisis Selesai!</h2>
-                  <p className="text-lg text-slate-600 mb-8">Berdasarkan profil anda, broker yang paling sesuai untuk gaya trading anda ialah:</p>
+                  <h2 className="text-3xl font-bold text-white mb-4">Analisis Selesai!</h2>
+                  <p className="text-lg text-slate-400 mb-8">Berdasarkan profil anda, broker yang paling sesuai untuk gaya trading anda ialah:</p>
                   
                   <div className="bg-gradient-to-r from-primary-600 to-indigo-600 rounded-2xl p-8 mb-8 text-white shadow-xl shadow-primary-500/30">
                     <h3 className="text-4xl font-black mb-2">{getRecommendedBroker()}</h3>
                     <p className="opacity-90">Sangat sesuai untuk keperluan dan saiz modal anda.</p>
                   </div>
 
-                  <Link href={`/broker/${getRecommendedBroker().toLowerCase().replace(' ', '-')}`} className="inline-block w-full sm:w-auto px-8 py-4 bg-slate-900 hover:bg-slate-800 text-white rounded-xl font-bold text-lg transition-all shadow-md">
+                  <Link href={`/broker/${getRecommendedBroker().toLowerCase().replace(' ', '-')}`} className="inline-block w-full sm:w-auto px-8 py-4 bg-black hover:bg-black/60 text-white rounded-xl font-bold text-lg transition-all shadow-md">
                     Baca Full Review & Daftar Sekarang
                   </Link>
                   <div className="mt-4">
-                    <button onClick={() => setStep(1)} className="text-slate-500 hover:text-slate-700 font-semibold text-sm">
+                    <button onClick={() => setStep(1)} className="text-slate-400 hover:text-slate-300 font-semibold text-sm">
                       Mula Semula Kuiz
                     </button>
                   </div>

@@ -17,20 +17,24 @@ export default async function ToolsList() {
 
   return (
     <>
-      <main className="bg-slate-50 min-h-screen py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <main className="bg-[#09090b] min-h-screen py-16 relative overflow-hidden">
+        {/* Glow Effects */}
+        <div className="absolute top-20 left-1/4 w-96 h-96 bg-neon-blue/5 rounded-full blur-[120px] pointer-events-none"></div>
+        <div className="absolute bottom-20 right-1/4 w-96 h-96 bg-neon-purple/5 rounded-full blur-[120px] pointer-events-none"></div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center mb-16">
-            <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">Trading Tools Percuma</h1>
-            <p className="text-lg text-slate-600 max-w-2xl mx-auto">
+            <h1 className="text-4xl md:text-5xl font-bold text-white mb-4 drop-shadow-[0_0_10px_rgba(255,255,255,0.2)]">Trading Tools Percuma</h1>
+            <p className="text-lg text-slate-400 max-w-2xl mx-auto">
               Kalkulator penting untuk membantu anda menguruskan risiko dan merancang entry dengan lebih tepat.
             </p>
             {sponsorName && (
-              <a href={sponsorLink || '#'} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-3 bg-white border border-slate-200 px-5 py-2.5 rounded-full shadow-sm hover:shadow-md hover:border-primary-200 transition-all mt-6">
-                <span className="text-xs font-bold text-slate-500 uppercase tracking-wider">Dibawakan Khas Oleh</span>
+              <a href={sponsorLink || '#'} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-3 bg-black/40 backdrop-blur-md/5 border border-white/20 px-5 py-2.5 rounded-full shadow-sm hover:shadow-[0_0_15px_rgba(0,243,255,0.3)] hover:border-neon-blue/50 transition-all mt-6 backdrop-blur-md">
+                <span className="text-xs font-bold text-slate-400 uppercase tracking-wider">Dibawakan Khas Oleh</span>
                 {sponsorLogo ? (
-                  <img src={sponsorLogo} alt={sponsorName} className="h-6 object-contain" />
+                  <img src={sponsorLogo} alt={sponsorName} className="h-6 object-contain drop-shadow-[0_0_3px_rgba(255,255,255,0.3)]" />
                 ) : (
-                  <span className="font-black text-primary-600 text-lg">{sponsorName}</span>
+                  <span className="font-black text-transparent bg-clip-text bg-gradient-to-r from-neon-blue to-neon-purple text-lg drop-shadow-[0_0_5px_rgba(0,243,255,0.8)]">{sponsorName}</span>
                 )}
               </a>
             )}
@@ -38,17 +42,17 @@ export default async function ToolsList() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {tools.map((tool) => (
-              <Link key={tool.slug} href={`/tools/${tool.slug}`} className="bg-white p-8 rounded-3xl border border-slate-200 hover:border-primary-400 hover:shadow-xl transition-all group">
-                <div className="w-16 h-16 bg-primary-50 rounded-2xl flex items-center justify-center text-primary-600 mb-6 group-hover:scale-110 group-hover:bg-primary-600 group-hover:text-white transition-all shadow-sm">
+              <Link key={tool.slug} href={`/tools/${tool.slug}`} className="bg-black/40 backdrop-blur-md p-8 rounded-3xl border border-white/10 hover:border-neon-blue/50 hover:shadow-[0_0_25px_rgba(0,243,255,0.2)] transition-all group">
+                <div className="w-16 h-16 bg-neon-blue/10 border border-neon-blue/30 rounded-2xl flex items-center justify-center text-neon-blue mb-6 group-hover:scale-110 group-hover:bg-neon-blue group-hover:text-black group-hover:shadow-[0_0_15px_rgba(0,243,255,0.8)] transition-all">
                   <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d={tool.icon}></path>
                   </svg>
                 </div>
-                <h2 className="text-2xl font-bold text-slate-900 mb-3 group-hover:text-primary-600 transition-colors">{tool.name}</h2>
-                <p className="text-slate-600 leading-relaxed mb-6">
+                <h2 className="text-2xl font-bold text-white mb-3 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-neon-blue group-hover:to-neon-purple transition-colors">{tool.name}</h2>
+                <p className="text-slate-400 leading-relaxed mb-6">
                   {tool.desc}
                 </p>
-                <div className="text-primary-600 font-bold text-sm inline-flex items-center gap-1 group-hover:gap-2 transition-all">
+                <div className="text-neon-blue font-bold text-sm inline-flex items-center gap-1 group-hover:gap-2 group-hover:text-neon-purple transition-all">
                   Guna Sekarang
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
                 </div>

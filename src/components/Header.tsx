@@ -16,16 +16,16 @@ export default function Header() {
   ];
 
   return (
-    <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-200">
+    <header className="sticky top-0 z-50 bg-[#09090b]/80 backdrop-blur-lg border-b border-white/10 shadow-[0_4px_30px_rgba(0,0,0,0.5)]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3 group">
-            <div className="w-10 h-10 rounded-xl overflow-hidden shadow-md group-hover:shadow-lg transition-all border border-slate-200 shrink-0">
+            <div className="w-10 h-10 rounded-xl overflow-hidden shadow-[0_0_15px_rgba(0,243,255,0.3)] group-hover:shadow-[0_0_25px_rgba(188,19,254,0.5)] transition-all border border-white/20 shrink-0">
               <img src="/logo.jpg" alt="ForexHub Global Logo" className="w-full h-full object-cover" />
             </div>
-            <span className="font-bold text-2xl text-slate-900 tracking-tight">
-              ForexHub <span className="text-primary-600">Global</span>
+            <span className="font-bold text-2xl text-white tracking-tight">
+              ForexHub <span className="text-transparent bg-clip-text bg-gradient-to-r from-neon-blue to-neon-purple drop-shadow-[0_0_8px_rgba(0,243,255,0.8)]">Global</span>
             </span>
           </Link>
 
@@ -35,7 +35,7 @@ export default function Header() {
               <Link
                 key={item.label}
                 href={item.href}
-                className={`text-xs xl:text-sm font-semibold text-slate-600 hover:text-primary-600 transition-colors whitespace-nowrap ${item.label === 'SCAM ALERT' ? 'text-red-600 font-bold' : ''}`}
+                className={`text-xs xl:text-sm font-bold text-slate-300 hover:text-neon-blue transition-colors whitespace-nowrap hover:drop-shadow-[0_0_8px_rgba(0,243,255,0.8)] ${item.label === 'SCAM ALERT' ? 'text-red-500 hover:text-red-400 drop-shadow-[0_0_5px_rgba(239,68,68,0.5)]' : ''}`}
               >
                 {item.label}
               </Link>
@@ -51,8 +51,8 @@ export default function Header() {
             <RegisterButton />
 
             {/* Mobile menu button */}
-            <button className="lg:hidden text-slate-500 hover:text-slate-700 focus:outline-none shrink-0 p-2">
-              <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <button className="lg:hidden text-slate-300 hover:text-white focus:outline-none shrink-0 p-2">
+              <svg className="h-6 w-6 drop-shadow-[0_0_5px_rgba(255,255,255,0.5)]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
               </svg>
             </button>

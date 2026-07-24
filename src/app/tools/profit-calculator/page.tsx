@@ -30,33 +30,33 @@ export default function ProfitCalculator() {
 
   return (
     <>
-      <main className="bg-slate-50 min-h-screen py-16">
+      <main className="bg-[#09090b] min-h-screen py-16">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           
-          <div className="flex items-center gap-2 text-sm text-slate-500 mb-8">
-            <Link href="/" className="hover:text-primary-600">Home</Link>
+          <div className="flex items-center gap-2 text-sm text-slate-400 mb-8">
+            <Link href="/" className="hover:text-neon-blue">Home</Link>
             <span>/</span>
-            <Link href="/tools" className="hover:text-primary-600">Tools</Link>
+            <Link href="/tools" className="hover:text-neon-blue">Tools</Link>
             <span>/</span>
-            <span className="text-slate-900 font-medium">Profit Calculator</span>
+            <span className="text-white font-medium">Profit Calculator</span>
           </div>
 
-          <div className="bg-white rounded-3xl p-8 md:p-12 shadow-sm border border-slate-200">
+          <div className="bg-black/40 backdrop-blur-md rounded-3xl p-8 md:p-12 shadow-sm border border-white/10">
             <div className="text-center mb-10">
-              <div className="w-16 h-16 bg-primary-50 rounded-2xl flex items-center justify-center text-primary-600 mx-auto mb-4">
+              <div className="w-16 h-16 bg-neon-blue/10 rounded-2xl flex items-center justify-center text-neon-blue mx-auto mb-4">
                 <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path>
                 </svg>
               </div>
-              <h1 className="text-3xl font-bold text-slate-900 mb-2">Kalkulator Untung/Rugi</h1>
-              <p className="text-slate-600">Anggarkan potensi keuntungan atau kerugian untuk posisi anda.</p>
+              <h1 className="text-3xl font-bold text-white mb-2">Kalkulator Untung/Rugi</h1>
+              <p className="text-slate-400">Anggarkan potensi keuntungan atau kerugian untuk posisi anda.</p>
             </div>
 
             <form onSubmit={calculateProfit} className="space-y-6 max-w-lg mx-auto">
               <div>
-                <label className="block text-sm font-bold text-slate-700 mb-2">Arah Dagangan</label>
+                <label className="block text-sm font-bold text-slate-300 mb-2">Arah Dagangan</label>
                 <select 
-                  className="w-full border border-slate-300 rounded-xl px-4 py-3 bg-slate-50 focus:ring-2 focus:ring-primary-500 outline-none"
+                  className="w-full border border-white/20 rounded-xl px-4 py-3 bg-[#09090b] focus:ring-2 focus:ring-neon-blue outline-none"
                   value={direction}
                   onChange={(e) => setDirection(e.target.value)}
                 >
@@ -66,11 +66,11 @@ export default function ProfitCalculator() {
               </div>
 
               <div>
-                <label className="block text-sm font-bold text-slate-700 mb-2">Saiz Lot</label>
+                <label className="block text-sm font-bold text-slate-300 mb-2">Saiz Lot</label>
                 <input 
                   type="number" 
                   step="0.01"
-                  className="w-full border border-slate-300 rounded-xl px-4 py-3 bg-slate-50 focus:ring-2 focus:ring-primary-500 outline-none"
+                  className="w-full border border-white/20 rounded-xl px-4 py-3 bg-[#09090b] focus:ring-2 focus:ring-neon-blue outline-none"
                   value={lotSize}
                   onChange={(e) => setLotSize(e.target.value)}
                   required
@@ -78,11 +78,11 @@ export default function ProfitCalculator() {
               </div>
 
               <div>
-                <label className="block text-sm font-bold text-slate-700 mb-2">Harga Buka (Open Price)</label>
+                <label className="block text-sm font-bold text-slate-300 mb-2">Harga Buka (Open Price)</label>
                 <input 
                   type="number" 
                   step="0.0001"
-                  className="w-full border border-slate-300 rounded-xl px-4 py-3 bg-slate-50 focus:ring-2 focus:ring-primary-500 outline-none"
+                  className="w-full border border-white/20 rounded-xl px-4 py-3 bg-[#09090b] focus:ring-2 focus:ring-neon-blue outline-none"
                   value={openPrice}
                   onChange={(e) => setOpenPrice(e.target.value)}
                   required
@@ -90,11 +90,11 @@ export default function ProfitCalculator() {
               </div>
 
               <div>
-                <label className="block text-sm font-bold text-slate-700 mb-2">Harga Tutup (Close Price)</label>
+                <label className="block text-sm font-bold text-slate-300 mb-2">Harga Tutup (Close Price)</label>
                 <input 
                   type="number" 
                   step="0.0001"
-                  className="w-full border border-slate-300 rounded-xl px-4 py-3 bg-slate-50 focus:ring-2 focus:ring-primary-500 outline-none"
+                  className="w-full border border-white/20 rounded-xl px-4 py-3 bg-[#09090b] focus:ring-2 focus:ring-neon-blue outline-none"
                   value={closePrice}
                   onChange={(e) => setClosePrice(e.target.value)}
                   required
@@ -102,7 +102,7 @@ export default function ProfitCalculator() {
               </div>
 
               <div className="pt-4">
-                <button type="submit" className="w-full bg-primary-600 hover:bg-primary-700 text-white font-bold py-4 rounded-xl shadow-lg shadow-primary-500/30 transition-transform transform hover:-translate-y-1">
+                <button type="submit" className="w-full bg-neon-blue text-black font-bold hover:bg-neon-blue/80 hover:shadow-[0_0_15px_rgba(0,243,255,0.5)] text-white font-bold py-4 rounded-xl shadow-lg shadow-primary-500/30 transition-transform transform hover:-translate-y-1">
                   Kira Untung/Rugi
                 </button>
               </div>

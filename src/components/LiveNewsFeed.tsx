@@ -20,7 +20,7 @@ export default function LiveNewsFeed() {
         "displayMode": "regular",
         "width": "100%",
         "height": "800",
-        "colorTheme": "light",
+        "colorTheme": "dark",
         "locale": "en"
       }`;
     container.current.appendChild(script);
