@@ -297,6 +297,13 @@ export default function AdminPage() {
             setRiskLevel(item.riskLevel || 'Medium');
             setMinInvest(item.minInvest || '100');
             setPammLink(item.pammLink || 'https://');
+          } else if (contentType === 'ibs') {
+            setIbTiktok(item.tiktok || '');
+            setExnessLink(item.exness || '');
+            setXmLink(item.xm || '');
+            setHfmLink(item.hfm || '');
+            setMonetaLink(item.moneta || '');
+            setCptLink(item.cpt || '');
           }
         }
       })
@@ -318,6 +325,13 @@ export default function AdminPage() {
     setRegulators('');
     setIsAd('false');
     setIsHidden('false');
+    setIbTiktok('');
+    setExnessLink('');
+    setXmLink('');
+    setHfmLink('');
+    setMonetaLink('');
+    setCptLink('');
+    setUploadStatus('');
     setTradingDesk('STP/ECN');
     setPlatforms('MT4, MT5');
     setAssetClasses('Forex, Crypto, Metals, Indices');
@@ -368,6 +382,8 @@ export default function AdminPage() {
       payload = { ...payload, logo, bonusType, bonusAmount, bonusLink };
     } else if (contentType === 'pamm') {
       payload = { ...payload, logo, manager, strategy, monthlyReturn, riskLevel, minInvest, pammLink };
+    } else if (contentType === 'ibs') {
+      payload = { ...payload, name: title, tiktok: ibTiktok, exness: exnessLink, xm: xmLink, hfm: hfmLink, moneta: monetaLink, cpt: cptLink };
     } else if (contentType === 'settings') {
       payload = { 
         collection: 'settings', originalSlug: 'main', title: 'Tetapan Utama', 
