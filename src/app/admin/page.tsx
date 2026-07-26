@@ -819,6 +819,17 @@ export default function AdminPage() {
                     <label className="block text-sm font-bold text-slate-300 mb-2">Nama IB <span className="text-neon-blue">*</span></label>
                     <input type="text" required className="w-full border border-white/20 rounded-xl px-4 py-3 bg-[#09090b] focus:ring-2 focus:ring-neon-blue outline-none font-medium text-slate-300" value={title} onChange={(e) => setTitle(e.target.value)} placeholder="Cth: Khairi" />
                   </div>
+                  {selectedSlug !== 'new' && (
+                    <div className="md:col-span-2 p-4 bg-neon-blue/10 border border-neon-blue/30 rounded-xl">
+                      <label className="block text-sm font-bold text-neon-blue mb-2">Link Landing Page IB (Copy & berikan pada IB ini)</label>
+                      <div className="flex gap-2">
+                        <input type="text" readOnly className="w-full bg-black/50 border border-white/10 rounded-lg px-4 py-2 text-slate-300 font-mono text-sm outline-none" value={`https://forexhubglobal.com/ib/${selectedSlug}`} />
+                        <button type="button" onClick={() => { navigator.clipboard.writeText(`https://forexhubglobal.com/ib/${selectedSlug}`); alert('Link disalin!'); }} className="bg-neon-blue text-black font-bold px-4 py-2 rounded-lg hover:bg-neon-blue/80 transition-colors whitespace-nowrap shadow-[0_0_10px_rgba(0,243,255,0.3)]">
+                          Copy
+                        </button>
+                      </div>
+                    </div>
+                  )}
                   <div className="md:col-span-2">
                     <label className="block text-sm font-bold text-slate-300 mb-2">TikTok Username (Tanpa @)</label>
                     <input type="text" className="w-full border border-white/20 rounded-xl px-4 py-3 bg-[#09090b] focus:ring-2 focus:ring-neon-blue outline-none font-medium text-slate-300" value={ibTiktok} onChange={(e) => setIbTiktok(e.target.value)} placeholder="Cth: khairi_trade" />
