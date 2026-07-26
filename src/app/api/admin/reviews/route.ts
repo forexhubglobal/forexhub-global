@@ -3,6 +3,8 @@ import fs from 'fs';
 import path from 'path';
 import { saveToGitHub } from '@/lib/github';
 
+export const dynamic = 'force-dynamic';
+
 const REVIEWS_DIR = path.join(process.cwd(), 'content', 'reviews');
 
 // Helper to ensure directory exists

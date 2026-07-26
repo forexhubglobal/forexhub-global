@@ -13,8 +13,20 @@
   --color-gold-400: #fbbf24;
   --color-gold-500: #f59e0b;
   
+  --color-success-50: #f0fdf4;
   --color-success-500: #10b981;
+  --color-success-700: #047857;
+  
+  --color-danger-50: #fef2f2;
+  --color-danger-100: #fee2e2;
+  --color-danger-200: #fecaca;
   --color-danger-500: #ef4444;
+  --color-danger-600: #dc2626;
+  --color-danger-700: #b91c1c;
+  --color-danger-800: #991b1b;
+
+  --color-warning-100: #fef3c7;
+  --color-warning-700: #b45309;
 
   /* Cyberpunk Neon Colors */
   --color-neon-blue: #00f3ff;
@@ -41,8 +53,8 @@
 }
 
 :root {
-  --background: #f8fafc;
-  --foreground: #0f172a;
+  --background: #09090b;
+  --foreground: #f8fafc;
 }
 
 body {

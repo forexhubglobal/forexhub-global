@@ -50,10 +50,10 @@ export default async function BlogDetail({ params }: { params: Promise<{ slug: s
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <main className="bg-slate-50 min-h-screen pb-16">
+      <main className="bg-[#09090b] min-h-screen pb-16">
         
         {/* Article Header */}
-        <div className={`w-full h-[400px] md:h-[500px] relative flex items-end justify-center pb-16 ${(!article.image || !article.image.includes('/')) ? (article.image || 'bg-slate-800') : 'bg-slate-900'}`}>
+        <div className={`w-full h-[400px] md:h-[500px] relative flex items-end justify-center pb-16 ${(!article.image || !article.image.includes('/')) ? (article.image || 'bg-black/60') : 'bg-black'}`}>
           
           {article.image && article.image.includes('/') && (
             <img src={article.image} alt={article.title} className="absolute inset-0 w-full h-full object-cover opacity-60" />
@@ -63,7 +63,7 @@ export default async function BlogDetail({ params }: { params: Promise<{ slug: s
           
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center w-full mt-24">
             <div className="mb-6">
-              <span className="bg-primary-600 text-white px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider shadow-sm">
+              <span className="bg-neon-blue text-black font-bold text-white px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-wider shadow-sm">
                 {article.category}
               </span>
             </div>
@@ -85,8 +85,8 @@ export default async function BlogDetail({ params }: { params: Promise<{ slug: s
 
         {/* Article Body */}
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 -mt-8 relative z-20">
-          <article className="bg-white rounded-3xl p-8 md:p-12 shadow-xl border border-slate-100">
-            <p className="lead text-xl text-slate-600 font-medium mb-8">
+          <article className="bg-black/40 backdrop-blur-md rounded-3xl p-8 md:p-12 shadow-xl border border-white/10">
+            <p className="lead text-xl text-slate-400 font-medium mb-8">
               {article.excerpt}
             </p>
             
@@ -94,21 +94,21 @@ export default async function BlogDetail({ params }: { params: Promise<{ slug: s
             
             {/* Markdown Content */}
             <div 
-              className="prose prose-slate prose-lg max-w-none prose-headings:text-slate-900 prose-a:text-primary-600 hover:prose-a:text-primary-700"
+              className="prose prose-slate prose-lg max-w-none prose-headings:text-white prose-a:text-neon-blue hover:prose-a:text-neon-blue"
               dangerouslySetInnerHTML={{ __html: article.contentHtml }}
             />
             
             {/* Share / Tags */}
-            <div className="mt-12 pt-8 border-t border-slate-200 flex flex-col md:flex-row justify-between items-center gap-4">
+            <div className="mt-12 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4">
               <div className="flex gap-2">
-                <span className="px-3 py-1 bg-slate-100 text-slate-600 rounded-full text-xs font-semibold">Forex</span>
-                <span className="px-3 py-1 bg-slate-100 text-slate-600 rounded-full text-xs font-semibold">Broker</span>
+                <span className="px-3 py-1 bg-white/5 text-slate-400 rounded-full text-xs font-semibold">Forex</span>
+                <span className="px-3 py-1 bg-white/5 text-slate-400 rounded-full text-xs font-semibold">Broker</span>
               </div>
               <div className="flex items-center gap-3">
-                <span className="text-sm font-semibold text-slate-500">Kongsi Artikel:</span>
-                <button className="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-slate-600 hover:bg-primary-600 hover:text-white transition-colors">F</button>
-                <button className="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-slate-600 hover:bg-primary-600 hover:text-white transition-colors">T</button>
-                <button className="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center text-slate-600 hover:bg-primary-600 hover:text-white transition-colors">W</button>
+                <span className="text-sm font-semibold text-slate-400">Kongsi Artikel:</span>
+                <button className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-slate-400 hover:bg-neon-blue text-black font-bold hover:text-white transition-colors">F</button>
+                <button className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-slate-400 hover:bg-neon-blue text-black font-bold hover:text-white transition-colors">T</button>
+                <button className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-slate-400 hover:bg-neon-blue text-black font-bold hover:text-white transition-colors">W</button>
               </div>
             </div>
           </article>

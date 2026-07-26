@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
 
-type ContentType = 'articles' | 'brokers' | 'prop-firms' | 'bonus' | 'pamm' | 'leads' | 'omni-leads' | 'reviews' | 'scams' | 'settings';
+type ContentType = 'articles' | 'brokers' | 'prop-firms' | 'bonus' | 'pamm' | 'leads' | 'omni-leads' | 'reviews' | 'scams' | 'settings' | 'ibs';
 
 // --- Helper Component untuk Pilihan (Multi-Select) ---
 const MultiSelect = ({ options, value, onChange }: { options: string[], value: string, onChange: (val: string) => void }) => {
@@ -113,6 +113,15 @@ export default function AdminPage() {
   const [riskLevel, setRiskLevel] = useState('Medium');
   const [minInvest, setMinInvest] = useState('100');
   const [pammLink, setPammLink] = useState('https://');
+
+  
+  // IBs State
+  const [ibTiktok, setIbTiktok] = useState('');
+  const [exnessLink, setExnessLink] = useState('');
+  const [xmLink, setXmLink] = useState('');
+  const [hfmLink, setHfmLink] = useState('');
+  const [monetaLink, setMonetaLink] = useState('');
+  const [cptLink, setCptLink] = useState('');
 
   // Scams State
   const [scamName, setScamName] = useState('');
@@ -334,6 +343,13 @@ export default function AdminPage() {
     setScamCategory('Broker Palsu');
     setScamReason('');
     setScamStatus('Sah Scam');
+    setIbTiktok('');
+    setExnessLink('');
+    setXmLink('');
+    setHfmLink('');
+    setMonetaLink('');
+    setCptLink('');
+
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -510,7 +526,7 @@ export default function AdminPage() {
 
           {/* Jenis Konten */}
           <div className="flex gap-2 sm:gap-4 mb-8 overflow-x-auto pb-2">
-            {[{id: 'articles', label: '📝 Artikel / Berita'}, {id: 'brokers', label: '🏦 Broker'}, {id: 'prop-firms', label: '🎯 Prop Firm'}, {id: 'bonus', label: '🎁 Bonus'}, {id: 'pamm', label: '📈 Akaun PAMM'}, {id: 'leads', label: '👥 Senarai Leads'}, {id: 'omni-leads', label: '🤖 OMNI Leads'}, {id: 'reviews', label: '⭐ Ulasan'}, {id: 'scams', label: '🚨 Scam Alert'}, {id: 'settings', label: '⚙️ Tetapan Umum'}].map(type => (
+            {[{id: 'articles', label: '📝 Artikel / Berita'}, {id: 'brokers', label: '🏦 Broker'}, {id: 'prop-firms', label: '🎯 Prop Firm'}, {id: 'bonus', label: '🎁 Bonus'}, {id: 'pamm', label: '📈 Akaun PAMM'}, {id: 'leads', label: '👥 Senarai Leads'}, {id: 'omni-leads', label: '🤖 OMNI Leads'}, {id: 'reviews', label: '⭐ Ulasan'}, {id: 'scams', label: '🚨 Scam Alert'}, {id: 'settings', label: '⚙️ Tetapan Umum'}, {id: 'ibs', label: '🤝 Pengurusan IB'}].map(type => (
               <button
                 key={type.id}
                 onClick={() => setContentType(type.id as ContentType)}
@@ -795,6 +811,49 @@ export default function AdminPage() {
                   </div>
                 )}
               </div>
+            
+            ) : contentType === 'ibs' ? (
+              <form onSubmit={handleSubmit}>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="md:col-span-2">
+                    <label className="block text-sm font-bold text-slate-300 mb-2">Nama IB <span className="text-neon-blue">*</span></label>
+                    <input type="text" required className="w-full border border-white/20 rounded-xl px-4 py-3 bg-[#09090b] focus:ring-2 focus:ring-neon-blue outline-none font-medium text-slate-300" value={title} onChange={(e) => setTitle(e.target.value)} placeholder="Cth: Khairi" />
+                  </div>
+                  <div className="md:col-span-2">
+                    <label className="block text-sm font-bold text-slate-300 mb-2">TikTok Username (Tanpa @)</label>
+                    <input type="text" className="w-full border border-white/20 rounded-xl px-4 py-3 bg-[#09090b] focus:ring-2 focus:ring-neon-blue outline-none font-medium text-slate-300" value={ibTiktok} onChange={(e) => setIbTiktok(e.target.value)} placeholder="Cth: khairi_trade" />
+                  </div>
+                  <div className="md:col-span-2 mt-4">
+                    <h3 className="text-lg font-bold text-neon-blue border-b border-white/10 pb-2 mb-4">Link Affiliate Broker (Tinggalkan kosong jika tiada)</h3>
+                  </div>
+                  <div>
+                    <label className="block text-sm font-bold text-slate-300 mb-2">Exness Referral Link</label>
+                    <input type="url" className="w-full border border-white/20 rounded-xl px-4 py-3 bg-[#09090b] focus:ring-2 focus:ring-neon-blue outline-none font-medium text-slate-300" value={exnessLink} onChange={(e) => setExnessLink(e.target.value)} placeholder="https://one.exness-track.com/..." />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-bold text-slate-300 mb-2">XM Referral Link</label>
+                    <input type="url" className="w-full border border-white/20 rounded-xl px-4 py-3 bg-[#09090b] focus:ring-2 focus:ring-neon-blue outline-none font-medium text-slate-300" value={xmLink} onChange={(e) => setXmLink(e.target.value)} placeholder="https://clicks.pipaffiliates.com/..." />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-bold text-slate-300 mb-2">HFM Referral Link</label>
+                    <input type="url" className="w-full border border-white/20 rounded-xl px-4 py-3 bg-[#09090b] focus:ring-2 focus:ring-neon-blue outline-none font-medium text-slate-300" value={hfmLink} onChange={(e) => setHfmLink(e.target.value)} placeholder="https://www.hfm.com/..." />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-bold text-slate-300 mb-2">Moneta Markets Referral Link</label>
+                    <input type="url" className="w-full border border-white/20 rounded-xl px-4 py-3 bg-[#09090b] focus:ring-2 focus:ring-neon-blue outline-none font-medium text-slate-300" value={monetaLink} onChange={(e) => setMonetaLink(e.target.value)} placeholder="https://www.monetamarkets.com/..." />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-bold text-slate-300 mb-2">CPT Markets Referral Link</label>
+                    <input type="url" className="w-full border border-white/20 rounded-xl px-4 py-3 bg-[#09090b] focus:ring-2 focus:ring-neon-blue outline-none font-medium text-slate-300" value={cptLink} onChange={(e) => setCptLink(e.target.value)} placeholder="https://www.cptmarkets.com/..." />
+                  </div>
+                  
+                  <div className="md:col-span-2 pt-6">
+                    <button type="submit" disabled={status.type === 'loading'} className="w-full md:w-auto bg-neon-blue hover:bg-neon-blue/80 text-black font-bold py-3 px-8 rounded-xl shadow-[0_0_15px_rgba(0,243,255,0.4)] disabled:opacity-50 transition-all">
+                      {status.type === 'loading' ? 'Menyimpan...' : (selectedSlug === 'new' ? '+ Tambah IB' : 'Simpan Kemas Kini')}
+                    </button>
+                  </div>
+                </div>
+              </form>
             ) : (
               <>
                 {status.type && (

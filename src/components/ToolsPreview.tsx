@@ -30,7 +30,7 @@ export default function ToolsPreview() {
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
           {tools.map((tool) => (
-            <Link key={tool.name} href={`/tools/${tool.name.toLowerCase().replace(/ /g, '-')}`} className="bg-white/5 backdrop-blur-sm p-6 rounded-2xl border border-white/10 hover:border-neon-blue/50 hover:bg-neon-blue/10 hover:shadow-[0_0_20px_rgba(0,243,255,0.2)] transition-all group flex flex-col items-center text-center">
+            <Link key={tool.name} href={`/tools/${tool.name.toLowerCase().replace(/ /g, '-')}`} className="bg-black/40 backdrop-blur-md/5 backdrop-blur-sm p-6 rounded-2xl border border-white/10 hover:border-neon-blue/50 hover:bg-neon-blue/10 hover:shadow-[0_0_20px_rgba(0,243,255,0.2)] transition-all group flex flex-col items-center text-center">
               <div className="w-14 h-14 bg-black/50 border border-white/10 rounded-full flex items-center justify-center text-slate-300 mb-4 group-hover:scale-110 group-hover:bg-neon-blue group-hover:text-black group-hover:border-neon-blue group-hover:shadow-[0_0_15px_rgba(0,243,255,0.5)] transition-all">
                 <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d={tool.icon}></path>
@@ -95,7 +95,7 @@ export default function ToolsPreview() {
                 <svg className="w-5 h-5 text-cyan-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
                 Request Override
               </h4>
-              <p className="text-xs font-mono text-slate-500 mb-6 uppercase tracking-wider">Fill credentials to receive access token via secure WhatsApp comms.</p>
+              <p className="text-xs font-mono text-slate-400 mb-6 uppercase tracking-wider">Fill credentials to receive access token via secure WhatsApp comms.</p>
               
               <OmniForm />
             </div>
@@ -163,7 +163,7 @@ function OmniForm() {
             type="text" 
             name="name"
             required
-            className="w-full bg-slate-900/50 border border-slate-700 border-b-cyan-500/50 px-4 py-3 text-white font-mono text-sm focus:border-cyan-400 focus:bg-cyan-900/10 outline-none transition-all placeholder:text-slate-600"
+            className="w-full bg-black/50 border border-slate-700 border-b-cyan-500/50 px-4 py-3 text-white font-mono text-sm focus:border-cyan-400 focus:bg-cyan-900/10 outline-none transition-all placeholder:text-slate-400"
             placeholder="ENTER_DESIGNATION"
           />
           <div className="absolute right-0 top-0 bottom-0 w-1 bg-cyan-500/20 group-focus-within:bg-cyan-400 transition-colors"></div>
@@ -176,7 +176,7 @@ function OmniForm() {
             type="email" 
             name="email"
             required
-            className="w-full bg-slate-900/50 border border-slate-700 border-b-cyan-500/50 px-4 py-3 text-white font-mono text-sm focus:border-cyan-400 focus:bg-cyan-900/10 outline-none transition-all placeholder:text-slate-600"
+            className="w-full bg-black/50 border border-slate-700 border-b-cyan-500/50 px-4 py-3 text-white font-mono text-sm focus:border-cyan-400 focus:bg-cyan-900/10 outline-none transition-all placeholder:text-slate-400"
             placeholder="ESTABLISH_CONNECTION"
           />
           <div className="absolute right-0 top-0 bottom-0 w-1 bg-cyan-500/20 group-focus-within:bg-cyan-400 transition-colors"></div>
@@ -189,7 +189,7 @@ function OmniForm() {
             type="tel" 
             name="phone"
             required
-            className="w-full bg-slate-900/50 border border-slate-700 border-b-cyan-500/50 px-4 py-3 text-white font-mono text-sm focus:border-cyan-400 focus:bg-cyan-900/10 outline-none transition-all placeholder:text-slate-600"
+            className="w-full bg-black/50 border border-slate-700 border-b-cyan-500/50 px-4 py-3 text-white font-mono text-sm focus:border-cyan-400 focus:bg-cyan-900/10 outline-none transition-all placeholder:text-slate-400"
             placeholder="012XXXXXXXX"
           />
           <div className="absolute right-0 top-0 bottom-0 w-1 bg-cyan-500/20 group-focus-within:bg-cyan-400 transition-colors"></div>

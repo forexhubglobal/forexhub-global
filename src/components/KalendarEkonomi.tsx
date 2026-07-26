@@ -15,8 +15,8 @@ export default function KalendarEkonomi() {
     script.async = true;
     script.innerHTML = `
       {
-        "colorTheme": "light",
-        "isTransparent": false,
+        "colorTheme": "dark",
+        "isTransparent": true,
         "width": "100%",
         "height": "800",
         "locale": "en",

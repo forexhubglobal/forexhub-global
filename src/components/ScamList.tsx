@@ -11,7 +11,7 @@ export default function ScamList({ initialScams }: { initialScams: any[] }) {
   );
 
   return (
-    <div className="bg-white rounded-3xl p-6 md:p-10 shadow-sm border border-slate-200">
+    <div className="bg-black/40 backdrop-blur-md rounded-3xl p-6 md:p-10 shadow-sm border border-white/10">
       {/* Search Bar */}
       <div className="mb-8 relative">
         <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
@@ -21,7 +21,7 @@ export default function ScamList({ initialScams }: { initialScams: any[] }) {
         </div>
         <input 
           type="text" 
-          className="w-full pl-12 pr-4 py-4 bg-slate-50 border border-slate-200 rounded-2xl focus:ring-2 focus:ring-danger-500 focus:border-danger-500 outline-none text-slate-700 font-medium transition-all"
+          className="w-full pl-12 pr-4 py-4 bg-[#09090b] border border-white/10 rounded-2xl focus:ring-2 focus:ring-danger-500 focus:border-danger-500 outline-none text-slate-300 font-medium transition-all"
           placeholder="Cari nama broker atau syarikat pelaburan..." 
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
@@ -29,33 +29,33 @@ export default function ScamList({ initialScams }: { initialScams: any[] }) {
       </div>
 
       {filteredScams.length === 0 ? (
-        <div className="text-center py-16 bg-slate-50 rounded-2xl border border-slate-200 border-dashed">
-          <p className="text-slate-500 text-lg font-medium">Tiada rekod scam ditemui setakat ini.</p>
+        <div className="text-center py-16 bg-[#09090b] rounded-2xl border border-white/10 border-dashed">
+          <p className="text-slate-400 text-lg font-medium">Tiada rekod scam ditemui setakat ini.</p>
         </div>
       ) : (
         <div className="overflow-x-auto">
           <table className="w-full text-left border-collapse">
             <thead>
-              <tr className="border-b-2 border-slate-200">
-                <th className="py-4 px-4 font-black text-slate-900 text-sm tracking-wider uppercase bg-slate-50 rounded-tl-xl">Nama Syarikat / Entiti</th>
-                <th className="py-4 px-4 font-black text-slate-900 text-sm tracking-wider uppercase bg-slate-50">Kategori</th>
-                <th className="py-4 px-4 font-black text-slate-900 text-sm tracking-wider uppercase bg-slate-50">Modus Operandi / Sebab</th>
-                <th className="py-4 px-4 font-black text-slate-900 text-sm tracking-wider uppercase bg-slate-50 rounded-tr-xl">Status Semasa</th>
+              <tr className="border-b-2 border-white/10">
+                <th className="py-4 px-4 font-black text-white text-sm tracking-wider uppercase bg-[#09090b] rounded-tl-xl">Nama Syarikat / Entiti</th>
+                <th className="py-4 px-4 font-black text-white text-sm tracking-wider uppercase bg-[#09090b]">Kategori</th>
+                <th className="py-4 px-4 font-black text-white text-sm tracking-wider uppercase bg-[#09090b]">Modus Operandi / Sebab</th>
+                <th className="py-4 px-4 font-black text-white text-sm tracking-wider uppercase bg-[#09090b] rounded-tr-xl">Status Semasa</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-slate-100">
               {filteredScams.map((scam: any) => (
                 <tr key={scam.id} className="hover:bg-red-50/50 transition-colors group">
                   <td className="py-4 px-4 align-top">
-                    <span className="font-bold text-slate-900 text-base">{scam.name}</span>
+                    <span className="font-bold text-white text-base">{scam.name}</span>
                     <div className="text-xs text-slate-400 mt-1">Ditambah pada: {new Date(scam.dateAdded).toLocaleDateString('ms-MY')}</div>
                   </td>
                   <td className="py-4 px-4 align-top">
-                    <span className="bg-slate-100 text-slate-600 text-xs font-bold px-3 py-1 rounded-full whitespace-nowrap">
+                    <span className="bg-white/5 text-slate-400 text-xs font-bold px-3 py-1 rounded-full whitespace-nowrap">
                       {scam.category}
                     </span>
                   </td>
-                  <td className="py-4 px-4 align-top text-sm text-slate-600 max-w-md break-words leading-relaxed group-hover:text-slate-900 transition-colors">
+                  <td className="py-4 px-4 align-top text-sm text-slate-400 max-w-md break-words leading-relaxed group-hover:text-white transition-colors">
                     {scam.reason}
                   </td>
                   <td className="py-4 px-4 align-top">

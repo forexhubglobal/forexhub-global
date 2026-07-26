@@ -27,7 +27,7 @@ export default function RecentArticles() {
           {articles.map((article) => (
             <article key={article.slug} className="bg-black/40 backdrop-blur-md rounded-2xl border border-white/10 overflow-hidden hover:border-neon-blue/50 hover:shadow-[0_0_30px_rgba(0,243,255,0.2)] transition-all duration-300 group flex flex-col transform hover:-translate-y-2">
               <Link href={`/blog/${article.slug}`} className="flex-grow flex flex-col">
-                <div className={`h-48 w-full relative overflow-hidden flex-shrink-0 ${!article.image.includes('/') ? article.image : 'bg-slate-900'}`}>
+                <div className={`h-48 w-full relative overflow-hidden flex-shrink-0 ${!article.image.includes('/') ? article.image : 'bg-black'}`}>
                   {article.image.includes('/') && (
                     <img src={article.image} alt={article.title} className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                   )}
@@ -41,7 +41,7 @@ export default function RecentArticles() {
                 <div className="p-6 flex flex-col flex-grow">
                   <div className="flex items-center gap-2 text-xs text-neon-blue font-mono mb-3 uppercase tracking-wider">
                     <span>{article.date}</span>
-                    <span className="text-slate-600">•</span>
+                    <span className="text-slate-400">•</span>
                     <span>Oleh {article.author}</span>
                   </div>
                   <h3 className="text-xl font-bold text-white mb-3 group-hover:text-neon-blue transition-colors line-clamp-2">

@@ -28,34 +28,34 @@ export default function LotSizeCalculator() {
 
   return (
     <>
-      <main className="bg-slate-50 min-h-screen py-16">
+      <main className="bg-[#09090b] min-h-screen py-16">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           
-          <div className="flex items-center gap-2 text-sm text-slate-500 mb-8">
-            <Link href="/" className="hover:text-primary-600">Home</Link>
+          <div className="flex items-center gap-2 text-sm text-slate-400 mb-8">
+            <Link href="/" className="hover:text-neon-blue">Home</Link>
             <span>/</span>
-            <Link href="/tools" className="hover:text-primary-600">Tools</Link>
+            <Link href="/tools" className="hover:text-neon-blue">Tools</Link>
             <span>/</span>
-            <span className="text-slate-900 font-medium">Lot Size Calculator</span>
+            <span className="text-white font-medium">Lot Size Calculator</span>
           </div>
 
-          <div className="bg-white rounded-3xl p-8 md:p-12 shadow-sm border border-slate-200">
+          <div className="bg-black/40 backdrop-blur-md rounded-3xl p-8 md:p-12 shadow-sm border border-white/10">
             <div className="text-center mb-10">
-              <div className="w-16 h-16 bg-primary-50 rounded-2xl flex items-center justify-center text-primary-600 mx-auto mb-4">
+              <div className="w-16 h-16 bg-neon-blue/10 rounded-2xl flex items-center justify-center text-neon-blue mx-auto mb-4">
                 <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z"></path>
                 </svg>
               </div>
-              <h1 className="text-3xl font-bold text-slate-900 mb-2">Kalkulator Saiz Lot (Risk Management)</h1>
-              <p className="text-slate-600">Lindungi akaun anda dengan mengira lot yang tepat berdasarkan risiko yang anda sanggup ambil.</p>
+              <h1 className="text-3xl font-bold text-white mb-2">Kalkulator Saiz Lot (Risk Management)</h1>
+              <p className="text-slate-400">Lindungi akaun anda dengan mengira lot yang tepat berdasarkan risiko yang anda sanggup ambil.</p>
             </div>
 
             <form onSubmit={calculateLotSize} className="space-y-6 max-w-lg mx-auto">
               <div>
-                <label className="block text-sm font-bold text-slate-700 mb-2">Baki Akaun (USD)</label>
+                <label className="block text-sm font-bold text-slate-300 mb-2">Baki Akaun (USD)</label>
                 <input 
                   type="number" 
-                  className="w-full border border-slate-300 rounded-xl px-4 py-3 bg-slate-50 focus:ring-2 focus:ring-primary-500 outline-none"
+                  className="w-full border border-white/20 rounded-xl px-4 py-3 bg-[#09090b] focus:ring-2 focus:ring-neon-blue outline-none"
                   value={accountBalance}
                   onChange={(e) => setAccountBalance(e.target.value)}
                   required
@@ -63,12 +63,12 @@ export default function LotSizeCalculator() {
               </div>
 
               <div>
-                <label className="block text-sm font-bold text-slate-700 mb-2">Risiko (%)</label>
+                <label className="block text-sm font-bold text-slate-300 mb-2">Risiko (%)</label>
                 <div className="relative">
                   <input 
                     type="number" 
                     step="0.1"
-                    className="w-full border border-slate-300 rounded-xl px-4 py-3 bg-slate-50 focus:ring-2 focus:ring-primary-500 outline-none"
+                    className="w-full border border-white/20 rounded-xl px-4 py-3 bg-[#09090b] focus:ring-2 focus:ring-neon-blue outline-none"
                     value={riskPercent}
                     onChange={(e) => setRiskPercent(e.target.value)}
                     required
@@ -78,10 +78,10 @@ export default function LotSizeCalculator() {
               </div>
 
               <div>
-                <label className="block text-sm font-bold text-slate-700 mb-2">Stop Loss (Pip)</label>
+                <label className="block text-sm font-bold text-slate-300 mb-2">Stop Loss (Pip)</label>
                 <input 
                   type="number" 
-                  className="w-full border border-slate-300 rounded-xl px-4 py-3 bg-slate-50 focus:ring-2 focus:ring-primary-500 outline-none"
+                  className="w-full border border-white/20 rounded-xl px-4 py-3 bg-[#09090b] focus:ring-2 focus:ring-neon-blue outline-none"
                   value={stopLossPips}
                   onChange={(e) => setStopLossPips(e.target.value)}
                   required
@@ -89,7 +89,7 @@ export default function LotSizeCalculator() {
               </div>
 
               <div className="pt-4">
-                <button type="submit" className="w-full bg-primary-600 hover:bg-primary-700 text-white font-bold py-4 rounded-xl shadow-lg shadow-primary-500/30 transition-transform transform hover:-translate-y-1">
+                <button type="submit" className="w-full bg-neon-blue text-black font-bold hover:bg-neon-blue/80 hover:shadow-[0_0_15px_rgba(0,243,255,0.5)] text-white font-bold py-4 rounded-xl shadow-lg shadow-primary-500/30 transition-transform transform hover:-translate-y-1">
                   Kira Saiz Lot
                 </button>
               </div>
@@ -103,9 +103,9 @@ export default function LotSizeCalculator() {
                     ${result.riskAmount.toFixed(2)}
                   </div>
                 </div>
-                <div className="p-6 bg-primary-50 border border-primary-200 rounded-2xl text-center">
-                  <div className="text-primary-700 font-bold mb-1 uppercase tracking-wider text-xs">Lot Yang Disyorkan</div>
-                  <div className="text-2xl md:text-3xl font-extrabold text-primary-600">
+                <div className="p-6 bg-neon-blue/10 border border-neon-blue/30 rounded-2xl text-center">
+                  <div className="text-neon-blue font-bold mb-1 uppercase tracking-wider text-xs">Lot Yang Disyorkan</div>
+                  <div className="text-2xl md:text-3xl font-extrabold text-neon-blue">
                     {result.lotSize.toFixed(3)}
                   </div>
                 </div>

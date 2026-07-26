@@ -177,7 +177,7 @@ export default function AIFinder({
           <div className="bg-[#0f172a] border border-neon-blue/30 rounded-3xl p-8 max-w-md w-full shadow-[0_0_50px_rgba(0,243,255,0.2)] relative animate-in fade-in zoom-in duration-200">
             <button 
               onClick={() => setIsModalOpen(false)}
-              className="absolute top-4 right-4 text-slate-400 hover:text-neon-pink hover:bg-neon-pink/10 transition-colors bg-white/5 border border-white/10 rounded-full p-2 z-50"
+              className="absolute top-4 right-4 text-slate-400 hover:text-neon-pink hover:bg-neon-pink/10 transition-colors bg-black/40 backdrop-blur-md/5 border border-white/10 rounded-full p-2 z-50"
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path></svg>
             </button>
@@ -188,9 +188,9 @@ export default function AIFinder({
                   #1 Padanan Terbaik AI
                 </div>
                 
-                <div className="bg-white/5 border border-white/10 rounded-2xl p-6 mb-6 shadow-inner">
+                <div className="bg-black/40 backdrop-blur-md/5 border border-white/10 rounded-2xl p-6 mb-6 shadow-inner">
                   {sponsoredLogo ? (
-                    <img src={sponsoredLogo} alt={sponsoredName} className="w-24 h-24 object-contain mx-auto rounded-xl mb-4 bg-white p-2 border border-slate-200" />
+                    <img src={sponsoredLogo} alt={sponsoredName} className="w-24 h-24 object-contain mx-auto rounded-xl mb-4 bg-black/40 backdrop-blur-md p-2 border border-white/10" />
                   ) : (
                     <div className="w-24 h-24 bg-gradient-to-br from-neon-blue to-neon-purple rounded-xl flex items-center justify-center mx-auto mb-4 text-white text-4xl font-black">
                       {sponsoredName.charAt(0)}
@@ -261,7 +261,7 @@ export default function AIFinder({
                   >
                     {status === 'loading' ? 'Menganalisis...' : 'Lihat Padanan Saya Sekarang'}
                   </button>
-                  <p className="text-xs text-slate-500 text-center mt-4">Maklumat anda adalah sulit dan selamat.</p>
+                  <p className="text-xs text-slate-400 text-center mt-4">Maklumat anda adalah sulit dan selamat.</p>
                 </form>
               </>
             )}

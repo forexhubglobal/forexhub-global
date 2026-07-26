@@ -7,15 +7,15 @@ export const metadata = {
 export default function PenafianPage() {
   return (
     <>
-      <main className="bg-slate-50 min-h-screen py-16">
+      <main className="bg-[#09090b] min-h-screen py-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="text-center mb-12">
-            <h1 className="text-3xl md:text-5xl font-extrabold text-slate-900 mb-4">Penafian & Amaran Risiko</h1>
-            <p className="text-lg text-slate-600">Sila baca dan fahami risiko yang terlibat sebelum memulakan dagangan.</p>
+            <h1 className="text-3xl md:text-5xl font-extrabold text-white mb-4">Penafian & Amaran Risiko</h1>
+            <p className="text-lg text-slate-400">Sila baca dan fahami risiko yang terlibat sebelum memulakan dagangan.</p>
           </div>
 
-          <div className="bg-white rounded-3xl p-8 md:p-12 shadow-sm border border-slate-200 prose prose-lg prose-slate max-w-none">
+          <div className="bg-black/40 backdrop-blur-md rounded-3xl p-8 md:p-12 shadow-sm border border-white/10 prose prose-lg prose-slate max-w-none">
             
             <h2>Amaran Risiko Kategori Tinggi</h2>
             <p>

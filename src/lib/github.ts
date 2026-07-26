@@ -55,6 +55,7 @@ export async function saveToGitHub(filePath: string, content: string, commitMess
     console.error(`GitHub API error saving ${posixPath}:`, res.status, errorText);
     throw new Error(`Failed to save to GitHub: ${res.status}`);
   }
+  await triggerVercelDeploy();
 }
 
 export async function saveImageToGitHub(filePath: string, buffer: Buffer, commitMessage: string) {
@@ -158,5 +159,19 @@ export async function deleteFromGitHub(filePath: string, commitMessage: string) 
     const errorText = await res.text();
     console.error(`GitHub API error deleting ${posixPath}:`, res.status, errorText);
     throw new Error(`Failed to delete from GitHub: ${res.status}`);
+  }
+  await triggerVercelDeploy();
+}
+
+async function triggerVercelDeploy() {
+  const deployHookUrl = process.env.VERCEL_DEPLOY_HOOK_URL?.trim();
+  if (!deployHookUrl) return;
+  try {
+    const res = await fetch(deployHookUrl, { method: 'POST' });
+    if (!res.ok) {
+      console.error('Failed to trigger Vercel deploy, status:', res.status);
+    }
+  } catch (err) {
+    console.error('Error triggering Vercel deploy:', err);
   }
 }
