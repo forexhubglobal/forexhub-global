@@ -5,7 +5,7 @@ category: "Berita"
 date: "2026-07-28"
 author: "Admin ForexHub"
 excerpt: "Pengukuhan Dolar AS mengekang kebangkitan mata wang Asia apabila pedagang mula mengurangkan pertaruhan terhadap penurunan kadar faedah oleh Fed. Ketahui impaknya terhadap pasaran forex minggu ini."
-image: "/images/dollar-steadies-near-one-month-high-as-fed-bets-weigh-on-asian-currencies-1785229250039.ai/prompt/US%20dollar%20bill%20glowing%2C%20financial%20trading%20charts%20with%20upward%20trend%2C%20Asian%20currency%20symbols%20declining%2C%20modern%20forex%20trading%20screen%2C%20dark%20theme%2C%20cinematic%20lighting%2C%208k%2C%20photorealistic"
+image: "bg-gradient-to-br from-indigo-900 to-black"
 ---
 
 Indeks Dolar AS (DXY) terus mempamerkan prestasi kukuh berhampiran paras tertinggi satu bulan, disokong oleh anjakan sentimen pelabur terhadap jangkaan dasar monetari Rizab Persekutuan (Fed). Pasaran kini mula meragui kebarangkalian penurunan kadar faedah yang agresif seawal Mac ini, sekali gus memberi kelebihan berterusan kepada *Greenback*.

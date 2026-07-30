@@ -5,7 +5,7 @@ category: "Berita"
 date: "2026-07-29"
 author: "Admin ForexHub"
 excerpt: "Mata wang Ruble Rusia (RUB) mencatatkan kejatuhan ketara melepasi paras psikologi 80 berbanding dolar AS (USD) buat kali pertama sejak April tahun lalu. Ketahui faktor utama di sebalik kemerosotan ini dan bagaimana ia membuka peluang dagangan baharu dalam pasaran FX."
-image: "/images/russian-rouble-falls-past-80-per-dollar-for-first-time-since-april-1785366035022.ai/prompt/Russian%20ruble%20symbol%20falling%20down%2C%20US%20dollar%20bill%20rising%2C%20declining%20financial%20candlestick%20chart%2C%20forex%20trading%20terminal%20screen%2C%20dramatic%20cinematic%20lighting%2C%20dark%20background%2C%20realistic%2C%208k%20resolution"
+image: "bg-gradient-to-br from-indigo-900 to-black"
 ---
 
 Mata wang ruble Rusia (RUB) terus berdepan tekanan hebat apabila susut nilai melepasi paras psikologi 80 berbanding dolar AS (USD) buat kali pertama sejak April tahun lalu. Kejatuhan ini didorong oleh beberapa faktor makroekonomi, termasuk pengurangan hasil eksport tenaga negara tersebut serta impak sekatan ekonomi Barat yang berterusan.

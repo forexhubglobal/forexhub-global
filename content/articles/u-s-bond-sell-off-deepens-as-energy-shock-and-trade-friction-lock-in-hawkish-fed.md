@@ -5,7 +5,7 @@ category: "Berita"
 date: "2026-07-27"
 author: "Admin ForexHub"
 excerpt: "Kejatuhan pasaran bon AS semakin meruncing susulan kebimbangan inflasi tenaga dan ketegangan dagangan global yang memaksa Rizab Persekutuan mengekalkan dasar monetari ketat. Ketahui bagaimana situasi ini bakal mencorakkan pergerakan US Dollar dan pasangan mata wang utama dalam masa terdekat."
-image: "/images/u-s-bond-sell-off-deepens-as-energy-shock-and-trade-friction-lock-in-hawkish-fed-1785114036229.ai/prompt/US%20treasury%20bond%20chart%20crashing%2C%20US%20dollar%20symbol%20glowing%2C%20dramatic%20financial%20trading%20floor%20background%2C%20red%20and%20green%20candlestick%20charts%2C%20high%20contrast%2C%20cinematic%20lighting%2C%20ultra%20realistic%2C%208k%20resolution%2C%20professional%20trading%20terminal"
+image: "bg-gradient-to-br from-indigo-900 to-black"
 ---
 
 Pasaran bon AS kini berhadapan dengan tekanan jualan yang semakin hebat, menyaksikan hasil bon (yields) melonjak ke tahap yang lebih tinggi. Pemangkin utama kepada kejatuhan ini adalah gabungan impak berkembar iaitu kejutan harga tenaga global yang melambung tinggi serta ketegangan perdagangan antarabangsa yang kian meruncing. Situasi ini telah mencetuskan kebimbangan baharu terhadap rintangan inflasi yang sukar dibendung.

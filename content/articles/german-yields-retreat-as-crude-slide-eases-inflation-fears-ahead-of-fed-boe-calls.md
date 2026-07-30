@@ -5,7 +5,7 @@ category: "Berita"
 date: "2026-07-27"
 author: "Admin ForexHub"
 excerpt: "Kejatuhan harga minyak mentah telah meredakan kebimbangan inflasi global, sekali gus mengheret hasil bon Jerman ke paras lebih rendah. Dengan mesyuarat penting Fed dan BOE yang semakin hampir, pedagang Forex perlu bersiap sedia menghadapi volatiliti pasaran yang tinggi."
-image: "/images/german-yields-retreat-as-crude-slide-eases-inflation-fears-ahead-of-fed-boe-calls-1785142841026.ai/prompt/Forex%20trading%20terminal%20screen%2C%20declining%20financial%20charts%2C%20oil%20barrel%20silhouette%20fading%20in%20background%2C%20glowing%20green%20and%20red%20candlestick%20patterns%2C%20professional%20trading%20desk%2C%20cinematic%20lighting%2C%20dark%20blue%20and%20gold%20color%20scheme%2C%20highly%20detailed%2C%208k"
+image: "bg-gradient-to-br from-indigo-900 to-black"
 ---
 
 Hasil bon kerajaan Jerman mencatatkan penurunan berikutan kejatuhan harga minyak mentah global yang telah meredakan sedikit kebimbangan terhadap tekanan inflasi yang berterusan. Perkembangan ini memberikan ruang bernafas kepada pasaran Eropah, sekali gus mempengaruhi sentimen mata wang Euro (EUR) menjelang minggu yang penuh dengan keputusan penting daripada bank-bank pusat utama.

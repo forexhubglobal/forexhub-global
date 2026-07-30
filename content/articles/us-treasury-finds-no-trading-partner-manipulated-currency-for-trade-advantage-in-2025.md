@@ -5,7 +5,7 @@ category: "Berita"
 date: "2026-07-27"
 author: "Admin ForexHub"
 excerpt: "Laporan terbaharu Jabatan Kewangan AS mengesahkan tiada rakan dagang utama mereka memanipulasi mata wang untuk kelebihan perdagangan. Keputusan ini memberikan kelegaan kepada pasaran global dan mengurangkan risiko ketidaktentuan geopolitik yang drastik."
-image: "/images/us-treasury-finds-no-trading-partner-manipulated-currency-for-trade-advantage-in-2025-1785124840843.ai/prompt/US%20Treasury%20department%20building%2C%20financial%20charts%20and%20forex%20candlestick%20graphs%20overlaid%2C%20glowing%20green%20and%20blue%20light%2C%20professional%20trading%20screen%2C%20realistic%2C%20cinematic%20lighting%2C%208k%20resolution%2C%20business%20concept"
+image: "bg-gradient-to-br from-indigo-900 to-black"
 ---
 
 Jabatan Kewangan AS (US Treasury) dalam laporan dwitahunan terbaharu mereka telah merumuskan bahawa tiada rakan dagang utama Amerika Syarikat yang memanipulasi mata wang mereka untuk mendapatkan kelebihan perdagangan yang tidak adil. Keputusan ini melegakan pasaran global yang sebelum ini bimbang terhadap potensi ketegangan perdagangan atau sekatan ekonomi baharu yang boleh mencetuskan volatiliti melampau.

@@ -5,7 +5,7 @@ category: "Berita"
 date: "2026-07-27"
 author: "Admin ForexHub"
 excerpt: "Pound Sterling bergerak rendah berbanding Dolar AS ketika pedagang mula mengambil langkah berhati-hati. Keputusan kadar faedah daripada Fed dan BoE minggu ini dijangka bakal mencetuskan volatiliti besar dalam pasaran."
-image: "/images/sterling-today-pound-edges-lower-against-dollar-ahead-of-fed-boe-meetings-1785193235273.ai/prompt/GBP%20and%20USD%20currency%20symbols%20on%20a%20glowing%20digital%20forex%20trading%20chart%2C%20candlestick%20patterns%2C%20dramatic%20cinematic%20lighting%2C%20financial%20market%20background%2C%20professional%20trading%20terminal%2C%203d%20render%2C%20highly%20detailed%2C%208k%20resolution"
+image: "bg-gradient-to-br from-indigo-900 to-black"
 ---
 
 Pasaran mata wang menyaksikan Pound Sterling (GBP) mengalami sedikit penyusutan berbanding Dolar AS (USD) hari ini. Pergerakan berhati-hati ini berlaku ketika komuniti pedagang Forex meletakkan fokus sepenuhnya kepada mesyuarat dasar monetari daripada dua bank pusat gergasi dunia, Rizab Persekutuan AS (Fed) dan Bank of England (BoE), yang dijadualkan berlangsung minggu ini.
