@@ -163,11 +163,7 @@ async function downloadImageToGitHub(url: string, slug: string) {
     const arrayBuffer = await response.arrayBuffer();
     const buffer = Buffer.from(arrayBuffer);
     
-    let ext = 'jpg';
-    const possibleExt = url.split('.').pop()?.split('?')[0];
-    if (possibleExt && possibleExt.length <= 4 && /^[a-zA-Z]+$/.test(possibleExt)) {
-      ext = possibleExt;
-    }
+    const ext = url.split('.').pop()?.split('?')[0] || 'jpg';
     const fileName = `${slug}-${Date.now()}.${ext}`;
     const imagePath = `public/images/${fileName}`;
     
