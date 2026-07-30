@@ -5,6 +5,7 @@ import { saveToGitHub, saveImageToGitHub } from '@/lib/github';
 // Vercel cron jobs can run on standard Node runtime.
 export const dynamic = 'force-dynamic';
 export const revalidate = 0;
+export const maxDuration = 60; // Max duration for Vercel hobby tier
 
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
 const RSS_URL = 'https://www.investing.com/rss/news_1.rss';
@@ -25,20 +26,27 @@ export async function GET(request: Request) {
     const newsList = await fetchLatestNewsItems();
     if (newsList.length === 0) return NextResponse.json({ message: "No news found" });
 
+    // Fetch existing articles list ONCE to save time
+    const listUrl = `https://api.github.com/repos/forexhubglobal/forexhub-global/contents/content/articles?ref=main`;
+    const listRes = await fetch(listUrl, {
+      headers: {
+        'Authorization': `token ${process.env.GITHUB_TOKEN}`,
+        'Accept': 'application/vnd.github.v3+json',
+      },
+    });
+    
+    let existingSlugs = new Set();
+    if (listRes.ok) {
+      const files = await listRes.json();
+      existingSlugs = new Set(files.map((f: any) => f.name.replace('.md', '')));
+    }
+
     let selectedNews = null;
     let selectedSlug = '';
 
     for (const news of newsList) {
       const slug = news.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '');
-      const checkExistsUrl = `https://api.github.com/repos/forexhubglobal/forexhub-global/contents/content/articles/${slug}.md?ref=main`;
-      const checkRes = await fetch(checkExistsUrl, {
-        headers: {
-          'Authorization': `token ${process.env.GITHUB_TOKEN}`,
-          'Accept': 'application/vnd.github.v3+json',
-        },
-      });
-      
-      if (!checkRes.ok) {
+      if (!existingSlugs.has(slug)) {
         selectedNews = news;
         selectedSlug = slug;
         break;
