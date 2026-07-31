@@ -5,7 +5,7 @@ category: "Berita"
 date: "2026-07-30"
 author: "Admin ForexHub"
 excerpt: "ING menjangkakan US Dollar (USD) berisiko mengalami penyusutan jika Rizab Persekutuan (Fed) memilih untuk mengekalkan kadar faedah semasa. Ketahui bagaimana keputusan ini boleh mengubah dinamik pasaran Forex minggu ini."
-image: "bg-gradient-to-br from-indigo-900 to-black"
+image: "/images/dollar-may-weaken-if-fed-holds-rates-steady-ing-says-1785369632632.ai/prompt/US%20dollar%20bill%20fading%2C%20declining%20forex%20candlestick%20chart%2C%20red%20trend%20lines%2C%20trading%20terminal%2C%20dark%20background%2C%20cinematic%20lighting%2C%20realistic%2C%20financial%20crisis%20aesthetic%2C%208k"
 ---
 
 Mata wang US Dollar (USD) kini berada dalam radar pemerhatian rapat para pedagang berikutan jangkaan penganalisis daripada ING bahawa mata wang *greenback* tersebut boleh melemah sekiranya Rizab Persekutuan (Fed) memutuskan untuk mengekalkan kadar faedah tanpa sebarang perubahan. Langkah ini dilihat berupaya meredakan momentum pengukuhan USD yang berlaku kebelakangan ini.

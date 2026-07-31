@@ -5,7 +5,7 @@ category: "Berita"
 date: "2026-07-30"
 author: "Admin ForexHub"
 excerpt: "Mata wang Yen Jepun mencatatkan lonjakan drastik yang mencetuskan spekulasi kuat bahawa pihak berkuasa Jepun telah campur tangan di pasaran. Pedagang Forex kini dinasihatkan untuk bersiap sedia menghadapi volatiliti ekstrem pada pasangan mata wang utama."
-image: "bg-gradient-to-br from-indigo-900 to-black"
+image: "/images/yen-surges-analysts-suspect-official-japanese-intervention-1785448829364.ai/prompt/A%20dramatic%20financial%20chart%20showing%20a%20sudden%20upward%20surge%20of%20the%20Japanese%20Yen%2C%20Japanese%20Yen%20JPY%20symbol%20glowing%2C%20Tokyo%20stock%20exchange%20digital%20board%20in%20the%20background%2C%20dark%20theme%2C%20neon%20green%20and%20blue%20cinematic%20lighting%2C%20high-tech%20forex%20trading%20platform%20interface%2C%20realistic%2C%208k%20resolution"
 ---
 
 Mata wang Yen Jepun (JPY) mencatatkan lonjakan mendadak dalam sesi dagangan terbaru, sekali gus mencetuskan spekulasi hangat dalam kalangan penganalisis bahawa Kementerian Kewangan Jepun dan Bank of Japan (BoJ) telah melakukan campur tangan pasaran (intervention). Langkah drastik ini dipercayai diambil bagi mengekang kejatuhan berterusan mata wang Yen yang sebelum ini berada di paras terendah dalam tempoh beberapa dekad.

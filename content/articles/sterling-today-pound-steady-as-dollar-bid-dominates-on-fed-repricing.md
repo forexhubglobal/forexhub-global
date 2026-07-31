@@ -5,7 +5,7 @@ category: "Berita"
 date: "2026-07-27"
 author: "Admin ForexHub"
 excerpt: "Meskipun Pound Sterling mempamerkan daya tahan yang stabil, kebangkitan semula Dolar AS yang dipacu oleh penilaian semula dasar Fed terus mengehadkan ruang peningkatan buat mata wang utama lain."
-image: "bg-gradient-to-br from-indigo-900 to-black"
+image: "/images/sterling-today-pound-steady-as-dollar-bid-dominates-on-fed-repricing-1785117640271.ai/prompt/British%20pound%20and%20US%20dollar%20symbols%20on%20a%20glowing%20digital%20forex%20trading%20board%2C%20upward%20and%20downward%20candlestick%20charts%2C%20dark%20financial%20background%2C%20cinematic%20lighting%2C%20professional%20trading%20desk%20environment%2C%208k%20resolution%2C%20highly%20detailed"
 ---
 
 Pasaran Forex hari ini menyaksikan Pound Sterling (GBP) bergerak stabil, namun tumpuan utama pelabur global kekal terarah kepada kekuatan Dolar AS (USD). Pengukuhan USD ini didorong oleh tindakan pasaran yang sedang menilai semula (*repricing*) unjuran dasar monetari Rizab Persekutuan (Fed) AS yang dijangka kekal hawkish lebih lama.

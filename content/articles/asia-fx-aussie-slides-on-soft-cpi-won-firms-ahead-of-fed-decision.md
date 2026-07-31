@@ -5,7 +5,7 @@ category: "Berita"
 date: "2026-07-29"
 author: "Admin ForexHub"
 excerpt: "Mata wang Aussie mengalami tekanan jualan hebat selepas data inflasi (CPI) Australia mencatatkan bacaan lebih rendah daripada jangkaan. Sementara itu, Won Korea Selatan menunjukkan ketahanan ketika pasaran bersiap sedia menghadapi keputusan kadar faedah daripada Rizab Persekutuan AS."
-image: "bg-gradient-to-br from-indigo-900 to-black"
+image: "/images/asia-fx-aussie-slides-on-soft-cpi-won-firms-ahead-of-fed-decision-1785304841276.ai/prompt/forex%20trading%20terminal%2C%20glowing%20financial%20charts%2C%20Australian%20Dollar%20symbol%20AUD%20falling%20down%2C%20South%20Korean%20Won%20symbol%20KRW%20rising%2C%20global%20market%20trends%2C%20candle%20stick%20charts%2C%20dark%20background%20with%20neon%20green%20and%20red%20lights%2C%20highly%20detailed%2C%20realistic%2C%20cinematic%20lighting%2C%208k%20resolution"
 ---
 
 Dolar Australia (AUD) menjadi tumpuan utama hari ini apabila ia merosot dengan ketara berikutan data Indeks Harga Pengguna (CPI) yang lebih lemah daripada jangkaan bagi suku terakhir. Angka inflasi yang menyederhana ini mengurangkan tekanan ke atas Reserve Bank of Australia (RBA) untuk mengekalkan sikap agresif (hawkish), sekali gus mencetuskan jangkaan bahawa bank pusat tersebut mungkin akan melonggarkan dasar monetari lebih awal daripada yang dijangkakan.

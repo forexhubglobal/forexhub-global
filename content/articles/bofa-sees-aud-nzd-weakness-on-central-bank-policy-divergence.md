@@ -5,7 +5,7 @@ category: "Berita"
 date: "2026-07-30"
 author: "Admin ForexHub"
 excerpt: "Bank of America (BofA) menjangkakan pasangan mata wang AUD/NZD akan terus melemah berikutan perbezaan hala tuju dasar monetari antara bank pusat Australia dan New Zealand. Ketahui bagaimana jurang polisi ini membuka peluang dagangan yang menarik untuk portfolio anda."
-image: "bg-gradient-to-br from-indigo-900 to-black"
+image: "/images/bofa-sees-aud-nzd-weakness-on-central-bank-policy-divergence-1785373236653.ai/prompt/Australian%20dollar%20and%20New%20Zealand%20dollar%20exchange%20rate%20chart%2C%20forex%20trading%20graph%20showing%20downward%20trend%2C%20professional%20trading%20terminal%2C%20dark%20theme%2C%20cinematic%20lighting%2C%20highly%20detailed%2C%208k%20resolution"
 ---
 
 Bank of America (BofA) baru-baru ini mendedahkan prospek menurun (*bearish*) bagi pasangan mata wang AUD/NZD. Penganalisis BofA melihat terdapat potensi kelemahan lanjut bagi dolar Australia berbanding dolar New Zealand, didorong terutamanya oleh jurang perbezaan (*divergence*) dalam dasar monetari antara kedua-dua bank pusat tersebut.

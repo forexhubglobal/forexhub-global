@@ -5,7 +5,7 @@ category: "Berita"
 date: "2026-07-29"
 author: "Admin ForexHub"
 excerpt: "USD mencatatkan sedikit penyusutan menjelang keputusan kadar faedah Rizab Persekutuan yang kritikal esok. Ketahui impak pergerakan ini terhadap pasangan mata wang utama kegemaran anda."
-image: "bg-gradient-to-br from-indigo-900 to-black"
+image: "/images/dollar-eases-back-from-over-a-one-month-high-a-day-ahead-of-key-fed-rate-decision-1785286838950.ai/prompt/US%20dollar%20bill%20with%20a%20slight%20downward%20trend%2C%20glowing%20forex%20candlestick%20chart%20in%20the%20background%2C%20trading%20screen%20interfaces%2C%20realistic%2C%20dark%20theme%2C%20cinematic%20lighting%2C%208k"
 ---
 
 Mata wang US Dollar (USD) dilaporkan mengalami sedikit penyusutan nilai, berundur dari paras tertinggi dalam tempoh lebih sebulan. Pergerakan ini berlaku ketika pasaran global kini berada dalam fasa 'tunggu dan lihat' menjelang pengumuman keputusan kadar faedah yang sangat dinantikan oleh Rizab Persekutuan (Fed) AS esok.

@@ -5,7 +5,7 @@ category: "Berita"
 date: "2026-07-29"
 author: "Admin ForexHub"
 excerpt: "Dolar AS mengekalkan penguasaannya di pasaran Asia menjelang keputusan kadar faedah Rizab Persekutuan yang amat dinantikan minggu ini. Sementara itu, Dolar Australia (Aussie) terus mencatatkan penurunan, memberi isyarat amaran kepada para pedagang Forex."
-image: "bg-gradient-to-br from-indigo-900 to-black"
+image: "/images/asia-fx-dollar-steadies-near-one-month-high-as-fed-looms-aussie-slips-1785312040585.ai/prompt/US%20dollar%20symbol%20glowing%20in%20gold%2C%20digital%20forex%20candlestick%20chart%20showing%20upward%20trend%2C%20abstract%20Australian%20dollar%20symbol%20fading%20in%20background%2C%20dark%20financial%20trading%20room%2C%20cinematic%20lighting%2C%20realistic%2C%208k%20resolution"
 ---
 
 Mata wang Dolar AS (USD) terus menunjukkan taringnya dengan bertahan hampir ke paras tertinggi satu bulan berbanding sekumpulan mata wang utama dalam sesi dagangan Asia. Sentimen berhati-hati kini menyelubungi pasaran global ketika para pelabur dan pedagang Forex mengalihkan tumpuan sepenuhnya kepada mesyuarat dasar monetari Rizab Persekutuan (Fed) yang bakal berlangsung tidak lama lagi.
