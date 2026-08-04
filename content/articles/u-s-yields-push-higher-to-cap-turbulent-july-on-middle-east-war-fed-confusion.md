@@ -5,7 +5,7 @@ category: "Berita"
 date: "2026-08-01"
 author: "Admin ForexHub"
 excerpt: "Pasaran bon AS menutup tirai bulan Julai dengan lonjakan ketara berikutan konflik Timur Tengah yang meruncing dan kekeliruan langkah Fed. Ketahui bagaimana situasi ini memberi impak besar kepada pergerakan USD dan strategi dagangan anda."
-image: "/images/u-s-yields-push-higher-to-cap-turbulent-july-on-middle-east-war-fed-confusion-1785567639234.ai/prompt/US%20Treasury%20bonds%20chart%2C%20rising%20financial%20bar%20graph%2C%20US%20dollar%20bill%2C%20Middle%20East%20war%20map%20silhouette%20in%20the%20background%2C%20high%20volatility%2C%20dark%20moody%20atmosphere%2C%20cinematic%20lighting%2C%20realistic%2C%208k%20resolution%2C%20forex%20trading%20concept"
+image: "bg-gradient-to-br from-indigo-900 to-black"
 ---
 
 Bulan Julai ditutup dengan penuh dramatik bagi pasaran kewangan global apabila hasil bon Perbendaharaan AS (*U.S. yields*) melonjak naik. Ketegangan geopolitik yang semakin memuncak di Timur Tengah serta isyarat bercampur-campur daripada Rizab Persekutuan (Fed) mengenai hala tuju kadar faedah telah mencetuskan volatiliti tinggi yang menguji ketahanan para pedagang Forex.

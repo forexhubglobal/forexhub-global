@@ -5,7 +5,7 @@ category: "Berita"
 date: "2026-08-03"
 author: "Admin ForexHub"
 excerpt: "Mata wang Yen Jepun menunjukkan pengukuhan ketara ketika para pedagang kini berwaspada terhadap kemungkinan campur tangan pasaran oleh pihak berkuasa Jepun. Situasi ini mencetuskan volatiliti tinggi yang menawarkan peluang besar buat pedagang mata wang asing."
-image: "/images/yen-climbs-as-traders-watch-for-further-intervention-1785726030247.ai/prompt/Japanese%20Yen%20symbol%20glowing%20on%20a%20digital%20forex%20trading%20screen%2C%20candlestick%20charts%20showing%20high%20volatility%2C%20dark%20background%20with%20neon%20blue%20and%20red%20lights%2C%20professional%20financial%20trading%20terminal%2C%20realistic%2C%208k%20resolution"
+image: "bg-gradient-to-br from-indigo-900 to-black"
 ---
 
 Yen Jepun (JPY) mempamerkan prestasi kukuh dalam sesi dagangan terbaharu, didorong oleh spekulasi yang semakin membara bahawa pihak berkuasa Jepun akan sekali lagi campur tangan dalam pasaran forex untuk menyokong mata wang tersebut. Langkah berjaga-jaga ini diambil selepas JPY mencatatkan kejatuhan berhampiran paras terendah dalam beberapa dekad berbanding Dolar AS.

@@ -5,7 +5,7 @@ category: "Berita"
 date: "2026-08-01"
 author: "Admin ForexHub"
 excerpt: "Kejatuhan mendadak Yen Jepun pada tahun 2026 telah mengejutkan pasaran global dan mencetuskan pelbagai spekulasi. Ketahui punca utama di sebalik krisis ini dan bagaimana anda sebagai pedagang Forex boleh memanfaatkan pergerakan pasaran yang ekstrem ini."
-image: "/images/why-did-the-japanese-yen-collapse-in-2026-1785560430723.ai/prompt/A%20giant%20Japanese%20Yen%20symbol%20cracking%20and%20crumbling%2C%20red%20bearish%20candlestick%20charts%20plunging%20in%20the%20background%2C%20dark%20trading%20room%20atmosphere%2C%20dramatic%20cinematic%20lighting%2C%203D%20render%2C%20highly%20detailed%2C%20professional%20forex%20market%20theme%2C%208k%20resolution"
+image: "bg-gradient-to-br from-indigo-900 to-black"
 ---
 
 Tahun 2026 menyaksikan landskap kewangan global digoncang oleh kejatuhan drastik mata wang Yen Jepun (JPY). Walaupun Bank of Japan (BoJ) cuba melaksanakan pengetatan dasar monetari, jurang kadar faedah yang terus melebar berbanding Amerika Syarikat dan Eropah, ditambah pula dengan isu hutang domestik yang parah, telah mencetuskan aktiviti penjualan (*sell-off*) JPY secara besar-besaran di peringkat global.

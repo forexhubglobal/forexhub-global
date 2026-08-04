@@ -5,7 +5,7 @@ category: "Berita"
 date: "2026-07-31"
 author: "Admin ForexHub"
 excerpt: "Ketidakpastian langkah Federal Reserve seterusnya terus menekan prestasi Dolar AS di penghujung Julai, manakala Euro mendapat talian hayat yang kukuh daripada jangkaan kenaikan kadar faedah oleh ECB."
-image: "/images/dollar-caps-downbeat-july-on-fed-ambiguity-euro-supported-by-ecb-rate-bets-1785499239159.ai/prompt/US%20dollar%20and%20Euro%20currency%20symbols%20face-off%2C%20glowing%20forex%20trading%20candlestick%20charts%20in%20the%20background%2C%20dark%20blue%20and%20gold%20color%20scheme%2C%20professional%20trading%20desk%20concept%2C%20cinematic%20lighting%2C%20highly%20detailed%2C%20photorealistic%2C%208k%20resolution"
+image: "bg-gradient-to-br from-indigo-900 to-black"
 ---
 
 Mata wang Dolar AS (USD) menutup tirai bulan Julai dengan prestasi yang agak suram, didorong oleh kekaburan hala tuju dasar monetari daripada Federal Reserve (Fed). Walaupun pasaran sebelum ini menjangkakan petunjuk yang lebih jelas, kenyataan berhati-hati daripada pegawai Fed telah mencetuskan spekulasi bahawa kitaran kenaikan kadar faedah mungkin menghampiri penghujungnya, sekali gus melemahkan momentum 'bullish' Greenback.

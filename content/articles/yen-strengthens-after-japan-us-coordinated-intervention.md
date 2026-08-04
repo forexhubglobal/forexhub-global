@@ -5,7 +5,7 @@ category: "Berita"
 date: "2026-08-03"
 author: "Admin ForexHub"
 excerpt: "Mata wang Yen Jepun melonjak tinggi selepas tindakan mengejut campur tangan terkoordinasi oleh pihak berkuasa Jepun dan AS. Perkembangan ini mencetuskan gelombang volatiliti besar yang perlu diperhatikan oleh semua pedagang USD/JPY."
-image: "/images/yen-strengthens-after-japan-us-coordinated-intervention-1785776435496.ai/prompt/Japanese%20Yen%20symbol%20JPY%20glowing%20brightly%2C%20US%20Dollar%20symbol%20USD%20slightly%20fading%2C%20dynamic%20forex%20trading%20candlestick%20chart%20showing%20a%20sharp%20drop%20of%20USD%2FJPY%2C%20Tokyo%20and%20New%20York%20financial%20district%20background%2C%20dramatic%20cinematic%20lighting%2C%20professional%20trading%20screen%20interface%2C%20photorealistic%2C%208k%20resolution"
+image: "bg-gradient-to-br from-indigo-900 to-black"
 ---
 
 Pasaran Forex dikejutkan dengan pengukuhan mendadak mata wang Yen (JPY) susulan tindakan campur tangan terkoordinasi oleh pihak berkuasa kewangan Jepun dan Amerika Syarikat (AS). Langkah drastik ini diambil bagi mengekang kejatuhan berterusan Yen yang sebelum ini berada di paras terendah dalam beberapa dekad berbanding Dolar AS (USD).

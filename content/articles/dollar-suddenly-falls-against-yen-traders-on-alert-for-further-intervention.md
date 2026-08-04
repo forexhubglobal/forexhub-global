@@ -5,7 +5,7 @@ category: "Berita"
 date: "2026-08-03"
 author: "Admin ForexHub"
 excerpt: "Mata wang Dolar AS mengalami kejatuhan mendadak berbanding Yen Jepun, mencetuskan spekulasi kuat mengenai campur tangan pasaran oleh Tokyo. Pedagang kini diletakkan dalam keadaan bersiap sedia untuk menghadapi turun naik yang lebih ekstrem."
-image: "/images/dollar-suddenly-falls-against-yen-traders-on-alert-for-further-intervention-1785729628167.ai/prompt/A%20dramatic%20forex%20trading%20chart%20showing%20a%20sharp%20red%20downward%20candle%20for%20USD%2FJPY%2C%20Japanese%20Yen%20symbol%20and%20US%20Dollar%20bill%20clashing%2C%20dark%20financial%20background%2C%20glowing%20digital%20screens%2C%20high%20volatility%2C%20cinematic%20lighting%2C%20realistic%2C%208k%20resolution"
+image: "bg-gradient-to-br from-indigo-900 to-black"
 ---
 
 Pergerakan mengejutkan berlaku dalam pasaran Forex apabila Dolar AS (USD) tiba-tiba merosot tajam berbanding Yen Jepun (JPY). Kejatuhan drastik ini serta-merta mencetuskan spekulasi hangat dalam kalangan komuniti pedagang bahawa Kementerian Kewangan Jepun atau Bank of Japan (BoJ) telah mula campur tangan secara langsung di pasaran untuk menyokong mata wang Yen yang kian melemah.

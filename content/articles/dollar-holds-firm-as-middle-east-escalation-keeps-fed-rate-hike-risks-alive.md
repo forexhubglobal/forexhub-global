@@ -5,7 +5,7 @@ category: "Berita"
 date: "2026-07-29"
 author: "Admin ForexHub"
 excerpt: "Mata wang Greenback mengekalkan penguasaannya berikutan ketegangan geopolitik yang meruncing di Timur Tengah. Situasi ini turut menghidupkan semula spekulasi mengenai kemungkinan Rizab Persekutuan (Fed) mengekalkan pendekatan agresif dalam menetapkan kadar faedah."
-image: "/images/dollar-holds-firm-as-middle-east-escalation-keeps-fed-rate-hike-risks-alive-1785319243114.ai/prompt/US%20dollar%20symbol%20glowing%2C%20digital%20forex%20trading%20screen%2C%20abstract%20representation%20of%20Middle%20East%20conflict%2C%20candlestick%20charts%2C%20cinematic%20lighting%2C%20photorealistic%2C%208k%2C%20financial%20market%20volatility"
+image: "bg-gradient-to-br from-indigo-900 to-black"
 ---
 
 Dolar AS (USD) terus mempamerkan prestasi kukuh dalam pasaran global apabila konflik yang semakin meruncing di Timur Tengah mendorong pelabur beralih kepada aset selamat (*safe-haven*). Ketidakpastian geopolitik ini bukan sahaja meningkatkan permintaan terhadap USD, malah mencetuskan kebimbangan baharu mengenai gangguan rantaian bekalan tenaga global yang berpotensi melonjakkan semula kadar inflasi.

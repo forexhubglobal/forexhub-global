@@ -5,7 +5,7 @@ category: "Berita"
 date: "2026-08-01"
 author: "Admin ForexHub"
 excerpt: "Spekulasi campur tangan kerajaan Jepun mencetuskan lonjakan mendadak nilai Yen berbanding Dolar AS. Ketahui bagaimana situasi ini memberi impak besar kepada portfolio dagangan anda."
-image: "/images/yen-surges-against-dollar-amid-intervention-speculation-1785571231046.ai/prompt/Japanese%20Yen%20symbol%20glowing%2C%20US%20Dollar%20bill%20falling%2C%20dramatic%20forex%20trading%20candlestick%20chart%20showing%20sudden%20trend%20reversal%2C%20dark%20financial%20market%20background%2C%20realistic%2C%20cinematic%20lighting%2C%20neon%20accents%2C%208k"
+image: "bg-gradient-to-br from-indigo-900 to-black"
 ---
 
 Mata wang Yen Jepun (JPY) mencatatkan pengukuhan ketara berbanding Dolar AS (USD), mencetuskan spekulasi hebat dalam kalangan pedagang bahawa pihak berkuasa Jepun telah mula campur tangan dalam pasaran tukaran wang asing. Pergerakan drastik ini mengejutkan pasaran yang sebelum ini menyaksikan Yen bergelut di paras terendah dalam tempoh beberapa dekad.

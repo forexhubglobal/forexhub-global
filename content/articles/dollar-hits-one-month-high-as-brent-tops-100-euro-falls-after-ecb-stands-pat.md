@@ -5,7 +5,7 @@ category: "Berita"
 date: "2026-07-27"
 author: "Admin ForexHub"
 excerpt: "Dolar AS melonjak tinggi selepas harga minyak Brent melepasi angka psikologi $100 setong, manakala Euro jatuh merudum susulan keputusan ECB mengekalkan kadar faedah. Ketahui bagaimana dinamik ini membuka peluang keemasan buat pedagang Forex minggu ini."
-image: "/images/dollar-hits-one-month-high-as-brent-tops-100-euro-falls-after-ecb-stands-pat-1785128432457.ai/prompt/US%20dollar%20bill%20glowing%2C%20digital%20forex%20trading%20chart%20showing%20upward%20trend%2C%20oil%20barrel%20with%20Brent%20100%20dollars%20text%20on%20screen%2C%20Euro%20symbol%20falling%2C%20dark%20financial%20trading%20room%20background%2C%20cinematic%20lighting%2C%20highly%20detailed%2C%208k%20resolution"
+image: "bg-gradient-to-br from-indigo-900 to-black"
 ---
 
 Pasaran Forex kembali bergolak hebat apabila Dolar AS (USD) melonjak ke paras tertinggi dalam tempoh satu bulan. Pemangkin utama lonjakan ini disokong oleh kenaikan mendadak harga minyak mentah Brent yang kini melepasi paras $100 setong. Kebimbangan terhadap kenaikan semula inflasi global akibat harga tenaga ini telah mendorong pelabur untuk terus memburu USD sebagai aset perlindungan selamat (safe-haven).

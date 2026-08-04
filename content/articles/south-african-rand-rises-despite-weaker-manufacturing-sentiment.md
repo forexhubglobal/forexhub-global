@@ -5,7 +5,7 @@ category: "Berita"
 date: "2026-08-03"
 author: "Admin ForexHub"
 excerpt: "Mata wang Rand Afrika Selatan (ZAR) mengejutkan pasaran dengan mencatatkan pengukuhan berbanding dolar AS walaupun data pembuatan domestik melemah. Ketahui faktor di sebalik lonjakan luar jangkaan ini untuk strategi dagangan anda."
-image: "/images/south-african-rand-rises-despite-weaker-manufacturing-sentiment-1785772845032.ai/prompt/South%20African%20Rand%20currency%20concept%2C%20glowing%20green%20forex%20trading%20chart%20with%20upward%20trend%2C%20modern%20financial%20trading%20terminal%2C%20Johannesburg%20skyline%20background%2C%20realistic%2C%20cinematic%20lighting%2C%208k%20resolution"
+image: "bg-gradient-to-br from-indigo-900 to-black"
 ---
 
 Mata wang Rand Afrika Selatan (ZAR) mempamerkan prestasi luar biasa dengan mencatatkan pengukuhan nilai, mengetepikan data ekonomi domestik yang menunjukkan kemerosotan dalam sentimen sektor pembuatan. Bagi pedagang Forex, anomali pasaran seperti ini menawarkan peluang unik untuk menganalisis dinamik di sebalik pergerakan mata wang pasaran sedang pesat membangun (*emerging markets*).

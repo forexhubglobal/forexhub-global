@@ -5,7 +5,7 @@ category: "Berita"
 date: "2026-08-04"
 author: "Admin ForexHub"
 excerpt: "Pergerakan Dolar AS dilaporkan tidak banyak berubah ekoran kebimbangan campur tangan mata wang oleh Jepun dan reda ketakutan pasaran terhadap kenaikan harga minyak. Perkembangan ini memaksa pedagang Forex untuk lebih berwaspada dalam merencana strategi dagangan mereka."
-image: "/images/dollar-little-changed-as-u-s-japan-yen-intervention-easing-oil-fears-weigh-1785801648158.ai/prompt/US%20dollar%20and%20Japanese%20yen%20banknotes%2C%20financial%20forex%20candlestick%20chart%20screen%2C%20oil%20pump%20jack%20silhouette%20in%20the%20background%2C%20professional%20trading%20desk%2C%20cinematic%20lighting%2C%208k%20resolution%2C%20photorealistic%2C%20financial%20market%20concept"
+image: "bg-gradient-to-br from-indigo-900 to-black"
 ---
 
 Indeks Dolar AS (DXY) mempamerkan pergerakan yang agak mendatar dalam sesi dagangan terbaharu. Dua faktor utama yang mengekang pengukuhan lanjut mata wang greenback ini adalah spekulasi campur tangan pasaran oleh pihak berkuasa Jepun untuk menyelamatkan Yen, serta penurunan harga minyak mentah global yang mengurangkan kebimbangan inflasi.

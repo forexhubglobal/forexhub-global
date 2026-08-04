@@ -5,7 +5,7 @@ category: "Berita"
 date: "2026-08-01"
 author: "Admin ForexHub"
 excerpt: "Prestasi dolar AS mencatatkan penurunan melebihi 1% sepanjang bulan Julai berikutan data ekonomi yang bercampur-campur serta hala tuju Fed yang tidak menentu. Situasi ini membuka peluang dagangan baharu buat para pedagang Forex yang sedang menantikan arah pasaran seterusnya."
-image: "/images/dollar-falls-over-1-for-july-as-u-s-data-fed-paint-a-muddy-picture-on-inflation-1785546051867.ai/prompt/US%20dollar%20symbol%20falling%2C%20red%20downward%20trend%20line%2C%20forex%20trading%20candlestick%20charts%20on%20a%20dark%20background%2C%20financial%20crisis%20concept%2C%20realistic%2C%20cinematic%20lighting%2C%208k%20resolution%2C%20highly%20detailed"
+image: "bg-gradient-to-br from-indigo-900 to-black"
 ---
 
 Indeks Dolar AS (DXY) menutup tirai bulan Julai dengan prestasi suram, mencatatkan kejatuhan melebihi 1%. Kejatuhan ini didorong oleh data ekonomi Amerika Syarikat (AS) terbaharu dan kenyataan daripada Rizab Persekutuan (Fed) yang memberikan gambaran bercampur-campur mengenai hala tuju inflasi negara tersebut.

@@ -5,7 +5,7 @@ category: "Berita"
 date: "2026-07-31"
 author: "Admin ForexHub"
 excerpt: "Pasaran bon Zon Euro kini menyaksikan konsolidasi hasil bon berikutan aktiviti pembelian akhir bulan yang mengekang kejatuhan mendadak sepanjang Julai. Ketahui bagaimana situasi ini memberi kesan kepada hala tuju mata wang Euro dalam masa terdekat."
-image: "/images/eurozone-yields-consolidate-as-month-end-buying-caps-sharp-july-rate-sell-off-1785484846792.ai/prompt/Euro%20currency%20symbol%20glowing%2C%20financial%20candlestick%20chart%20showing%20consolidation%2C%20Eurozone%20flag%20abstract%20background%2C%20modern%20trading%20terminal%20screen%2C%20realistic%2C%20dark%20blue%20and%20gold%20color%20scheme%2C%20cinematic%20lighting%2C%208k%20resolution%2C%20highly%20detailed"
+image: "bg-gradient-to-br from-indigo-900 to-black"
 ---
 
 Hasil bon kerajaan Zon Euro dilaporkan mula stabil pada penghujung Julai, sekali gus menamatkan fasa penjualan besar-besaran (*sell-off*) yang telah melonjakkan kadar faedah sepanjang bulan ini. Aktiviti pembelian portfolio akhir bulan (*month-end buying*) oleh pelabur institusi dilihat menjadi faktor utama yang mengekang kejatuhan lanjut dalam pasaran bon.

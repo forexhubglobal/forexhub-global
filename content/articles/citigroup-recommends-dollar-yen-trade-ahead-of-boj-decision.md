@@ -5,7 +5,7 @@ category: "Berita"
 date: "2026-07-31"
 author: "Admin ForexHub"
 excerpt: "Menjelang mesyuarat dasar Bank of Japan yang dinanti-nantikan, Citigroup menggesa pedagang Forex untuk bersiap sedia dengan strategi USD/JPY. Ketahui bagaimana anda boleh memanfaatkan potensi volatiliti tinggi ini."
-image: "/images/citigroup-recommends-dollar-yen-trade-ahead-of-boj-decision-1785456039011.ai/prompt/US%20dollar%20bill%20and%20Japanese%20yen%20banknotes%20overlapping%2C%20glowing%20forex%20candlestick%20charts%20in%20the%20background%2C%20financial%20market%20volatility%20concept%2C%20professional%20trading%20desk%2C%20dark%20theme%2C%20cinematic%20lighting%2C%20highly%20detailed%2C%208k%20resolution"
+image: "bg-gradient-to-br from-indigo-900 to-black"
 ---
 
 Pasaran Forex kini tertumpu sepenuhnya kepada keputusan dasar monetari daripada Bank of Japan (BOJ) yang bakal diumumkan tidak lama lagi. Dalam menghadapi ketidaktentuan pasaran ini, gergasi perbankan Wall Street, Citigroup, telah mengeluarkan saranan strategi dagangan khusus untuk pasangan mata wang USD/JPY (Dolar AS/Yen Jepun) bagi memanfaatkan pergerakan harga yang dijangka agresif.

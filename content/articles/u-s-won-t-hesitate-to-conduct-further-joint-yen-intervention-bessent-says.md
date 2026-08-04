@@ -5,7 +5,7 @@ category: "Berita"
 date: "2026-08-03"
 author: "Admin ForexHub"
 excerpt: "Scott Bessent memberi bayangan bahawa AS sedia bekerjasama dengan Jepun untuk melakukan intervensi mata wang Yen jika keadaan memerlukan. Amaran ini dijangka mencetuskan volatiliti luar biasa pada pasangan mata wang USD/JPY."
-image: "/images/u-s-won-t-hesitate-to-conduct-further-joint-yen-intervention-bessent-says-1785716725234.ai/prompt/Japanese%20yen%20coin%20and%20US%20dollar%20bill%2C%20forex%20trading%20screen%20with%20candlestick%20charts%20showing%20high%20volatility%2C%20dramatic%20cinematic%20lighting%2C%20financial%20market%20concept%2C%20realistic%2C%20dark%20theme%2C%208k%20resolution"
+image: "bg-gradient-to-br from-indigo-900 to-black"
 ---
 
 Pasaran Forex dikejutkan dengan kenyataan terbaharu daripada Scott Bessent yang menegaskan bahawa Amerika Syarikat (AS) tidak akan teragak-agak untuk melakukan campur tangan (intervensi) bersama bagi mengekang kejatuhan nilai Yen Jepun. Kenyataan ini memberi isyarat jelas bahawa pentadbiran AS memandang serius kestabilan pasaran mata wang global, khususnya membabitkan pasangan USD/JPY.

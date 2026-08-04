@@ -5,7 +5,7 @@ category: "Berita"
 date: "2026-08-03"
 author: "Admin ForexHub"
 excerpt: "Pengumuman rundingan antara Trump dan Iran membawa kelegaan kepada pasaran, menyaksikan hasil bon Euro kembali stabil manakala nota jangka pendek mengalami sedikit penurunan. Perkembangan ini memberi bayangan penting buat pergerakan mata wang Euro dalam sesi dagangan akan datang."
-image: "/images/euro-yields-stabilize-after-trump-iran-talk-announcement-short-dated-notes-dip-1785744058087.ai/prompt/Euro%20currency%20symbol%2C%20European%20Union%20flag%20overlay%2C%20financial%20trading%20charts%20with%20stabilizing%20green%20and%20red%20candlesticks%2C%20global%20market%20theme%2C%20professional%20forex%20trading%20desk%20background%2C%20cinematic%20lighting%2C%20realistic%2C%208k%20resolution"
+image: "bg-gradient-to-br from-indigo-900 to-black"
 ---
 
 Pengumuman mengejut mengenai potensi rundingan antara Donald Trump dan Iran telah membawa angin segar ke pasaran kewangan global, sekali gus meredakan kebimbangan geopolitik yang meruncing sebelum ini. Kesannya, hasil bon kerajaan Zon Euro kembali stabil selepas mengalami turun naik yang ketara, manakala nota jangka pendek (*short-dated notes*) mencatatkan sedikit penurunan.

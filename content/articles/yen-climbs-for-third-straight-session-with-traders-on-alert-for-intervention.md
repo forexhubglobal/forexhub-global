@@ -5,7 +5,7 @@ category: "Berita"
 date: "2026-08-03"
 author: "Admin ForexHub"
 excerpt: "Mata wang Yen Jepun meneruskan pengukuhan untuk sesi ketiga berturut-turut ketika para pedagang kini dalam fasa bersiap sedia menghadapi kemungkinan campur tangan daripada Tokyo. Ketahui bagaimana situasi berisiko tinggi ini boleh mempengaruhi strategi dagangan USD/JPY anda."
-image: "/images/yen-climbs-for-third-straight-session-with-traders-on-alert-for-intervention-1785747634771.ai/prompt/Japanese%20Yen%20coin%2C%20glowing%20forex%20candlestick%20chart%20showing%20a%20sharp%20drop%2C%20Tokyo%20skyline%20in%20the%20background%2C%20dark%20trading%20room%20atmosphere%2C%20high%20contrast%2C%20cinematic%20lighting%2C%20realistic%2C%208k%20resolution"
+image: "bg-gradient-to-br from-indigo-900 to-black"
 ---
 
 Mata wang Yen Jepun (JPY) terus mencatatkan pengukuhan berbanding Dolar AS (USD) untuk sesi ketiga berturut-turut. Kenaikan ini didorong oleh spekulasi pasaran yang semakin memuncak mengenai potensi campur tangan (intervention) daripada Kementerian Kewangan Jepun dan Bank of Japan (BoJ) bagi mengekang kejatuhan berterusan mata wang tersebut sebelum ini.

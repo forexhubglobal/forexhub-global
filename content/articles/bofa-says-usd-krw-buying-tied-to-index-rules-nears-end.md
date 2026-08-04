@@ -5,7 +5,7 @@ category: "Berita"
 date: "2026-08-03"
 author: "Admin ForexHub"
 excerpt: "Bank of America mendedahkan bahawa aliran pembelian USD/KRW yang didorong oleh peraturan indeks global kini menghampiri penghujungnya. Perkembangan ini memberi petunjuk penting buat pedagang Forex yang memburu peluang pembalikan arah pasaran."
-image: "/images/bofa-says-usd-krw-buying-tied-to-index-rules-nears-end-1785790843692.ai/prompt/South%20Korean%20Won%20and%20US%20Dollar%20currency%20symbols%2C%20glowing%20forex%20trading%20chart%20with%20downward%20trend%20line%2C%20dark%20professional%20financial%20background%2C%20cinematic%20lighting%2C%20realistic%2C%208k%20resolution"
+image: "bg-gradient-to-br from-indigo-900 to-black"
 ---
 
 Bank of America (BofA) baru-baru ini melaporkan bahawa aliran belian dolar AS berbanding Won Korea (USD/KRW) yang dikaitkan dengan peraturan penimbangan semula indeks global kini menghampiri fasa penamat. Sebelum ini, aliran modal berstruktur ini telah memberi sokongan kuat kepada pengukuhan USD berbanding KRW.

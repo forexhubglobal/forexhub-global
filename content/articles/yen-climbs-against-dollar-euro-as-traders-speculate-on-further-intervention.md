@@ -5,7 +5,7 @@ category: "Berita"
 date: "2026-08-03"
 author: "Admin ForexHub"
 excerpt: "Mata wang Yen Jepun menunjukkan pengukuhan luar biasa selepas pedagang mula membuat spekulasi tentang kemungkinan intervensi pasaran lanjut oleh pihak berkuasa Tokyo. Situasi ini mencetuskan volatiliti tinggi yang perlu diawasi oleh semua pedagang mata wang utama."
-image: "/images/yen-climbs-against-dollar-euro-as-traders-speculate-on-further-intervention-1785787230053.ai/prompt/Japanese%20Yen%20coin%20and%20symbol%2C%20rising%20green%20forex%20trading%20chart%2C%20Tokyo%20financial%20district%20background%2C%20dramatic%20cinematic%20lighting%2C%20professional%20finance%20theme%2C%20high%20contrast%2C%208k%20resolution"
+image: "bg-gradient-to-br from-indigo-900 to-black"
 ---
 
 Mata wang Yen Jepun (JPY) mempamerkan prestasi luar biasa dengan mencatatkan peningkatan ketara berbanding Dolar AS dan Euro. Lonjakan ini didorong oleh spekulasi yang semakin bertiup kencang dalam kalangan pedagang bahawa pihak berkuasa Jepun, khususnya Kementerian Kewangan dan Bank of Japan (BoJ), bakal melakukan intervensi pasaran sekali lagi untuk mengekang kejatuhan berterusan mata wang tersebut.

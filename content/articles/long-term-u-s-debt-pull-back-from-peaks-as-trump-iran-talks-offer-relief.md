@@ -5,7 +5,7 @@ category: "Berita"
 date: "2026-08-03"
 author: "Admin ForexHub"
 excerpt: "Hasil bon AS jangka panjang mula menyusut dari paras tertinggi selepas pasaran menarik nafas lega dengan berita potensi rundingan antara Trump dan Iran. Ketahui bagaimana perkembangan terbaharu ini bakal mempengaruhi pergerakan US Dollar dan sentimen risiko global."
-image: "/images/long-term-u-s-debt-pull-back-from-peaks-as-trump-iran-talks-offer-relief-1785765702368.ai/prompt/US%20treasury%20yield%20chart%20going%20down%2C%20glowing%20financial%20screens%2C%20forex%20trading%20terminal%2C%20global%20market%20map%20in%20the%20background%2C%20professional%20dark%20trading%20room%2C%20cinematic%20lighting%2C%20realistic%2C%208k%20resolution"
+image: "bg-gradient-to-br from-indigo-900 to-black"
 ---
 
 Pasaran kewangan global menyaksikan sedikit kelegaan apabila hasil bon AS jangka panjang mula berundur dari paras tertingginya baru-baru ini. Penurunan ini dicetuskan oleh laporan mengenai potensi rundingan antara Donald Trump dan pihak Iran, yang sedikit sebanyak meredakan kebimbangan konflik yang lebih luas di Timur Tengah.

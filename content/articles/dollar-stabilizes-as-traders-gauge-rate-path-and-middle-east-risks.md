@@ -5,7 +5,7 @@ category: "Berita"
 date: "2026-08-04"
 author: "Admin ForexHub"
 excerpt: "Mata wang US Dollar menunjukkan prestasi stabil ketika pedagang berhati-hati menilai langkah kadar faedah Rizab Persekutuan seterusnya. Sentimen pasaran turut dipengaruhi oleh perkembangan konflik di Timur Tengah yang mengehadkan pergerakan agresif."
-image: "/images/dollar-stabilizes-as-traders-gauge-rate-path-and-middle-east-risks-1785837634162.ai/prompt/US%20dollar%20bill%2C%20glowing%20forex%20candlestick%20chart%2C%20digital%20trading%20screen%2C%20global%20map%20with%20Middle%20East%20highlighted%20in%20faint%20red%2C%20dark%20background%2C%20professional%20trading%20desk%2C%20cinematic%20lighting%2C%20highly%20detailed%2C%208k%20resolution"
+image: "bg-gradient-to-br from-indigo-900 to-black"
 ---
 
 Mata wang US Dollar (USD) memulakan dagangan dengan lebih stabil minggu ini selepas mengalami turun naik yang ketara baru-baru ini. Para pedagang kini berada dalam fasa 'tunggu dan lihat' sementara mereka menilai hala tuju dasar monetari Rizab Persekutuan (Fed) AS dan memantau rapat perkembangan konflik geopolitik di Timur Tengah.
