@@ -55,7 +55,9 @@ export async function saveToGitHub(filePath: string, content: string, commitMess
     console.error(`GitHub API error saving ${posixPath}:`, res.status, errorText);
     throw new Error(`Failed to save to GitHub: ${res.status}`);
   }
-  await triggerVercelDeploy();
+  if (!commitMessage.includes('[skip ci]')) {
+    await triggerVercelDeploy();
+  }
 }
 
 export async function saveImageToGitHub(filePath: string, buffer: Buffer, commitMessage: string) {
@@ -160,7 +162,9 @@ export async function deleteFromGitHub(filePath: string, commitMessage: string) 
     console.error(`GitHub API error deleting ${posixPath}:`, res.status, errorText);
     throw new Error(`Failed to delete from GitHub: ${res.status}`);
   }
-  await triggerVercelDeploy();
+  if (!commitMessage.includes('[skip ci]')) {
+    await triggerVercelDeploy();
+  }
 }
 
 async function triggerVercelDeploy() {

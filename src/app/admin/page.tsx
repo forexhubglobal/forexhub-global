@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
 
-type ContentType = 'articles' | 'brokers' | 'prop-firms' | 'bonus' | 'pamm' | 'leads' | 'omni-leads' | 'reviews' | 'scams' | 'settings' | 'ibs';
+type ContentType = 'articles' | 'brokers' | 'prop-firms' | 'bonus' | 'pamm' | 'leads' | 'omni-leads' | 'omni-requests' | 'reviews' | 'scams' | 'settings' | 'ibs';
 
 // --- Helper Component untuk Pilihan (Multi-Select) ---
 const MultiSelect = ({ options, value, onChange }: { options: string[], value: string, onChange: (val: string) => void }) => {
@@ -45,6 +45,7 @@ export default function AdminPage() {
   const [replyingTo, setReplyingTo] = useState<string | null>(null);
   const [replyText, setReplyText] = useState('');
   const [scamsList, setScamsList] = useState<any[]>([]);
+  const [omniRequestsList, setOmniRequestsList] = useState<any[]>([]);
 
   
   // Base State
@@ -166,6 +167,17 @@ export default function AdminPage() {
       return;
     }
     
+    
+    if (contentType === 'omni-requests') {
+      fetch('/api/admin/omni-requests')
+        .then(res => res.json())
+        .then(data => {
+          if (data.success) setOmniRequestsList(data.requests);
+        })
+        .catch(err => console.error(err));
+      return;
+    }
+
     if (contentType === 'omni-leads') {
       fetch('/api/get-omni-leads')
         .then(res => res.json())
