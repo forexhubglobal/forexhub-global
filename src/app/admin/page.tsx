@@ -686,7 +686,7 @@ export default function AdminPage() {
                                       setOmniRequestsList(updated);
                                     }
                                   }}
-                                  className="text-xs font-bold text-success-600 hover:text-white border border-success-600 hover:bg-success-600 px-3 py-1 rounded transition-colors"
+                                  className="text-xs font-bold text-emerald-600 hover:text-white border border-emerald-600 hover:bg-emerald-600 px-3 py-1 rounded transition-colors"
                                 >
                                   Lulus (Active)
                                 </button>
@@ -705,7 +705,7 @@ export default function AdminPage() {
                                       }
                                     }
                                   }}
-                                  className="text-xs font-bold text-danger-600 hover:text-white border border-danger-600 hover:bg-danger-600 px-3 py-1 rounded transition-colors"
+                                  className="text-xs font-bold text-red-600 hover:text-white border border-red-600 hover:bg-red-600 px-3 py-1 rounded transition-colors"
                                 >
                                   Zero Balance (Block)
                                 </button>
