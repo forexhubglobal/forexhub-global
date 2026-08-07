@@ -1,5 +1,5 @@
 ---
-id: "1786093578457"
+id: "1786098158028"
 slug: "tetapan-utama"
 date: "2026-08-07"
 title: "Tetapan Utama"
