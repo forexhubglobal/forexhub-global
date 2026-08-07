@@ -1,15 +1,15 @@
 ---
-id: "1786092934312"
+id: "1786093187616"
 slug: "versus-trade"
 date: "2026-08-07"
 title: "VERSUS TRADE"
 logo: "/images/1786092795117-logo.webp"
 rating: "0.5"
 minDeposit: "1"
-leverage: "Unlimited"
+leverage: "1.2000"
 spread: "0.0"
 regulators: "FSA, CySEC, FCA, FSCA"
-affiliateLink: ""
+affiliateLink: "https://"
 isAd: "true"
 isHidden: "false"
 tradingDesk: "STP, ECN"
@@ -21,6 +21,7 @@ fundingMethods: "Local Bank Transfer, Crypto, Skrill/Neteller, Perfect Money"
 swapFree: "Ada (Automatik)"
 copyTrading: ""
 ---
+
 
 # Versus Trade
 
@@ -44,6 +45,7 @@ Our vision is to become a trusted global trading partner by fostering innovation
 * Professional multilingual customer support.
 * Educational materials, webinars, and market insights for continuous learning.
 * Designed to support both beginner and experienced traders.
+
 
 
 
