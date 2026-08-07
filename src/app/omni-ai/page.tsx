@@ -1,8 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
 
 export default function OmniAIRequestPage() {
   const [formData, setFormData] = useState({
@@ -43,8 +41,7 @@ export default function OmniAIRequestPage() {
   };
 
   return (
-    <div className="bg-[#09090b] text-slate-300 min-h-screen selection:bg-neon-blue selection:text-black">
-      <Header />
+    <div className="bg-[#09090b] text-slate-300 min-h-screen selection:bg-neon-blue selection:text-black pb-16">
       
       <main className="max-w-4xl mx-auto px-4 py-16 sm:px-6 lg:px-8 mt-16 relative">
         <div className="absolute top-0 right-1/4 w-96 h-96 bg-neon-blue/20 rounded-full blur-[100px] pointer-events-none"></div>
@@ -182,8 +179,6 @@ export default function OmniAIRequestPage() {
           )}
         </div>
       </main>
-      
-      <Footer />
     </div>
   );
 }
