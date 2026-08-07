@@ -1,14 +1,15 @@
 ---
-id: "1786093493326"
+id: "1786094056352"
 slug: "moneta-funded"
 date: "2026-08-07"
 title: "MONETA FUNDED"
 logo: "/images/1786093291903-moneta-funded-logo-white-252x160-3-1.png"
 fee: "USD 39–49"
-maxFunding: "$2,000,000"
-profitSplit: "Up to 88% profit split."
+maxFunding: "2,000,000"
+profitSplit: "88% "
 affiliateLink: "http://go.monetafunded.com/v2/sign-up/?am=94"
 ---
+
 
 Moneta Funded
 
@@ -35,3 +36,4 @@ $10,000
 $25,000
 $50,000
 $100,000
+
