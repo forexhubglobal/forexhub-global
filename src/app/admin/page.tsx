@@ -562,7 +562,7 @@ export default function AdminPage() {
             <div className="mb-8 bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
               <label className="block text-sm font-bold text-slate-700 mb-2">Pilih Rekod (Kosongkan untuk tambah baru):</label>
               <select 
-                className="w-full border border-slate-300 rounded-xl px-4 py-3 bg-slate-50 focus:ring-2 focus:ring-primary-500 outline-none font-medium text-slate-700"
+                className="w-full border border-slate-300 rounded-xl px-4 py-3 bg-slate-50 text-slate-900 focus:ring-2 focus:ring-primary-500 outline-none font-medium text-slate-700"
                 value={selectedSlug}
                 onChange={(e) => setSelectedSlug(e.target.value)}
               >
@@ -758,11 +758,11 @@ export default function AdminPage() {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                     <div>
                       <label className="block text-sm font-bold text-slate-700 mb-2">Nama Entiti / Syarikat <span className="text-danger-500">*</span></label>
-                      <input type="text" required className="w-full border border-slate-300 rounded-xl px-4 py-3 bg-white focus:ring-2 focus:ring-danger-500 outline-none" value={scamName} onChange={(e) => setScamName(e.target.value)} />
+                      <input type="text" required className="w-full border border-slate-300 rounded-xl px-4 py-3 bg-white text-slate-900 focus:ring-2 focus:ring-danger-500 outline-none" value={scamName} onChange={(e) => setScamName(e.target.value)} />
                     </div>
                     <div>
                       <label className="block text-sm font-bold text-slate-700 mb-2">Kategori</label>
-                      <select className="w-full border border-slate-300 rounded-xl px-4 py-3 bg-white focus:ring-2 focus:ring-danger-500 outline-none" value={scamCategory} onChange={(e) => setScamCategory(e.target.value)}>
+                      <select className="w-full border border-slate-300 rounded-xl px-4 py-3 bg-white text-slate-900 focus:ring-2 focus:ring-danger-500 outline-none" value={scamCategory} onChange={(e) => setScamCategory(e.target.value)}>
                         <option value="Broker Palsu">Broker Palsu</option>
                         <option value="Kelas Penipu">Kelas Penipu / Guru</option>
                         <option value="Skim Cepat Kaya">Skim Cepat Kaya / Pelaburan</option>
@@ -771,7 +771,7 @@ export default function AdminPage() {
                     </div>
                     <div>
                       <label className="block text-sm font-bold text-slate-700 mb-2">Status</label>
-                      <select className="w-full border border-slate-300 rounded-xl px-4 py-3 bg-white focus:ring-2 focus:ring-danger-500 outline-none text-danger-700 font-bold" value={scamStatus} onChange={(e) => setScamStatus(e.target.value)}>
+                      <select className="w-full border border-slate-300 rounded-xl px-4 py-3 bg-white text-slate-900 focus:ring-2 focus:ring-danger-500 outline-none text-danger-700 font-bold" value={scamStatus} onChange={(e) => setScamStatus(e.target.value)}>
                         <option value="Sah Scam">Sah Scam</option>
                         <option value="Dalam Siasatan">Dalam Siasatan</option>
                         <option value="Amaran">Amaran (Berisiko)</option>
@@ -779,7 +779,7 @@ export default function AdminPage() {
                     </div>
                     <div className="md:col-span-2">
                       <label className="block text-sm font-bold text-slate-700 mb-2">Modus Operandi / Sebab Blacklist <span className="text-danger-500">*</span></label>
-                      <textarea required rows={3} className="w-full border border-slate-300 rounded-xl px-4 py-3 bg-white focus:ring-2 focus:ring-danger-500 outline-none resize-none" value={scamReason} onChange={(e) => setScamReason(e.target.value)} placeholder="Contoh: Tidak benarkan pengeluaran wang (withdraw)..." />
+                      <textarea required rows={3} className="w-full border border-slate-300 rounded-xl px-4 py-3 bg-white text-slate-900 focus:ring-2 focus:ring-danger-500 outline-none resize-none" value={scamReason} onChange={(e) => setScamReason(e.target.value)} placeholder="Contoh: Tidak benarkan pengeluaran wang (withdraw)..." />
                     </div>
                   </div>
                   <button type="submit" className="bg-danger-600 hover:bg-danger-700 text-white font-bold py-3 px-6 rounded-xl shadow-md transition-colors">
@@ -934,7 +934,7 @@ export default function AdminPage() {
                       </label>
                       <input 
                         type="text" required
-                        className="w-full border border-slate-300 rounded-xl px-4 py-3 bg-slate-50 focus:ring-2 focus:ring-primary-500 outline-none"
+                        className="w-full border border-slate-300 rounded-xl px-4 py-3 bg-slate-50 text-slate-900 focus:ring-2 focus:ring-primary-500 outline-none"
                         value={title} onChange={(e) => setTitle(e.target.value)}
                       />
                     </div>
@@ -951,12 +951,12 @@ export default function AdminPage() {
                         <div className="grid grid-cols-1 gap-4">
                           <div>
                             <label className="block text-sm font-bold text-slate-700 mb-2">Nombor WhatsApp Admin</label>
-                            <input type="text" className="w-full border border-slate-300 rounded-xl px-4 py-3 bg-white focus:ring-2 focus:ring-primary-500 outline-none" value={whatsappNumber} onChange={(e) => setWhatsappNumber(e.target.value)} />
+                            <input type="text" className="w-full border border-slate-300 rounded-xl px-4 py-3 bg-white text-slate-900 focus:ring-2 focus:ring-primary-500 outline-none" value={whatsappNumber} onChange={(e) => setWhatsappNumber(e.target.value)} />
                             <p className="text-xs text-slate-500 mt-2 italic">Gunakan format antarabangsa tanpa '+'. Cth: 60123456789</p>
                           </div>
                           <div>
                             <label className="block text-sm font-bold text-slate-700 mb-2">Mesej Default</label>
-                            <textarea rows={2} className="w-full border border-slate-300 rounded-xl px-4 py-3 bg-white focus:ring-2 focus:ring-primary-500 outline-none" value={whatsappMessage} onChange={(e) => setWhatsappMessage(e.target.value)} />
+                            <textarea rows={2} className="w-full border border-slate-300 rounded-xl px-4 py-3 bg-white text-slate-900 focus:ring-2 focus:ring-primary-500 outline-none" value={whatsappMessage} onChange={(e) => setWhatsappMessage(e.target.value)} />
                           </div>
                         </div>
                       </div>
@@ -966,15 +966,15 @@ export default function AdminPage() {
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                           <div>
                             <label className="block text-sm font-bold text-slate-700 mb-2">E-mel Sokongan</label>
-                            <input type="text" className="w-full border border-slate-300 rounded-xl px-4 py-3 bg-white focus:ring-2 focus:ring-primary-500 outline-none" value={supportEmail} onChange={(e) => setSupportEmail(e.target.value)} />
+                            <input type="text" className="w-full border border-slate-300 rounded-xl px-4 py-3 bg-white text-slate-900 focus:ring-2 focus:ring-primary-500 outline-none" value={supportEmail} onChange={(e) => setSupportEmail(e.target.value)} />
                           </div>
                           <div>
                             <label className="block text-sm font-bold text-slate-700 mb-2">E-mel Kerjasama Perniagaan</label>
-                            <input type="text" className="w-full border border-slate-300 rounded-xl px-4 py-3 bg-white focus:ring-2 focus:ring-primary-500 outline-none" value={businessEmail} onChange={(e) => setBusinessEmail(e.target.value)} />
+                            <input type="text" className="w-full border border-slate-300 rounded-xl px-4 py-3 bg-white text-slate-900 focus:ring-2 focus:ring-primary-500 outline-none" value={businessEmail} onChange={(e) => setBusinessEmail(e.target.value)} />
                           </div>
                           <div className="col-span-1 md:col-span-2">
                             <label className="block text-sm font-bold text-slate-700 mb-2">Waktu Operasi</label>
-                            <input type="text" className="w-full border border-slate-300 rounded-xl px-4 py-3 bg-white focus:ring-2 focus:ring-primary-500 outline-none" value={operatingHours} onChange={(e) => setOperatingHours(e.target.value)} />
+                            <input type="text" className="w-full border border-slate-300 rounded-xl px-4 py-3 bg-white text-slate-900 focus:ring-2 focus:ring-primary-500 outline-none" value={operatingHours} onChange={(e) => setOperatingHours(e.target.value)} />
                           </div>
                         </div>
                       </div>
@@ -990,7 +990,7 @@ export default function AdminPage() {
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                               <div>
                                 <label className="block text-sm font-bold text-slate-700 mb-2">Nama Broker Penaja</label>
-                                <input type="text" className="w-full border border-slate-300 rounded-xl px-4 py-3 bg-white focus:ring-2 focus:ring-primary-500 outline-none" value={sponsoredBrokerName} onChange={(e) => setSponsoredBrokerName(e.target.value)} placeholder="Cth: Exness" />
+                                <input type="text" className="w-full border border-slate-300 rounded-xl px-4 py-3 bg-white text-slate-900 focus:ring-2 focus:ring-primary-500 outline-none" value={sponsoredBrokerName} onChange={(e) => setSponsoredBrokerName(e.target.value)} placeholder="Cth: Exness" />
                               </div>
                               <div>
                                 <div className="flex items-center justify-between mb-2">
@@ -1000,11 +1000,11 @@ export default function AdminPage() {
                                     <input type="file" onChange={(e) => handleImageUpload(e, 'sponsorLogo')} accept="image/*" className="hidden" />
                                   </label>
                                 </div>
-                                <input type="text" className="w-full border border-slate-300 rounded-xl px-4 py-3 bg-white focus:ring-2 focus:ring-primary-500 outline-none" value={sponsoredBrokerLogo} onChange={(e) => setSponsoredBrokerLogo(e.target.value)} placeholder="https://..." />
+                                <input type="text" className="w-full border border-slate-300 rounded-xl px-4 py-3 bg-white text-slate-900 focus:ring-2 focus:ring-primary-500 outline-none" value={sponsoredBrokerLogo} onChange={(e) => setSponsoredBrokerLogo(e.target.value)} placeholder="https://..." />
                               </div>
                               <div className="md:col-span-2">
                                 <label className="block text-sm font-bold text-slate-700 mb-2">Affiliate Link / Referral</label>
-                                <input type="text" className="w-full border border-slate-300 rounded-xl px-4 py-3 bg-white focus:ring-2 focus:ring-primary-500 outline-none" value={sponsoredBrokerLink} onChange={(e) => setSponsoredBrokerLink(e.target.value)} placeholder="https://..." />
+                                <input type="text" className="w-full border border-slate-300 rounded-xl px-4 py-3 bg-white text-slate-900 focus:ring-2 focus:ring-primary-500 outline-none" value={sponsoredBrokerLink} onChange={(e) => setSponsoredBrokerLink(e.target.value)} placeholder="https://..." />
                               </div>
                             </div>
                           </div>
@@ -1020,11 +1020,11 @@ export default function AdminPage() {
                                     <input type="file" onChange={(e) => handleImageUpload(e, 'heroAd')} accept="image/*" className="hidden" />
                                   </label>
                                 </div>
-                                <input type="text" className="w-full border border-slate-300 rounded-xl px-4 py-3 bg-white focus:ring-2 focus:ring-primary-500 outline-none" value={heroAdImage} onChange={(e) => setHeroAdImage(e.target.value)} placeholder="https://..." />
+                                <input type="text" className="w-full border border-slate-300 rounded-xl px-4 py-3 bg-white text-slate-900 focus:ring-2 focus:ring-primary-500 outline-none" value={heroAdImage} onChange={(e) => setHeroAdImage(e.target.value)} placeholder="https://..." />
                               </div>
                               <div>
                                 <label className="block text-sm font-bold text-slate-700 mb-2">Link Banner (Destinasi)</label>
-                                <input type="text" className="w-full border border-slate-300 rounded-xl px-4 py-3 bg-white focus:ring-2 focus:ring-primary-500 outline-none" value={heroAdLink} onChange={(e) => setHeroAdLink(e.target.value)} placeholder="https://..." />
+                                <input type="text" className="w-full border border-slate-300 rounded-xl px-4 py-3 bg-white text-slate-900 focus:ring-2 focus:ring-primary-500 outline-none" value={heroAdLink} onChange={(e) => setHeroAdLink(e.target.value)} placeholder="https://..." />
                               </div>
                             </div>
                           </div>
@@ -1040,11 +1040,11 @@ export default function AdminPage() {
                                     <input type="file" onChange={(e) => handleImageUpload(e, 'articleAd')} accept="image/*" className="hidden" />
                                   </label>
                                 </div>
-                                <input type="text" className="w-full border border-slate-300 rounded-xl px-4 py-3 bg-white focus:ring-2 focus:ring-primary-500 outline-none" value={articleAdImage} onChange={(e) => setArticleAdImage(e.target.value)} placeholder="https://..." />
+                                <input type="text" className="w-full border border-slate-300 rounded-xl px-4 py-3 bg-white text-slate-900 focus:ring-2 focus:ring-primary-500 outline-none" value={articleAdImage} onChange={(e) => setArticleAdImage(e.target.value)} placeholder="https://..." />
                               </div>
                               <div>
                                 <label className="block text-sm font-bold text-slate-700 mb-2">Link Banner (Destinasi)</label>
-                                <input type="text" className="w-full border border-slate-300 rounded-xl px-4 py-3 bg-white focus:ring-2 focus:ring-primary-500 outline-none" value={articleAdLink} onChange={(e) => setArticleAdLink(e.target.value)} placeholder="https://..." />
+                                <input type="text" className="w-full border border-slate-300 rounded-xl px-4 py-3 bg-white text-slate-900 focus:ring-2 focus:ring-primary-500 outline-none" value={articleAdLink} onChange={(e) => setArticleAdLink(e.target.value)} placeholder="https://..." />
                               </div>
                             </div>
                           </div>
@@ -1060,11 +1060,11 @@ export default function AdminPage() {
                                     <input type="file" onChange={(e) => handleImageUpload(e, 'mobileAd')} accept="image/*" className="hidden" />
                                   </label>
                                 </div>
-                                <input type="text" className="w-full border border-slate-300 rounded-xl px-4 py-3 bg-white focus:ring-2 focus:ring-primary-500 outline-none" value={mobileAdImage} onChange={(e) => setMobileAdImage(e.target.value)} placeholder="https://..." />
+                                <input type="text" className="w-full border border-slate-300 rounded-xl px-4 py-3 bg-white text-slate-900 focus:ring-2 focus:ring-primary-500 outline-none" value={mobileAdImage} onChange={(e) => setMobileAdImage(e.target.value)} placeholder="https://..." />
                               </div>
                               <div>
                                 <label className="block text-sm font-bold text-slate-700 mb-2">Link Banner (Destinasi)</label>
-                                <input type="text" className="w-full border border-slate-300 rounded-xl px-4 py-3 bg-white focus:ring-2 focus:ring-primary-500 outline-none" value={mobileAdLink} onChange={(e) => setMobileAdLink(e.target.value)} placeholder="https://..." />
+                                <input type="text" className="w-full border border-slate-300 rounded-xl px-4 py-3 bg-white text-slate-900 focus:ring-2 focus:ring-primary-500 outline-none" value={mobileAdLink} onChange={(e) => setMobileAdLink(e.target.value)} placeholder="https://..." />
                               </div>
                             </div>
                           </div>
@@ -1080,7 +1080,7 @@ export default function AdminPage() {
                       <div>
                         <label className="block text-sm font-bold text-slate-700 mb-2">Kategori</label>
                         <select 
-                          className="w-full border border-slate-300 rounded-xl px-4 py-3 bg-slate-50 focus:ring-2 focus:ring-primary-500 outline-none"
+                          className="w-full border border-slate-300 rounded-xl px-4 py-3 bg-slate-50 text-slate-900 focus:ring-2 focus:ring-primary-500 outline-none"
                           value={category} onChange={(e) => setCategory(e.target.value)}
                         >
                           <option value="Review">Review</option>
@@ -1094,7 +1094,7 @@ export default function AdminPage() {
                         <label className="block text-sm font-bold text-slate-700 mb-2">Ringkasan (Excerpt)</label>
                         <textarea 
                           rows={2}
-                          className="w-full border border-slate-300 rounded-xl px-4 py-3 bg-slate-50 focus:ring-2 focus:ring-primary-500 outline-none resize-none"
+                          className="w-full border border-slate-300 rounded-xl px-4 py-3 bg-slate-50 text-slate-900 focus:ring-2 focus:ring-primary-500 outline-none resize-none"
                           value={excerpt} onChange={(e) => setExcerpt(e.target.value)}
                         />
                       </div>
@@ -1106,23 +1106,23 @@ export default function AdminPage() {
                     <div className="grid grid-cols-2 gap-4">
                       <div>
                         <label className="block text-sm font-bold text-slate-700 mb-2">Rating (0-5)</label>
-                        <input type="text" className="w-full border border-slate-300 rounded-xl px-4 py-3 bg-slate-50 focus:ring-2 focus:ring-primary-500 outline-none" value={rating} onChange={(e) => setRating(e.target.value)} />
+                        <input type="text" className="w-full border border-slate-300 rounded-xl px-4 py-3 bg-slate-50 text-slate-900 focus:ring-2 focus:ring-primary-500 outline-none" value={rating} onChange={(e) => setRating(e.target.value)} />
                       </div>
                       <div>
                         <label className="block text-sm font-bold text-slate-700 mb-2">Min Deposit (USD)</label>
-                        <input type="text" className="w-full border border-slate-300 rounded-xl px-4 py-3 bg-slate-50 focus:ring-2 focus:ring-primary-500 outline-none" value={minDeposit} onChange={(e) => setMinDeposit(e.target.value)} />
+                        <input type="text" className="w-full border border-slate-300 rounded-xl px-4 py-3 bg-slate-50 text-slate-900 focus:ring-2 focus:ring-primary-500 outline-none" value={minDeposit} onChange={(e) => setMinDeposit(e.target.value)} />
                       </div>
                       <div>
                         <label className="block text-sm font-bold text-slate-700 mb-2">Max Leverage</label>
-                        <input type="text" className="w-full border border-slate-300 rounded-xl px-4 py-3 bg-slate-50 focus:ring-2 focus:ring-primary-500 outline-none" value={leverage} onChange={(e) => setLeverage(e.target.value)} />
+                        <input type="text" className="w-full border border-slate-300 rounded-xl px-4 py-3 bg-slate-50 text-slate-900 focus:ring-2 focus:ring-primary-500 outline-none" value={leverage} onChange={(e) => setLeverage(e.target.value)} />
                       </div>
                       <div>
                         <label className="block text-sm font-bold text-slate-700 mb-2">Spread Bermula (Pips)</label>
-                        <input type="text" className="w-full border border-slate-300 rounded-xl px-4 py-3 bg-slate-50 focus:ring-2 focus:ring-primary-500 outline-none" value={spread} onChange={(e) => setSpread(e.target.value)} />
+                        <input type="text" className="w-full border border-slate-300 rounded-xl px-4 py-3 bg-slate-50 text-slate-900 focus:ring-2 focus:ring-primary-500 outline-none" value={spread} onChange={(e) => setSpread(e.target.value)} />
                       </div>
                       <div className="col-span-2">
                         <label className="block text-sm font-bold text-slate-700 mb-2">Regulators</label>
-                        <input type="text" className="w-full border border-slate-300 rounded-xl px-4 py-3 bg-slate-50 focus:ring-2 focus:ring-primary-500 outline-none" value={regulators} onChange={(e) => setRegulators(e.target.value)} />
+                        <input type="text" className="w-full border border-slate-300 rounded-xl px-4 py-3 bg-slate-50 text-slate-900 focus:ring-2 focus:ring-primary-500 outline-none" value={regulators} onChange={(e) => setRegulators(e.target.value)} />
                       </div>
                       
                       {/* Extended Fields */}
@@ -1190,7 +1190,7 @@ export default function AdminPage() {
 
                       <div className="col-span-2 mt-2">
                         <label className="block text-sm font-bold text-slate-700 mb-2">Link Pendaftaran (Affiliate Link)</label>
-                        <input type="text" placeholder="https://" className="w-full border border-slate-300 rounded-xl px-4 py-3 bg-slate-50 focus:ring-2 focus:ring-primary-500 outline-none" value={affiliateLink} onChange={(e) => setAffiliateLink(e.target.value)} />
+                        <input type="text" placeholder="https://" className="w-full border border-slate-300 rounded-xl px-4 py-3 bg-slate-50 text-slate-900 focus:ring-2 focus:ring-primary-500 outline-none" value={affiliateLink} onChange={(e) => setAffiliateLink(e.target.value)} />
                       </div>
                       <div className="col-span-2 bg-white border border-slate-200 rounded-xl p-4 flex items-center justify-between shadow-sm mt-2">
                         <div>
@@ -1221,19 +1221,19 @@ export default function AdminPage() {
                     <div className="grid grid-cols-2 gap-4">
                       <div>
                         <label className="block text-sm font-bold text-slate-700 mb-2">Yuran Bermula (USD)</label>
-                        <input type="text" className="w-full border border-slate-300 rounded-xl px-4 py-3 bg-slate-50 focus:ring-2 focus:ring-primary-500 outline-none" value={fee} onChange={(e) => setFee(e.target.value)} />
+                        <input type="text" className="w-full border border-slate-300 rounded-xl px-4 py-3 bg-slate-50 text-slate-900 focus:ring-2 focus:ring-primary-500 outline-none" value={fee} onChange={(e) => setFee(e.target.value)} />
                       </div>
                       <div>
                         <label className="block text-sm font-bold text-slate-700 mb-2">Max Funding (USD)</label>
-                        <input type="text" className="w-full border border-slate-300 rounded-xl px-4 py-3 bg-slate-50 focus:ring-2 focus:ring-primary-500 outline-none" value={maxFunding} onChange={(e) => setMaxFunding(e.target.value)} />
+                        <input type="text" className="w-full border border-slate-300 rounded-xl px-4 py-3 bg-slate-50 text-slate-900 focus:ring-2 focus:ring-primary-500 outline-none" value={maxFunding} onChange={(e) => setMaxFunding(e.target.value)} />
                       </div>
                       <div className="col-span-2">
                         <label className="block text-sm font-bold text-slate-700 mb-2">Profit Split (%)</label>
-                        <input type="text" className="w-full border border-slate-300 rounded-xl px-4 py-3 bg-slate-50 focus:ring-2 focus:ring-primary-500 outline-none" value={profitSplit} onChange={(e) => setProfitSplit(e.target.value)} />
+                        <input type="text" className="w-full border border-slate-300 rounded-xl px-4 py-3 bg-slate-50 text-slate-900 focus:ring-2 focus:ring-primary-500 outline-none" value={profitSplit} onChange={(e) => setProfitSplit(e.target.value)} />
                       </div>
                       <div className="col-span-2">
                         <label className="block text-sm font-bold text-slate-700 mb-2">Link Pendaftaran (Affiliate Link)</label>
-                        <input type="text" placeholder="https://" className="w-full border border-slate-300 rounded-xl px-4 py-3 bg-slate-50 focus:ring-2 focus:ring-primary-500 outline-none" value={affiliateLink} onChange={(e) => setAffiliateLink(e.target.value)} />
+                        <input type="text" placeholder="https://" className="w-full border border-slate-300 rounded-xl px-4 py-3 bg-slate-50 text-slate-900 focus:ring-2 focus:ring-primary-500 outline-none" value={affiliateLink} onChange={(e) => setAffiliateLink(e.target.value)} />
                       </div>
                     </div>
                   )}
@@ -1244,7 +1244,7 @@ export default function AdminPage() {
                       <div>
                         <label className="block text-sm font-bold text-slate-700 mb-2">Jenis Bonus</label>
                         <select 
-                          className="w-full border border-slate-300 rounded-xl px-4 py-3 bg-slate-50 focus:ring-2 focus:ring-primary-500 outline-none"
+                          className="w-full border border-slate-300 rounded-xl px-4 py-3 bg-slate-50 text-slate-900 focus:ring-2 focus:ring-primary-500 outline-none"
                           value={bonusType} onChange={(e) => setBonusType(e.target.value)}
                         >
                           <option value="No Deposit Bonus">No Deposit Bonus</option>
@@ -1255,11 +1255,11 @@ export default function AdminPage() {
                       </div>
                       <div>
                         <label className="block text-sm font-bold text-slate-700 mb-2">Jumlah Bonus (Cth: $30, 100%)</label>
-                        <input type="text" className="w-full border border-slate-300 rounded-xl px-4 py-3 bg-slate-50 focus:ring-2 focus:ring-primary-500 outline-none" value={bonusAmount} onChange={(e) => setBonusAmount(e.target.value)} />
+                        <input type="text" className="w-full border border-slate-300 rounded-xl px-4 py-3 bg-slate-50 text-slate-900 focus:ring-2 focus:ring-primary-500 outline-none" value={bonusAmount} onChange={(e) => setBonusAmount(e.target.value)} />
                       </div>
                       <div className="col-span-2">
                         <label className="block text-sm font-bold text-slate-700 mb-2">Link Pendaftaran (Affiliate Link)</label>
-                        <input type="text" placeholder="https://" className="w-full border border-slate-300 rounded-xl px-4 py-3 bg-slate-50 focus:ring-2 focus:ring-primary-500 outline-none" value={bonusLink} onChange={(e) => setBonusLink(e.target.value)} />
+                        <input type="text" placeholder="https://" className="w-full border border-slate-300 rounded-xl px-4 py-3 bg-slate-50 text-slate-900 focus:ring-2 focus:ring-primary-500 outline-none" value={bonusLink} onChange={(e) => setBonusLink(e.target.value)} />
                       </div>
                     </div>
                   )}
@@ -1269,19 +1269,19 @@ export default function AdminPage() {
                     <div className="grid grid-cols-2 gap-4">
                       <div>
                         <label className="block text-sm font-bold text-slate-700 mb-2">Nama Pengurus (Manager)</label>
-                        <input type="text" className="w-full border border-slate-300 rounded-xl px-4 py-3 bg-slate-50 focus:ring-2 focus:ring-primary-500 outline-none" value={manager} onChange={(e) => setManager(e.target.value)} />
+                        <input type="text" className="w-full border border-slate-300 rounded-xl px-4 py-3 bg-slate-50 text-slate-900 focus:ring-2 focus:ring-primary-500 outline-none" value={manager} onChange={(e) => setManager(e.target.value)} />
                       </div>
                       <div>
                         <label className="block text-sm font-bold text-slate-700 mb-2">Strategi Trading</label>
-                        <input type="text" className="w-full border border-slate-300 rounded-xl px-4 py-3 bg-slate-50 focus:ring-2 focus:ring-primary-500 outline-none" value={strategy} onChange={(e) => setStrategy(e.target.value)} />
+                        <input type="text" className="w-full border border-slate-300 rounded-xl px-4 py-3 bg-slate-50 text-slate-900 focus:ring-2 focus:ring-primary-500 outline-none" value={strategy} onChange={(e) => setStrategy(e.target.value)} />
                       </div>
                       <div>
                         <label className="block text-sm font-bold text-slate-700 mb-2">Pulangan Bulanan (%)</label>
-                        <input type="text" className="w-full border border-slate-300 rounded-xl px-4 py-3 bg-slate-50 focus:ring-2 focus:ring-primary-500 outline-none" value={monthlyReturn} onChange={(e) => setMonthlyReturn(e.target.value)} />
+                        <input type="text" className="w-full border border-slate-300 rounded-xl px-4 py-3 bg-slate-50 text-slate-900 focus:ring-2 focus:ring-primary-500 outline-none" value={monthlyReturn} onChange={(e) => setMonthlyReturn(e.target.value)} />
                       </div>
                       <div>
                         <label className="block text-sm font-bold text-slate-700 mb-2">Tahap Risiko</label>
-                        <select className="w-full border border-slate-300 rounded-xl px-4 py-3 bg-slate-50 focus:ring-2 focus:ring-primary-500 outline-none" value={riskLevel} onChange={(e) => setRiskLevel(e.target.value)}>
+                        <select className="w-full border border-slate-300 rounded-xl px-4 py-3 bg-slate-50 text-slate-900 focus:ring-2 focus:ring-primary-500 outline-none" value={riskLevel} onChange={(e) => setRiskLevel(e.target.value)}>
                           <option value="Low">Low (Rendah)</option>
                           <option value="Medium">Medium (Sederhana)</option>
                           <option value="High">High (Tinggi)</option>
@@ -1289,11 +1289,11 @@ export default function AdminPage() {
                       </div>
                       <div className="col-span-2">
                         <label className="block text-sm font-bold text-slate-700 mb-2">Min Deposit/Invest (USD)</label>
-                        <input type="text" className="w-full border border-slate-300 rounded-xl px-4 py-3 bg-slate-50 focus:ring-2 focus:ring-primary-500 outline-none" value={minInvest} onChange={(e) => setMinInvest(e.target.value)} />
+                        <input type="text" className="w-full border border-slate-300 rounded-xl px-4 py-3 bg-slate-50 text-slate-900 focus:ring-2 focus:ring-primary-500 outline-none" value={minInvest} onChange={(e) => setMinInvest(e.target.value)} />
                       </div>
                       <div className="col-span-2">
                         <label className="block text-sm font-bold text-slate-700 mb-2">Link Pendaftaran (PAMM / Copytrade Link)</label>
-                        <input type="text" placeholder="https://" className="w-full border border-slate-300 rounded-xl px-4 py-3 bg-slate-50 focus:ring-2 focus:ring-primary-500 outline-none" value={pammLink} onChange={(e) => setPammLink(e.target.value)} />
+                        <input type="text" placeholder="https://" className="w-full border border-slate-300 rounded-xl px-4 py-3 bg-slate-50 text-slate-900 focus:ring-2 focus:ring-primary-500 outline-none" value={pammLink} onChange={(e) => setPammLink(e.target.value)} />
                       </div>
                     </div>
                   )}
@@ -1312,7 +1312,7 @@ export default function AdminPage() {
                     </div>
                     <textarea 
                       rows={10}
-                      className="w-full border border-slate-300 rounded-xl px-4 py-3 bg-slate-50 focus:ring-2 focus:ring-primary-500 outline-none font-mono text-sm"
+                      className="w-full border border-slate-300 rounded-xl px-4 py-3 bg-slate-50 text-slate-900 focus:ring-2 focus:ring-primary-500 outline-none font-mono text-sm"
                       value={content} onChange={(e) => setContent(e.target.value)}
                     />
                   </div>
