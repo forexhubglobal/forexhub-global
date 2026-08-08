@@ -16,6 +16,30 @@ export async function POST(request: Request) {
       }, { status: 500 });
     }
 
+    // --- WHITELIST BROKERS (Always Safe) ---
+    const searchName = brokerName.toLowerCase().trim();
+    const whitelistedBrokers = ['cpt markets', 'moneta markets', 'versus trade', 'exness'];
+    
+    // Check if the search term matches any whitelisted broker
+    if (whitelistedBrokers.some(wb => searchName.includes(wb) || wb.includes(searchName))) {
+      // Just to be safe, if they type a short string like "ex", we don't want it to match "exness" automatically, 
+      // so let's do a more robust check:
+      if (
+        searchName === 'cpt' || searchName === 'cpt markets' || searchName === 'cpt market' ||
+        searchName === 'moneta' || searchName === 'moneta markets' || searchName === 'moneta market' ||
+        searchName === 'versus' || searchName === 'versus trade' || searchName === 'versustrade' ||
+        searchName === 'exness'
+      ) {
+        return NextResponse.json({
+          score: 5, // Very safe
+          status: 'Selamat',
+          reason: 'Broker ini adalah rakan kongsi dipercayai (Trusted Partner) yang telah disemak selia secara ketat dan disahkan selamat oleh pakar industri.',
+          source: 'ForexHub Global Verified'
+        });
+      }
+    }
+    // ---------------------------------------
+
     const prompt = `
       Anda adalah pakar forensik kewangan bebas dan pangkalan data global untuk SEMUA broker Forex/Kripto di seluruh dunia.
       Siasat entiti bernama: "${brokerName}".
