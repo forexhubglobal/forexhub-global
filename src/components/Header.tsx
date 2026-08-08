@@ -29,6 +29,7 @@ export default function Header() {
     { label: 'PROP FIRM', href: '/prop-firm' },
     { label: 'NEWS', href: '/news' },
     { label: 'SCAM ALERT', href: '/scam-alert' },
+    { label: 'AI SCANNER', href: '/scam-scanner' },
   ];
 
   return (
@@ -51,7 +52,7 @@ export default function Header() {
               <Link
                 key={item.label}
                 href={item.href}
-                className={`text-xs xl:text-sm font-bold text-slate-300 hover:text-neon-blue transition-colors whitespace-nowrap hover:drop-shadow-[0_0_8px_rgba(0,243,255,0.8)] ${item.label === 'SCAM ALERT' ? 'text-red-500 hover:text-red-400 drop-shadow-[0_0_5px_rgba(239,68,68,0.5)]' : ''}`}
+                className={`text-xs xl:text-sm font-bold text-slate-300 hover:text-neon-blue transition-colors whitespace-nowrap hover:drop-shadow-[0_0_8px_rgba(0,243,255,0.8)] ${(item.label === 'SCAM ALERT' || item.label === 'AI SCANNER') ? 'text-red-500 hover:text-red-400 drop-shadow-[0_0_5px_rgba(239,68,68,0.5)]' : ''}`}
               >
                 {item.label}
               </Link>
@@ -103,7 +104,7 @@ export default function Header() {
                 key={item.label}
                 href={item.href}
                 onClick={() => setIsMobileMenuOpen(false)}
-                className={`px-4 py-3 text-base font-bold text-slate-300 hover:bg-white/5 hover:text-neon-blue rounded-lg transition-colors ${item.label === 'SCAM ALERT' ? 'text-red-500' : ''}`}
+                className={`px-4 py-3 text-base font-bold text-slate-300 hover:bg-white/5 hover:text-neon-blue rounded-lg transition-colors ${(item.label === 'SCAM ALERT' || item.label === 'AI SCANNER') ? 'text-red-500' : ''}`}
               >
                 {item.label}
               </Link>
