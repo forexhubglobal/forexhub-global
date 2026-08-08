@@ -389,6 +389,27 @@ export default function AdminPage() {
 
   };
 
+  const handleDelete = async () => {
+    if (!confirm('Adakah anda pasti mahu memadam rekod ini?')) return;
+    setStatus({ type: 'loading', message: '' });
+    try {
+      const res = await fetch('/api/delete-content', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ type: contentType, slug: selectedSlug })
+      });
+      const data = await res.json();
+      if (data.success) {
+        setStatus({ type: 'success', message: 'Berjaya dipadam!' });
+        setTimeout(() => window.location.reload(), 1000);
+      } else {
+        setStatus({ type: 'error', message: data.message || 'Gagal memadam' });
+      }
+    } catch (err) {
+      setStatus({ type: 'error', message: 'Ralat sistem' });
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus({ type: 'loading', message: 'Menyimpan data...' });
@@ -1611,11 +1632,20 @@ export default function AdminPage() {
                     />
                   </div>
 
-                  <div className="pt-4">
+                  <div className="pt-4 flex gap-4">
+                    {selectedSlug !== 'new' && (
+                      <button 
+                        type="button" 
+                        onClick={handleDelete}
+                        className="w-1/3 bg-red-600 hover:bg-red-700 text-white font-bold py-4 rounded-xl shadow-lg transition-transform transform hover:-translate-y-1"
+                      >
+                        Padam Rekod
+                      </button>
+                    )}
                     <button 
                       type="submit" 
                       disabled={status.type === 'loading'}
-                      className="w-full bg-primary-600 hover:bg-primary-700 text-white font-bold py-4 rounded-xl shadow-lg shadow-primary-500/30 transition-transform transform hover:-translate-y-1 disabled:opacity-50 disabled:transform-none"
+                      className="flex-1 bg-primary-600 hover:bg-primary-700 text-white font-bold py-4 rounded-xl shadow-lg shadow-primary-500/30 transition-transform transform hover:-translate-y-1 disabled:opacity-50 disabled:transform-none"
                     >
                       {status.type === 'loading' ? 'Menyimpan...' : (selectedSlug === 'new' ? 'Terbitkan Sekarang' : 'Simpan Kemas Kini')}
                     </button>
