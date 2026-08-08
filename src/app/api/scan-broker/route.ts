@@ -61,17 +61,21 @@ export async function POST(request: Request) {
     }
 
     const prompt = `
-      Anda adalah pakar penyiasat forensik broker kewangan (Forex/Kripto).
-      Tugas anda adalah untuk menyiasat entiti bernama: "${brokerName}".
+      Anda adalah pakar forensik kewangan dan pangkalan data global untuk SEMUA broker Forex/Kripto di seluruh dunia.
+      Siasat entiti bernama: "${brokerName}".
       
-      Adakah ia dikenali sebagai broker scam, tidak berdaftar, atau mempunyai banyak aduan (red flags)?
-      Berikan skor risiko dari 0 hingga 100 (100 = Sangat Bahaya / Sah Scam, 0 = Sangat Selamat / Teregulasi penuh).
-      Berikan alasan kukuh dalam bahasa Melayu (maksimum 2-3 ayat).
+      Gunakan akses memori sedunia anda (web knowledge) untuk mencari maklumat tentang broker ini, tidak kira betapa kecil atau tidak dikenali broker tersebut.
+      Adakah ia mempunyai lesen regulasi yang sah (seperti FCA, ASIC, CySEC, Labuan FSA)? Atau adakah ia broker luar pesisir (offshore) berisiko tinggi, tidak berdaftar, atau mempunyai amaran scam (red flags)?
+      
+      Jika broker ini langsung tidak wujud atau tiada jejak internet yang meyakinkan, anggap ia sebagai "Sangat Bahaya / Scam" (Skor tinggi).
+      
+      Berikan skor risiko dari 0 hingga 100 (100 = Sah Scam / Tiada Lesen / Bahaya, 0 = Sangat Selamat / Teregulasi penuh).
+      Berikan ulasan dan alasan kukuh dalam bahasa Melayu (maksimum 2-3 ayat).
       
       Return EXACTLY ONLY a JSON object in this format:
       {
         "score": 85,
-        "reason": "Broker ini tidak diregulasi oleh mana-mana badan kewangan utama dan mempunyai banyak aduan tidak boleh withdraw."
+        "reason": "Broker ini beroperasi secara luar pesisir tanpa regulasi kukuh dan terdapat laporan masalah pengeluaran wang."
       }
     `;
 

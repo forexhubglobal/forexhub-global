@@ -53,13 +53,13 @@ export default function NewsSquawk() {
       setCurrentNewsIndex(index);
       const item = news[index];
       
-      // Construct the text to speak
-      const textToSpeak = `Pasaran Amaran: ${item.title}.`;
+      // Construct the text to speak in English
+      const textToSpeak = `Market Alert: ${item.title}.`;
       const utterance = new SpeechSynthesisUtterance(textToSpeak);
       
-      // Try to find a Malay voice, fallback to default English
+      // Try to find an English voice
       const voices = synthRef.current.getVoices();
-      const myVoice = voices.find(v => v.lang.includes('ms')) || voices.find(v => v.lang.includes('en'));
+      const myVoice = voices.find(v => v.lang.includes('en-US')) || voices.find(v => v.lang.includes('en'));
       if (myVoice) utterance.voice = myVoice;
 
       utterance.rate = 1.0;
@@ -84,7 +84,7 @@ export default function NewsSquawk() {
   if (news.length === 0 || hasError) return null;
 
   return (
-    <div className="fixed bottom-6 right-6 z-50 flex items-end gap-3 flex-col sm:flex-row">
+    <div className="fixed top-24 right-6 z-50 flex items-end gap-3 flex-col sm:flex-row">
       {isPlaying && currentNewsIndex >= 0 && (
         <div className="bg-black/80 backdrop-blur-md border border-neon-blue/50 p-3 rounded-xl shadow-[0_0_15px_rgba(0,243,255,0.3)] animate-fade-in-up max-w-xs text-right">
           <div className="flex items-center justify-end gap-2 mb-1">
