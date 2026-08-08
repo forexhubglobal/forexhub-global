@@ -1,7 +1,4 @@
 import { NextResponse } from 'next/server';
-import fs from 'fs';
-import path from 'path';
-import { getAllData } from '@/lib/markdown';
 
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
 
@@ -13,66 +10,29 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: 'Sila masukkan nama broker' }, { status: 400 });
     }
 
-    const query = brokerName.toLowerCase().trim();
-
-    // 1. Check local scams.json
-    try {
-      const scamsPath = path.join(process.cwd(), 'content', 'scams.json');
-      if (fs.existsSync(scamsPath)) {
-        const scams = JSON.parse(fs.readFileSync(scamsPath, 'utf8'));
-        const match = scams.find((s: any) => s.name.toLowerCase().includes(query) || query.includes(s.name.toLowerCase()));
-        if (match) {
-          return NextResponse.json({
-            score: 99,
-            status: 'Bahaya',
-            reason: `Terdapat dalam pangkalan data SCAM kami: ${match.reason || 'Sering dikaitkan dengan penipuan.'}`,
-            source: 'Local DB'
-          });
-        }
-      }
-    } catch(e) {
-      console.error('Error reading scams.json', e);
-    }
-
-    // 2. Check local trusted brokers
-    try {
-      const brokers = await getAllData('brokers');
-      const match = brokers.find(b => b.title.toLowerCase().includes(query) || query.includes(b.title.toLowerCase()));
-      if (match) {
-        return NextResponse.json({
-          score: 5,
-          status: 'Selamat',
-          reason: 'Tersenarai sebagai broker yang disemak dan dipercayai di platform kami.',
-          source: 'Local DB'
-        });
-      }
-    } catch(e) {
-      console.error('Error reading brokers', e);
-    }
-
-    // 3. Fallback to Gemini AI for deep scanning
     if (!GEMINI_API_KEY) {
-      return NextResponse.json({
-        score: 50,
-        status: 'Tidak Pasti',
-        reason: 'Sistem AI sedang diselenggara. Sila berhati-hati.',
-        source: 'Fallback'
-      });
+      return NextResponse.json({ 
+        error: 'Sistem AI perlukan GEMINI_API_KEY di Vercel Environment Variables untuk berfungsi.' 
+      }, { status: 500 });
     }
 
     const prompt = `
-      Anda adalah pakar forensik kewangan dan pangkalan data global untuk SEMUA broker Forex/Kripto di seluruh dunia.
+      Anda adalah pakar forensik kewangan bebas dan pangkalan data global untuk SEMUA broker Forex/Kripto di seluruh dunia.
       Siasat entiti bernama: "${brokerName}".
       
-      Gunakan akses memori sedunia anda (web knowledge) untuk mencari maklumat tentang broker ini, tidak kira betapa kecil atau tidak dikenali broker tersebut.
-      Adakah ia mempunyai lesen regulasi yang sah (seperti FCA, ASIC, CySEC, Labuan FSA)? Atau adakah ia broker luar pesisir (offshore) berisiko tinggi, tidak berdaftar, atau mempunyai amaran scam (red flags)?
+      Gunakan akses memori sedunia anda (web knowledge / Google) untuk mencari maklumat tentang broker ini secara jujur dan tanpa bias.
+      - Adakah ia mempunyai lesen regulasi yang sah (seperti FCA, ASIC, CySEC)? 
+      - Adakah ia broker luar pesisir (offshore) berisiko tinggi?
+      - Adakah ia pernah terbabit dengan kes scam, aduan tidak boleh withdraw, atau amaran pengawal selia?
       
-      Jika broker ini langsung tidak wujud atau tiada jejak internet yang meyakinkan, anggap ia sebagai "Sangat Bahaya / Scam" (Skor tinggi).
+      Berikan skor risiko Scam dari 0 hingga 100:
+      - 100 = Sangat Bahaya / Scam Terbukti / Tiada Lesen.
+      - 50 = Sederhana / Offshore / Hati-hati.
+      - 0 = Sangat Selamat / Teregulasi penuh.
       
-      Berikan skor risiko dari 0 hingga 100 (100 = Sah Scam / Tiada Lesen / Bahaya, 0 = Sangat Selamat / Teregulasi penuh).
-      Berikan ulasan dan alasan kukuh dalam bahasa Melayu (maksimum 2-3 ayat).
+      Berikan ulasan forensik anda dalam bahasa Melayu (maksimum 3 ayat).
       
-      Return EXACTLY ONLY a JSON object in this format:
+      Anda MESTI memberikan jawapan HANYA dalam format JSON tulen seperti di bawah, tanpa apa-apa teks tambahan sebelum atau selepasnya:
       {
         "score": 85,
         "reason": "Broker ini beroperasi secara luar pesisir tanpa regulasi kukuh dan terdapat laporan masalah pengeluaran wang."
@@ -83,21 +43,33 @@ export async function POST(request: Request) {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        contents: [{ parts: [{ text: prompt }] }]
+        contents: [{ parts: [{ text: prompt }] }],
+        generationConfig: {
+          temperature: 0.1, // Low temperature for factual responses
+          responseMimeType: "application/json" // Force JSON response if supported
+        }
       })
     });
 
     if (!apiRes.ok) {
-      throw new Error('Gemini API Error');
+      const errorText = await apiRes.text();
+      console.error('Gemini API Error:', errorText);
+      return NextResponse.json({ error: `Ralat Google AI: ${apiRes.statusText}` }, { status: 500 });
     }
 
     const aiData = await apiRes.json();
     let aiText = aiData.candidates[0].content.parts[0].text;
     
-    // Clean markdown formatting if any
+    // Fallback JSON cleaning just in case
     aiText = aiText.replace(/```json/g, '').replace(/```/g, '').trim();
     
-    const parsed = JSON.parse(aiText);
+    let parsed;
+    try {
+      parsed = JSON.parse(aiText);
+    } catch (parseErr) {
+      console.error('JSON Parse Error:', aiText);
+      return NextResponse.json({ error: 'Ralat membaca data dari AI. Sila cuba lagi.' }, { status: 500 });
+    }
     
     let status = 'Tidak Pasti';
     if (parsed.score >= 70) status = 'Bahaya';
@@ -108,11 +80,11 @@ export async function POST(request: Request) {
       score: parsed.score,
       status: status,
       reason: parsed.reason,
-      source: 'AI Scanner'
+      source: 'Global AI Forensics'
     });
 
   } catch (err: any) {
-    console.error("Scam Scanner Error:", err);
-    return NextResponse.json({ error: 'Ralat sistem penganalisis.' }, { status: 500 });
+    console.error("Scam Scanner Fatal Error:", err);
+    return NextResponse.json({ error: `Ralat sistem: ${err.message}` }, { status: 500 });
   }
 }
