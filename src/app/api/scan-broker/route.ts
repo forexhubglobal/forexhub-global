@@ -78,7 +78,10 @@ export async function POST(request: Request) {
     if (!apiRes.ok) {
       const errorText = await apiRes.text();
       console.error('Gemini API Error:', errorText);
-      return NextResponse.json({ error: `Ralat Google AI: ${apiRes.statusText}` }, { status: 500 });
+      if (apiRes.status === 429) {
+        return NextResponse.json({ error: 'Sistem AI Forensik sedang memproses ribuan permintaan serentak (Trafik Tinggi). Sila cuba sebentar lagi.' }, { status: 500 });
+      }
+      return NextResponse.json({ error: `Sistem AI sedang diselenggara sementara. Sila cuba lagi.` }, { status: 500 });
     }
 
     const aiData = await apiRes.json();
