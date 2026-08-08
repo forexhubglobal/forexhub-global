@@ -2,6 +2,10 @@ import { NextResponse } from 'next/server';
 
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
 
+// --- IN-MEMORY CACHE (Untuk jimat kuota AI Google) ---
+// Note: Ini akan kekal selagi serverless function aktif (warm start)
+const aiCache = new Map();
+
 export async function POST(request: Request) {
   try {
     const { brokerName } = await request.json();
@@ -39,6 +43,11 @@ export async function POST(request: Request) {
       }
     }
     // ---------------------------------------
+
+    // Semak Cache sebelum panggil Google AI
+    if (aiCache.has(searchName)) {
+      return NextResponse.json(aiCache.get(searchName));
+    }
 
     const prompt = `
       Anda adalah pakar forensik kewangan bebas dan pangkalan data global untuk SEMUA broker Forex/Kripto di seluruh dunia.
@@ -108,12 +117,17 @@ export async function POST(request: Request) {
     else if (parsed.score <= 30) status = 'Selamat';
     else status = 'Awas';
 
-    return NextResponse.json({
+    const finalResult = {
       score: parsed.score,
       status: status,
       reason: parsed.reason,
       source: 'Global AI Forensics'
-    });
+    };
+
+    // Simpan dalam cache supaya pencarian seterusnya lebih pantas dan jimat kuota
+    aiCache.set(searchName, finalResult);
+
+    return NextResponse.json(finalResult);
 
   } catch (err: any) {
     console.error("Scam Scanner Fatal Error:", err);
