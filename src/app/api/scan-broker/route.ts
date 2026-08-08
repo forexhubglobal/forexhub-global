@@ -60,8 +60,13 @@ export async function POST(request: Request) {
     const aiData = await apiRes.json();
     let aiText = aiData.candidates[0].content.parts[0].text;
     
-    // Fallback JSON cleaning just in case
-    aiText = aiText.replace(/```json/g, '').replace(/```/g, '').trim();
+    // Better JSON extraction
+    const jsonMatch = aiText.match(/\{[\s\S]*\}/);
+    if (jsonMatch) {
+      aiText = jsonMatch[0];
+    } else {
+      aiText = aiText.replace(/```json/g, '').replace(/```/g, '').trim();
+    }
     
     let parsed;
     try {
