@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import fs from 'fs';
 import path from 'path';
+import { deleteFromGitHub } from '@/lib/github';
 
 export async function POST(request: Request) {
   try {
@@ -24,14 +25,22 @@ export async function POST(request: Request) {
       return NextResponse.json({ success: false, message: 'Invalid content type' }, { status: 400 });
     }
 
-    const contentDir = path.join(process.cwd(), 'content', targetFolder);
-    const filePath = path.join(contentDir, `${slug}.md`);
-
-    if (fs.existsSync(filePath)) {
-      fs.unlinkSync(filePath);
-      return NextResponse.json({ success: true, message: 'Content deleted successfully' });
+    if (process.env.GITHUB_TOKEN) {
+      // Padam dari GitHub (Production)
+      const githubPath = `content/${targetFolder}/${slug}.md`;
+      await deleteFromGitHub(githubPath, `CMS: Delete ${slug} from ${targetFolder}`);
+      return NextResponse.json({ success: true, message: 'Content deleted from GitHub' });
     } else {
-      return NextResponse.json({ success: false, message: 'File not found' }, { status: 404 });
+      // Padam secara Local (Development)
+      const contentDir = path.join(process.cwd(), 'content', targetFolder);
+      const filePath = path.join(contentDir, `${slug}.md`);
+
+      if (fs.existsSync(filePath)) {
+        fs.unlinkSync(filePath);
+        return NextResponse.json({ success: true, message: 'Content deleted locally' });
+      } else {
+        return NextResponse.json({ success: false, message: 'File not found' }, { status: 404 });
+      }
     }
 
   } catch (err: any) {
