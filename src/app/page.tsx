@@ -1,4 +1,5 @@
 import Hero from '@/components/Hero';
+import MarketDashboard from '@/components/MarketDashboard';
 import TopBrokers from '@/components/TopBrokers';
 import AIFinder from '@/components/AIFinder';
 import ToolsPreview from '@/components/ToolsPreview';
@@ -22,6 +23,7 @@ export default async function Home() {
           
           <div className="relative z-10">
             <Hero />
+            <MarketDashboard />
             <AdBanner slot="hero" />
             <TopBrokers />
             <AIFinder 
