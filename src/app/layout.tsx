@@ -110,7 +110,8 @@ export default async function RootLayout({
         }} />
         <Script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" strategy="afterInteractive" />
         {/* Main Content */}
-        <div className="flex flex-col flex-grow w-full relative z-10 pt-[148px]"> {/* 32px Ticker + 116px Header */}
+        <LiveTicker />
+        <div className="flex flex-col flex-grow w-full relative z-10">
           <UTMWrapper />
           <Header user={user} />
           <div className="flex-grow">
