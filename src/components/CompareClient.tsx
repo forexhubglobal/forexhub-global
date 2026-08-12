@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import TrackedLink from '@/components/TrackedLink';
 
 export default function CompareClient({ brokers }: { brokers: any[] }) {
   const [brokerA, setBrokerA] = useState(brokers[0]?.slug || '');
@@ -204,9 +205,9 @@ export default function CompareClient({ brokers }: { brokers: any[] }) {
                       {dataA && (
                         <td className="p-5 border-l border-white/5">
                            {dataA.affiliateLink ? (
-                             <a href={dataA.affiliateLink} target="_blank" rel="noopener noreferrer" className="block w-full py-4 bg-neon-blue text-black font-bold text-center rounded-xl hover:bg-neon-blue/80 hover:shadow-[0_0_15px_rgba(0,243,255,0.5)] transition-all">
+                             <TrackedLink href={dataA.affiliateLink} target="_blank" rel="noopener noreferrer" className="block w-full py-4 bg-neon-blue text-black font-bold text-center rounded-xl hover:bg-neon-blue/80 hover:shadow-[0_0_15px_rgba(0,243,255,0.5)] transition-all">
                                Daftar {dataA.title}
-                             </a>
+                             </TrackedLink>
                            ) : (
                              <div className="w-full py-4 bg-white/5 text-slate-500 font-bold text-center rounded-xl">Tiada Link</div>
                            )}
@@ -216,9 +217,9 @@ export default function CompareClient({ brokers }: { brokers: any[] }) {
                       {dataB && (
                         <td className="p-5 border-l border-white/5">
                            {dataB.affiliateLink ? (
-                             <a href={dataB.affiliateLink} target="_blank" rel="noopener noreferrer" className="block w-full py-4 bg-neon-purple text-white font-bold text-center rounded-xl hover:bg-neon-purple/80 hover:shadow-[0_0_15px_rgba(188,19,254,0.5)] transition-all">
+                             <TrackedLink href={dataB.affiliateLink} target="_blank" rel="noopener noreferrer" className="block w-full py-4 bg-neon-purple text-white font-bold text-center rounded-xl hover:bg-neon-purple/80 hover:shadow-[0_0_15px_rgba(188,19,254,0.5)] transition-all">
                                Daftar {dataB.title}
-                             </a>
+                             </TrackedLink>
                            ) : (
                              <div className="w-full py-4 bg-white/5 text-slate-500 font-bold text-center rounded-xl">Tiada Link</div>
                            )}
@@ -228,9 +229,9 @@ export default function CompareClient({ brokers }: { brokers: any[] }) {
                       {dataC && (
                         <td className="p-5 border-l border-white/5">
                            {dataC.affiliateLink ? (
-                             <a href={dataC.affiliateLink} target="_blank" rel="noopener noreferrer" className="block w-full py-4 bg-success-500 text-black font-bold text-center rounded-xl hover:bg-success-400 hover:shadow-[0_0_15px_rgba(34,197,94,0.5)] transition-all">
+                             <TrackedLink href={dataC.affiliateLink} target="_blank" rel="noopener noreferrer" className="block w-full py-4 bg-success-500 text-black font-bold text-center rounded-xl hover:bg-success-400 hover:shadow-[0_0_15px_rgba(34,197,94,0.5)] transition-all">
                                Daftar {dataC.title}
-                             </a>
+                             </TrackedLink>
                            ) : (
                              <div className="w-full py-4 bg-white/5 text-slate-500 font-bold text-center rounded-xl">Tiada Link</div>
                            )}

@@ -3,6 +3,7 @@
 import { useState, useMemo } from 'react';
 import Link from 'next/link';
 import { Search, Filter, ShieldCheck, ChevronRight, CheckCircle2, TrendingUp } from 'lucide-react';
+import TrackedLink from '@/components/TrackedLink';
 
 export default function BrokerFinder({ initialBrokers }: { initialBrokers: any[] }) {
   const [searchTerm, setSearchTerm] = useState('');
@@ -227,9 +228,9 @@ export default function BrokerFinder({ initialBrokers }: { initialBrokers: any[]
                    Baca Review
                  </Link>
                  {broker.affiliateLink ? (
-                   <a href={broker.affiliateLink} target="_blank" rel="noopener noreferrer" className="flex-1 py-3 text-center rounded-xl font-bold text-black bg-neon-blue hover:bg-neon-blue/80 hover:shadow-[0_0_15px_rgba(0,243,255,0.5)] transition-all">
+                   <TrackedLink href={broker.affiliateLink} target="_blank" rel="noopener noreferrer" className="flex-1 py-3 text-center rounded-xl font-bold text-black bg-neon-blue hover:bg-neon-blue/80 hover:shadow-[0_0_15px_rgba(0,243,255,0.5)] transition-all">
                      Daftar Sekarang
-                   </a>
+                   </TrackedLink>
                  ) : (
                    <div className="flex-1 py-3 text-center rounded-xl font-bold text-slate-500 bg-black border border-white/5 cursor-not-allowed">
                      Tiada Link

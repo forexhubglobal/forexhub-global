@@ -1,5 +1,6 @@
 'use client';
 import { useState, useEffect } from 'react';
+import TrackedLink from '@/components/TrackedLink';
 
 export default function RegisterButton({ 
   defaultLink, 
@@ -28,8 +29,8 @@ export default function RegisterButton({
   }, [brokerSlug, defaultLink]);
 
   return (
-    <a href={link} target="_blank" rel="noopener noreferrer" className={className}>
+    <TrackedLink href={link} target="_blank" rel="noopener noreferrer" className={className}>
       Buka Akaun
-    </a>
+    </TrackedLink>
   );
 }

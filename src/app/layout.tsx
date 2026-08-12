@@ -53,6 +53,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import AdBanner from '@/components/AdBanner';
 import NewsSquawk from '@/components/NewsSquawk';
+import UTMWrapper from '@/components/UTMWrapper';
 import { getDataBySlug } from '@/lib/markdown';
 
 export default async function RootLayout({
@@ -91,7 +92,7 @@ export default async function RootLayout({
         </head>
       )}
       <body className="min-h-full flex flex-col">
-        <Script id="google-translate-init" strategy="beforeInteractive" dangerouslySetInnerHTML={{
+        <Script id="google-translate-init" strategy="afterInteractive" dangerouslySetInnerHTML={{
           __html: `
             window.googleTranslateElementInit = function() {
               new window.google.translate.TranslateElement({
@@ -104,6 +105,7 @@ export default async function RootLayout({
         }} />
         <Script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" strategy="afterInteractive" />
         
+        <UTMWrapper />
         <LiveTicker />
         <Header />
         

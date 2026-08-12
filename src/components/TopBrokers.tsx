@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { getAllData } from '@/lib/markdown';
+import TrackedLink from '@/components/TrackedLink';
 
 export default async function TopBrokers() {
   const allBrokers = getAllData('brokers');
