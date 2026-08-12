@@ -6,7 +6,6 @@ import { useRouter } from 'next/navigation';
 import { AcademyCourse, AcademyLesson } from '@/data/academyCourses';
 import { useAcademyStore } from '@/store/academyStore';
 import { Menu, X, ChevronLeft, ChevronRight, CheckCircle2, Circle } from 'lucide-react';
-import MarkdownStyles from '@/components/MarkdownStyles'; // We'll create this or use existing prose styles
 
 export default function LessonClientLayout({
   course,

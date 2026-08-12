@@ -1,5 +1,5 @@
 import { login, signup } from './actions'
-import { Mail, Lock, ShieldCheck, Chrome } from 'lucide-react'
+import { Mail, Lock, ShieldCheck, Globe } from 'lucide-react'
 import Link from 'next/link'
 
 export default async function LoginPage({ searchParams }: { searchParams: Promise<{ error?: string }> }) {
@@ -95,7 +95,7 @@ export default async function LoginPage({ searchParams }: { searchParams: Promis
             type="button"
             className="mt-6 w-full bg-white text-black font-bold py-3 rounded-xl hover:bg-gray-200 transition-colors flex items-center justify-center gap-3"
           >
-            <Chrome className="w-5 h-5" />
+            <Globe className="w-5 h-5 mr-2" />
             Teruskan dengan Google
           </button>
           
