@@ -2,8 +2,8 @@ import Link from 'next/link';
 import { getAllArticles } from '@/lib/markdown';
 
 export default function RecentArticles() {
-  // Hanya ambil 3 artikel terkini
-  const articles = getAllArticles().slice(0, 3);
+  // Hanya ambil 3 artikel terkini yang bukan dari kategori Edukasi (Academy)
+  const articles = getAllArticles().filter(a => a.category !== 'Edukasi').slice(0, 3);
 
   return (
     <section className="py-24 relative z-10 border-t border-white/10">
@@ -27,8 +27,8 @@ export default function RecentArticles() {
           {articles.map((article) => (
             <article key={article.slug} className="bg-black/40 backdrop-blur-md rounded-2xl border border-white/10 overflow-hidden hover:border-neon-blue/50 hover:shadow-[0_0_30px_rgba(0,243,255,0.2)] transition-all duration-300 group flex flex-col transform hover:-translate-y-2">
               <Link href={`/blog/${article.slug}`} className="flex-grow flex flex-col">
-                <div className={`h-48 w-full relative overflow-hidden flex-shrink-0 ${!article.image.includes('/') ? article.image : 'bg-black'}`}>
-                  {article.image.includes('/') && (
+                <div className={`h-48 w-full relative overflow-hidden flex-shrink-0 ${article.image && !article.image.includes('/') ? article.image : 'bg-black'}`}>
+                  {article.image && article.image.includes('/') && (
                     <img src={article.image} alt={article.title} className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                   )}
                   <div className="absolute inset-0 bg-black/40 group-hover:bg-transparent transition-colors duration-500 z-10 pointer-events-none"></div>
