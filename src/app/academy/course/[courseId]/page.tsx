@@ -81,6 +81,20 @@ export default async function CourseDetail({ params }: { params: Promise<{ cours
               />
             ))}
           </div>
+
+          {/* Quiz Section CTA */}
+          <div className="mt-12 bg-gradient-to-r from-neon-blue/10 to-neon-purple/10 border border-neon-blue/20 rounded-3xl p-8 relative overflow-hidden group">
+            <div className="absolute top-0 right-0 w-64 h-64 bg-neon-blue/20 blur-[100px] rounded-full mix-blend-screen opacity-50 group-hover:opacity-100 transition-opacity duration-500"></div>
+            <div className="relative z-10 md:flex justify-between items-center text-center md:text-left">
+              <div className="mb-6 md:mb-0">
+                <h3 className="text-2xl font-bold text-white mb-2">Ujian Akhir Tahap</h3>
+                <p className="text-slate-300 max-w-xl">Uji kefahaman anda tentang semua bab di dalam topik ini. Lulus kuiz ini untuk mendapatkan rekod cemerlang dalam profil akademi anda.</p>
+              </div>
+              <Link href={`/academy/quiz/${course.slug}`} className="inline-block bg-neon-blue text-black font-bold px-8 py-4 rounded-xl hover:bg-neon-blue/80 hover:shadow-[0_0_30px_rgba(0,243,255,0.4)] transition-all shrink-0">
+                Mula Kuiz Sekarang
+              </Link>
+            </div>
+          </div>
         </div>
 
       </div>

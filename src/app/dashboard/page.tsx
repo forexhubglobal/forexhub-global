@@ -11,6 +11,17 @@ export default async function DashboardPage() {
     redirect('/login')
   }
 
+  // Fetch real progress from cloud
+  const { data: progressData } = await supabase
+    .from('user_progress')
+    .select('completed_lessons')
+    .eq('user_id', user.id)
+    .single();
+
+  const completedCount = progressData?.completed_lessons?.length || 0;
+  const totalLessons = 69; // We have 69 total academy lessons
+  const progressPercentage = Math.round((completedCount / totalLessons) * 100);
+
   return (
     <main className="bg-[#09090b] min-h-screen py-10 relative">
       {/* Background elements */}
@@ -35,13 +46,9 @@ export default async function DashboardPage() {
                 <LayoutDashboard className="w-5 h-5" />
                 Utama
               </Link>
-              <Link href="/dashboard/academy" className="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-400 hover:text-white hover:bg-white/5 transition-colors font-medium">
+              <Link href="/academy" className="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-400 hover:text-white hover:bg-white/5 transition-colors font-medium">
                 <GraduationCap className="w-5 h-5" />
-                Akademi Saya
-              </Link>
-              <Link href="/dashboard/bookmarks" className="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-400 hover:text-white hover:bg-white/5 transition-colors font-medium">
-                <Bookmark className="w-5 h-5" />
-                Senarai Broker
+                Akademi
               </Link>
               <Link href="/dashboard/settings" className="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-400 hover:text-white hover:bg-white/5 transition-colors font-medium">
                 <Settings className="w-5 h-5" />
@@ -55,14 +62,22 @@ export default async function DashboardPage() {
             
             {/* Quick Stats */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div className="bg-black/40 backdrop-blur-xl border border-white/10 rounded-2xl p-6">
-                <div className="flex justify-between items-start mb-4">
+              <div className="bg-black/40 backdrop-blur-xl border border-white/10 rounded-2xl p-6 relative overflow-hidden">
+                <div className="absolute top-0 right-0 p-6 opacity-10">
+                  <GraduationCap className="w-24 h-24" />
+                </div>
+                <div className="flex justify-between items-start mb-4 relative z-10">
                   <div className="w-12 h-12 rounded-xl bg-neon-purple/10 flex items-center justify-center text-neon-purple">
                     <GraduationCap className="w-6 h-6" />
                   </div>
                 </div>
-                <h3 className="text-3xl font-black text-white mb-1">0%</h3>
-                <p className="text-slate-400 text-sm">Kemajuan Akademi (Akan disinkronisasi)</p>
+                <h3 className="text-4xl font-black text-white mb-1">{progressPercentage}%</h3>
+                <p className="text-slate-400 text-sm">Kemajuan Akademi ({completedCount}/{totalLessons} Bab Selesai)</p>
+                
+                {/* Progress Bar */}
+                <div className="w-full bg-white/10 rounded-full h-2 mt-4">
+                  <div className="bg-gradient-to-r from-neon-purple to-neon-blue h-2 rounded-full" style={{ width: `${progressPercentage}%` }}></div>
+                </div>
               </div>
 
               <div className="bg-black/40 backdrop-blur-xl border border-white/10 rounded-2xl p-6">
@@ -71,8 +86,8 @@ export default async function DashboardPage() {
                     <Bookmark className="w-6 h-6" />
                   </div>
                 </div>
-                <h3 className="text-3xl font-black text-white mb-1">0</h3>
-                <p className="text-slate-400 text-sm">Broker Disimpan (TBA)</p>
+                <h3 className="text-4xl font-black text-white mb-1">TBA</h3>
+                <p className="text-slate-400 text-sm">Broker Disimpan & Ulasan (Akan Datang)</p>
               </div>
             </div>
 
@@ -83,10 +98,10 @@ export default async function DashboardPage() {
               <div className="relative z-10 md:flex justify-between items-center">
                 <div className="mb-6 md:mb-0">
                   <h3 className="text-2xl font-bold text-white mb-2">Teruskan Pembelajaran Anda</h3>
-                  <p className="text-slate-300 max-w-lg">Sistem simpanan profil (Cloud) telah berjaya disambungkan. Dalam kemaskini seterusnya, rekod akademi anda akan disimpan ke Supabase secara automatik.</p>
+                  <p className="text-slate-300 max-w-lg">Sistem simpanan profil (Cloud) telah berjaya disambungkan. Rekod akademi anda kini disegerakkan secara automatik ke pangkalan data selamat kami.</p>
                 </div>
                 <Link href="/academy" className="inline-flex items-center gap-2 bg-white text-black font-bold px-6 py-3 rounded-xl hover:bg-gray-200 transition-colors shrink-0">
-                  Pergi ke Akademi
+                  Sambung Belajar
                   <ArrowRight className="w-5 h-5" />
                 </Link>
               </div>

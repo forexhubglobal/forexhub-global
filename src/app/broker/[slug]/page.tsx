@@ -5,6 +5,8 @@ import RegisterButton from '@/components/RegisterButton';
 import { getDataBySlug } from '@/lib/markdown';
 
 import { Metadata } from 'next';
+import { ShieldCheck, Star, Zap, TrendingUp, DollarSign, Gift, ArrowRight, ExternalLink, ShieldAlert } from 'lucide-react';
+import BrokerReviewSystem from '@/components/BrokerReviewSystem';
 
 export const dynamic = 'force-dynamic';
 
@@ -188,6 +190,9 @@ export default async function BrokerDetail({ params }: { params: Promise<{ slug:
               </div>
             </div>
             
+            {/* Review System Integration */}
+            <BrokerReviewSystem brokerSlug={broker.slug} />
+
           </div>
         </div>
       </main>

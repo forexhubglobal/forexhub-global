@@ -54,6 +54,7 @@ import Footer from '@/components/Footer';
 import AdBanner from '@/components/AdBanner';
 import NewsSquawk from '@/components/NewsSquawk';
 import UTMWrapper from '@/components/UTMWrapper';
+import CloudSync from '@/components/CloudSync';
 import { getDataBySlug } from '@/lib/markdown';
 
 import { createClient } from '@/utils/supabase/server';
