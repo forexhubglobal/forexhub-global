@@ -533,15 +533,30 @@ export default function AdminPage() {
     e.target.value = ''; // Reset directly on the event target
   };
 
-  const handleDeleteReview = async (slug: string, id: string) => {
+  const handleDeleteReview = async (id: string) => {
     if (!confirm('Pasti ingin memadam ulasan ini?')) return;
     try {
-      const res = await fetch(`/api/admin/reviews?slug=${slug}&id=${id}`, { method: 'DELETE' });
+      const res = await fetch(`/api/admin/reviews?id=${id}`, { method: 'DELETE' });
       if (res.ok) {
         setReviewsList(prev => prev.filter(r => r.id !== id));
       }
     } catch (err) {
       console.error('Error deleting review:', err);
+    }
+  };
+
+  const handleApproveReview = async (id: string, newStatus: string) => {
+    try {
+      const res = await fetch('/api/admin/reviews', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id, status: newStatus })
+      });
+      if (res.ok) {
+        setReviewsList(prev => prev.map(r => r.id === id ? { ...r, status: newStatus } : r));
+      }
+    } catch (err) {
+      console.error('Error updating review:', err);
     }
   };
 
@@ -554,24 +569,6 @@ export default function AdminPage() {
       }
     } catch (err) {
       console.error('Error deleting scam:', err);
-    }
-  };
-
-  const handleReplyReview = async (slug: string, id: string) => {
-    if (!replyText.trim()) return;
-    try {
-      const res = await fetch('/api/admin/reviews', {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ slug, id, adminReply: replyText })
-      });
-      if (res.ok) {
-        setReviewsList(prev => prev.map(r => r.id === id ? { ...r, adminReply: replyText } : r));
-        setReplyingTo(null);
-        setReplyText('');
-      }
-    } catch (err) {
-      console.error('Error replying to review:', err);
     }
   };
 
@@ -895,6 +892,7 @@ export default function AdminPage() {
                           <th className="py-3 px-4 font-bold text-slate-700 text-sm">Nama</th>
                           <th className="py-3 px-4 font-bold text-slate-700 text-sm">Emel</th>
                           <th className="py-3 px-4 font-bold text-slate-700 text-sm">Telefon</th>
+                          <th className="py-3 px-4 font-bold text-slate-700 text-sm">Rujukan IB</th>
                         </tr>
                       </thead>
                       <tbody className="divide-y divide-slate-100">
@@ -906,6 +904,13 @@ export default function AdminPage() {
                             <td className="py-3 px-4 text-sm font-semibold text-slate-900">{lead.name}</td>
                             <td className="py-3 px-4 text-sm text-slate-600">{lead.email}</td>
                             <td className="py-3 px-4 text-sm text-slate-600 font-mono">{lead.phone}</td>
+                            <td className="py-3 px-4 text-sm">
+                              {lead.ib_slug ? (
+                                <span className="bg-primary-100 text-primary-700 px-2 py-1 rounded-md font-bold text-xs">IB: {lead.ib_slug}</span>
+                              ) : (
+                                <span className="text-slate-400 text-xs italic">-</span>
+                              )}
+                            </td>
                           </tr>
                         ))}
                       </tbody>
@@ -931,6 +936,7 @@ export default function AdminPage() {
                           <th className="py-3 px-4 font-bold text-slate-700 text-sm">Modal</th>
                           <th className="py-3 px-4 font-bold text-slate-700 text-sm">Instrumen</th>
                           <th className="py-3 px-4 font-bold text-slate-700 text-sm">Keperluan</th>
+                          <th className="py-3 px-4 font-bold text-slate-700 text-sm">Rujukan IB</th>
                         </tr>
                       </thead>
                       <tbody className="divide-y divide-slate-100">
@@ -944,6 +950,13 @@ export default function AdminPage() {
                             <td className="py-3 px-4 text-sm text-slate-700 whitespace-nowrap">{lead.modalAmt}</td>
                             <td className="py-3 px-4 text-sm text-slate-700 whitespace-nowrap">{lead.instrument}</td>
                             <td className="py-3 px-4 text-sm text-slate-500">{lead.requirements || '-'}</td>
+                            <td className="py-3 px-4 text-sm">
+                              {lead.ib_slug ? (
+                                <span className="bg-primary-100 text-primary-700 px-2 py-1 rounded-md font-bold text-xs">IB: {lead.ib_slug}</span>
+                              ) : (
+                                <span className="text-slate-400 text-xs italic">-</span>
+                              )}
+                            </td>
                           </tr>
                         ))}
                       </tbody>
@@ -966,33 +979,33 @@ export default function AdminPage() {
                         <div className="flex justify-between items-start mb-3">
                           <div>
                             <span className="bg-primary-100 text-primary-700 text-xs font-bold px-2 py-1 rounded-md uppercase tracking-wider mb-2 inline-block">
-                              Broker: {review.slug}
+                              Broker: {review.broker_slug}
+                            </span>
+                            <span className={`ml-2 text-xs font-bold px-2 py-1 rounded-md tracking-wider mb-2 inline-block uppercase ${review.status === 'approved' ? 'bg-success-100 text-success-700' : review.status === 'rejected' ? 'bg-danger-100 text-danger-700' : 'bg-warning-100 text-warning-700'}`}>
+                              {review.status}
                             </span>
                             <h4 className="font-bold text-slate-900 text-lg flex items-center gap-2">
-                              {review.name}
+                              {review.user_email}
                               <span className="text-gold-500 flex text-sm">
                                 {'★'.repeat(review.rating)}{'☆'.repeat(5 - review.rating)}
                               </span>
                             </h4>
                             <div className="text-xs text-slate-500 mt-1 flex flex-col sm:flex-row gap-1 sm:gap-4">
-                              <span>📅 {new Date(review.date).toLocaleDateString('ms-MY', { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' })}</span>
-                              {review.email && <span>📧 {review.email}</span>}
-                              {review.phone && <span>📱 {review.phone}</span>}
+                              <span>📅 {new Date(review.created_at).toLocaleDateString('ms-MY', { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' })}</span>
                             </div>
                           </div>
                           
                           <div className="flex gap-2">
+                            {review.status === 'pending' && (
+                              <button 
+                                onClick={() => handleApproveReview(review.id, 'approved')}
+                                className="bg-success-50 text-success-600 hover:bg-success-100 border border-success-200 px-3 py-1.5 rounded-lg text-sm font-semibold transition-colors"
+                              >
+                                Lulus
+                              </button>
+                            )}
                             <button 
-                              onClick={() => {
-                                setReplyingTo(replyingTo === review.id ? null : review.id);
-                                setReplyText(review.adminReply || '');
-                              }}
-                              className="bg-white text-primary-600 hover:bg-primary-50 border border-primary-200 px-3 py-1.5 rounded-lg text-sm font-semibold transition-colors"
-                            >
-                              Balas
-                            </button>
-                            <button 
-                              onClick={() => handleDeleteReview(review.slug, review.id)}
+                              onClick={() => handleDeleteReview(review.id)}
                               className="bg-white text-danger-600 hover:bg-danger-50 border border-danger-200 px-3 py-1.5 rounded-lg text-sm font-semibold transition-colors"
                             >
                               Padam
@@ -1000,41 +1013,7 @@ export default function AdminPage() {
                           </div>
                         </div>
                         
-                        <p className="text-slate-700 mt-2 whitespace-pre-wrap text-sm break-words">{review.comment}</p>
-                        
-                        {review.adminReply && replyingTo !== review.id && (
-                          <div className="mt-4 bg-primary-50 border border-primary-100 rounded-lg p-3">
-                            <p className="text-xs font-bold text-primary-800 mb-1">Balasan Anda (Admin):</p>
-                            <p className="text-sm text-primary-900 whitespace-pre-wrap break-words">{review.adminReply}</p>
-                          </div>
-                        )}
-
-                        {replyingTo === review.id && (
-                          <div className="mt-4 bg-white border border-primary-200 rounded-lg p-4 shadow-sm">
-                            <label className="block text-sm font-bold text-slate-700 mb-2">Teks Balasan Rasmi</label>
-                            <textarea
-                              rows={3}
-                              className="w-full border border-slate-300 rounded-lg px-3 py-2 outline-none focus:ring-2 focus:ring-primary-500 text-sm resize-none"
-                              value={replyText}
-                              onChange={(e) => setReplyText(e.target.value)}
-                              placeholder="Terima kasih atas sokongan anda..."
-                            />
-                            <div className="flex justify-end gap-2 mt-3">
-                              <button 
-                                onClick={() => setReplyingTo(null)}
-                                className="px-4 py-2 text-sm font-medium text-slate-600 hover:bg-slate-100 rounded-lg"
-                              >
-                                Batal
-                              </button>
-                              <button 
-                                onClick={() => handleReplyReview(review.slug, review.id)}
-                                className="px-4 py-2 text-sm font-bold text-white bg-primary-600 hover:bg-primary-700 rounded-lg"
-                              >
-                                Simpan Balasan
-                              </button>
-                            </div>
-                          </div>
-                        )}
+                        <p className="text-slate-700 mt-2 whitespace-pre-wrap text-sm break-words">{review.review_text}</p>
                         
                       </div>
                     ))}

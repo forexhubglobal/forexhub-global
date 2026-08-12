@@ -10,7 +10,13 @@ export default function IBTracker({ ibData }: { ibData: any }) {
           slug: ibData.slug,
           name: ibData.name,
           tiktok: ibData.tiktok,
-          links: ibData.brokerLinks || {},
+          links: {
+            exness: ibData.exness,
+            xm: ibData.xm,
+            hfm: ibData.hfm,
+            'moneta-markets': ibData.moneta,
+            'cpt-markets': ibData.cpt
+          },
           timestamp: Date.now()
         }));
         console.log("IB Tracker Activated:", ibData.slug);

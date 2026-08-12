@@ -6,7 +6,7 @@ import { saveToGitHub } from '@/lib/github';
 export async function POST(req: Request) {
   try {
     const data = await req.json();
-    const { name, phone, modalAmt, instrument, requirements } = data;
+    const { name, phone, modalAmt, instrument, requirements, ib_slug } = data;
 
     if (!name || !phone) {
       return NextResponse.json({ error: 'Name and phone are required' }, { status: 400 });
@@ -22,7 +22,8 @@ export async function POST(req: Request) {
       phone,
       modalAmt,
       instrument,
-      requirements
+      requirements,
+      ib_slug
     };
 
     if (process.env.GITHUB_TOKEN) {

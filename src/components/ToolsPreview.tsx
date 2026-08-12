@@ -115,10 +115,20 @@ function OmniForm() {
     setLoading(true);
     
     const formData = new FormData(e.currentTarget);
+    let ib_slug = '';
+    const ibDataStr = localStorage.getItem('forexhub_ib_data');
+    if (ibDataStr) {
+      try {
+        const ibData = JSON.parse(ibDataStr);
+        ib_slug = ibData.slug || '';
+      } catch (e) {}
+    }
+
     const data = {
       name: formData.get('name'),
       email: formData.get('email'),
       phone: formData.get('phone'),
+      ib_slug
     };
 
     try {

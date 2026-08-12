@@ -90,7 +90,7 @@ export default async function CourseDetail({ params }: { params: Promise<{ cours
                 <h3 className="text-2xl font-bold text-white mb-2">Ujian Akhir Tahap</h3>
                 <p className="text-slate-300 max-w-xl">Uji kefahaman anda tentang semua bab di dalam topik ini. Lulus kuiz ini untuk mendapatkan rekod cemerlang dalam profil akademi anda.</p>
               </div>
-              <Link href={`/academy/quiz/${course.slug}`} className="inline-block bg-neon-blue text-black font-bold px-8 py-4 rounded-xl hover:bg-neon-blue/80 hover:shadow-[0_0_30px_rgba(0,243,255,0.4)] transition-all shrink-0">
+              <Link href={`/academy/quiz/${course.id}`} className="inline-block bg-neon-blue text-black font-bold px-8 py-4 rounded-xl hover:bg-neon-blue/80 hover:shadow-[0_0_30px_rgba(0,243,255,0.4)] transition-all shrink-0">
                 Mula Kuiz Sekarang
               </Link>
             </div>

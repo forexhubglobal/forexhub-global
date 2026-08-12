@@ -41,12 +41,22 @@ export default function AIFinder({
     setStatus('loading');
     
     try {
+      let ib_slug = '';
+      const ibDataStr = localStorage.getItem('forexhub_ib_data');
+      if (ibDataStr) {
+        try {
+          const ibData = JSON.parse(ibDataStr);
+          ib_slug = ibData.slug || '';
+        } catch (e) {}
+      }
+
       const payload = {
         name,
         phone,
         modalAmt,
         instrument,
         requirements: requirements.join(', '),
+        ib_slug,
       };
       
       const res = await fetch('/api/save-lead', {
