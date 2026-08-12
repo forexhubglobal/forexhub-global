@@ -56,11 +56,16 @@ import NewsSquawk from '@/components/NewsSquawk';
 import UTMWrapper from '@/components/UTMWrapper';
 import { getDataBySlug } from '@/lib/markdown';
 
+import { createClient } from '@/utils/supabase/server';
+
 export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const supabase = await createClient();
+  const { data: { user } } = await supabase.auth.getUser();
+
   // Ambil tetapan WhatsApp jika ada (disetkan di Admin > Tetapan)
   const settings = await getDataBySlug('settings', 'main');
   const whatsappNumber = settings?.whatsappNumber || "60123456789";
@@ -104,15 +109,14 @@ export default async function RootLayout({
           `
         }} />
         <Script src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" strategy="afterInteractive" />
-        
-        <UTMWrapper />
-        <LiveTicker />
-        <Header />
-        
-        <div className="flex-grow flex flex-col">
-          {children}
+        {/* Main Content */}
+        <div className="flex flex-col flex-grow w-full relative z-10 pt-[148px]"> {/* 32px Ticker + 116px Header */}
+          <UTMWrapper />
+          <Header user={user} />
+          <div className="flex-grow">
+            {children}
+          </div>
         </div>
-
         <Footer />
         <AdBanner slot="mobile" />
         <FloatingWhatsApp phoneNumber={whatsappNumber} message={whatsappMessage} />

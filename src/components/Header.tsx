@@ -2,9 +2,13 @@
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import RegisterButton from './RegisterButton';
+import { User } from '@supabase/supabase-js';
+import { LogOut, User as UserIcon, LayoutDashboard, ChevronDown } from 'lucide-react';
+import { logout } from '@/app/login/actions';
 
-export default function Header() {
+export default function Header({ user }: { user?: User | null }) {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
 
   // Close menu when route changes or resizing to desktop
   useEffect(() => {
@@ -64,9 +68,62 @@ export default function Header() {
             {/* Google Translate - Hidden on very small screens, visible on md+ */}
             <div id="google_translate_element" className="hidden sm:flex items-center mt-1 scale-90 origin-right shrink-0"></div>
             
-            {/* CTA Button (Hidden on smaller screens to save space) */}
-            <div className="hidden sm:block">
-              <RegisterButton />
+            {/* CTA Button or User Menu */}
+            <div className="hidden sm:block relative">
+              {user ? (
+                <div className="relative">
+                  <button 
+                    onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
+                    className="flex items-center gap-2 bg-white/5 border border-white/10 px-3 py-2 rounded-xl hover:bg-white/10 transition-colors"
+                  >
+                    <div className="w-8 h-8 bg-gradient-to-tr from-neon-blue to-neon-purple rounded-full flex items-center justify-center shrink-0">
+                      <span className="text-black font-bold text-sm">
+                        {user.email?.charAt(0).toUpperCase() || 'U'}
+                      </span>
+                    </div>
+                    <ChevronDown className="w-4 h-4 text-slate-400" />
+                  </button>
+
+                  {/* Dropdown User Menu */}
+                  {isUserMenuOpen && (
+                    <div className="absolute right-0 mt-3 w-56 bg-black/95 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl overflow-hidden animate-fade-in-down z-50">
+                      <div className="p-4 border-b border-white/10">
+                        <p className="text-xs text-slate-400 mb-1">Log masuk sebagai</p>
+                        <p className="text-sm font-bold text-white truncate">{user.email}</p>
+                      </div>
+                      <div className="p-2">
+                        <Link 
+                          href="/dashboard"
+                          onClick={() => setIsUserMenuOpen(false)}
+                          className="flex items-center gap-3 px-3 py-2 text-sm text-slate-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors"
+                        >
+                          <LayoutDashboard className="w-4 h-4" />
+                          Dashboard
+                        </Link>
+                      </div>
+                      <div className="p-2 border-t border-white/10">
+                        <button 
+                          onClick={async () => {
+                            setIsUserMenuOpen(false);
+                            await logout();
+                          }}
+                          className="w-full flex items-center gap-3 px-3 py-2 text-sm text-red-400 hover:text-red-300 hover:bg-red-500/10 rounded-lg transition-colors"
+                        >
+                          <LogOut className="w-4 h-4" />
+                          Log Keluar
+                        </button>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              ) : (
+                <div className="flex items-center gap-2">
+                  <Link href="/login" className="text-sm font-bold text-white hover:text-neon-blue px-4 transition-colors hidden xl:block">
+                    Log Masuk
+                  </Link>
+                  <RegisterButton />
+                </div>
+              )}
             </div>
 
             {/* Mobile menu button */}

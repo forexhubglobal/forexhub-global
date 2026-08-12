@@ -1,38 +1,19 @@
-import { NextResponse } from 'next/server';
-import type { NextRequest } from 'next/server';
+import { type NextRequest } from 'next/server'
+import { updateSession } from '@/utils/supabase/middleware'
 
-export function middleware(req: NextRequest) {
-  const path = req.nextUrl.pathname;
-  
-  const isProtectedAPI = path.startsWith('/api/admin') || path.startsWith('/api/save-') || path.startsWith('/api/upload-');
-  const isAdminPage = path.startsWith('/admin');
-  
-  if (isAdminPage || isProtectedAPI) {
-    const basicAuth = req.headers.get('authorization')
-    
-    if (basicAuth) {
-      const authValue = basicAuth.split(' ')[1]
-      const [user, pwd] = atob(authValue).split(':')
-
-      const validUser = process.env.ADMIN_USER || 'admin'
-      const validPass = process.env.ADMIN_PASS || 'forexhub2026'
-
-      if (user === validUser && pwd === validPass) {
-        return NextResponse.next()
-      }
-    }
-
-    return new NextResponse('Akses Disekat: Sila masukkan nama pengguna dan kata laluan.', {
-      status: 401,
-      headers: {
-        'WWW-Authenticate': 'Basic realm="Secure Admin Area"',
-      },
-    })
-  }
-
-  return NextResponse.next();
+export async function middleware(request: NextRequest) {
+  return await updateSession(request)
 }
 
 export const config = {
-  matcher: ['/admin/:path*', '/api/:path*'],
+  matcher: [
+    /*
+     * Match all request paths except for the ones starting with:
+     * - _next/static (static files)
+     * - _next/image (image optimization files)
+     * - favicon.ico (favicon file)
+     * Feel free to modify this pattern to include more paths.
+     */
+    '/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)',
+  ],
 }

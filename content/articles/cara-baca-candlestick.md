@@ -8,33 +8,62 @@ author: "Admin"
 excerpt: "Belajar anatomi candlestick Jepun, bahasa asas yang digunakan oleh para pedagang di seluruh dunia untuk mengkaji graf harga."
 ---
 
-# Apa Itu Candlestick Jepun?
+# Bab 3: Asas Membaca Candlestick
 
-Graf harga dalam bentuk **Candlestick** adalah cara paling popular untuk melihat pergerakan harga. Ia mula direka oleh pedagang beras dari Jepun beratus tahun dahulu. Satu batang candlestick memberi kita 4 maklumat penting tentang harga pada satu-satu tempoh masa.
+Jika anda membuka perisian **MetaTrader 4 (MT4)** atau **MetaTrader 5 (MT5)** buat kali pertama, mata anda mungkin berpinar melihat carta yang dipenuhi palang-palang berwarna. Itulah yang dipanggil **Candlestick Jepun**. Candlestick adalah "bahasa" utama pasaran. Memahaminya ibarat memahami emosi berjuta-juta *trader* di seluruh dunia.
 
-## 4 Komponen Utama Candlestick (OHLC)
+Dalam bab ini, kita akan bedah siasat anatomi *candlestick* dan bagaimana anda boleh mula 'membaca' pergerakan harga daripadanya.
 
-Setiap candlestick mempunyai maklumat OHLC:
-1. **O (Open):** Harga pada masa ia dibuka.
-2. **H (High):** Harga paling tinggi yang dicapai dalam tempoh tersebut.
-3. **L (Low):** Harga paling rendah yang dicapai dalam tempoh tersebut.
-4. **C (Close):** Harga pada masa ia ditutup.
+## Sejarah Ringkas Candlestick
 
-## Bullish vs Bearish
+Tahukah anda? Candlestick asalnya dicipta oleh seorang pedagang beras dari Jepun bernama Munehisa Homma pada kurun ke-18. Beliau mendapati walaupun harga beras banyak dipengaruhi oleh penawaran dan permintaan (supply and demand), **emosi pembeli dan penjual** sebenarnya memainkan peranan yang lebih kuat. 
 
-Candlestick terbahagi kepada dua warna utama (bergantung kepada tema yang anda tetapkan dalam aplikasi trading anda, selalunya Hijau/Merah atau Putih/Hitam):
+Oleh itu, beliau mereka bentuk graf berbentuk "lilin" ini untuk mengukur emosi pasaran, yang kini menjadi ruji kepada setiap platform carta Forex, Kripto dan Saham.
 
-### 1. Bullish Candlestick (Graf Naik)
-- Biasa berwarna **Hijau**.
-- Terjadi apabila harga **Ditutup (Close)** lebih tinggi daripada harga ia **Dibuka (Open)**.
-- Menandakan kuasa "Pembeli" (Buyers) sedang mengawal pasaran.
+## Anatomi Asas Candlestick (Konsep OHLC)
 
-### 2. Bearish Candlestick (Graf Turun)
-- Biasa berwarna **Merah**.
-- Terjadi apabila harga **Ditutup (Close)** lebih rendah daripada harga ia **Dibuka (Open)**.
-- Menandakan kuasa "Penjual" (Sellers) sedang menekan pasaran.
+Satu batang *candlestick* mewakili pergerakan harga pada satu **tempoh masa (Timeframe)** yang anda pilih di MT4/MT5. Jika anda menetapkan carta di Timeframe H1 (1 Jam), maka setiap satu lilin menceritakan kisah pertarungan antara Pembeli dan Penjual selama 1 jam tersebut.
 
-## Sumbu (Wick / Shadow)
-Garis lurus nipis yang keluar dari badan utama (body) candlestick dipanggil sumbu (wick). Sumbu atas menunjukkan harga tertinggi yang dicapai, manakala sumbu bawah menunjukkan harga terendah. Panjang atau pendek sumbu ini boleh memberi petunjuk tentang penolakan harga (price rejection) yang berlaku.
+Setiap *candlestick* akan membekalkan kita dengan 4 maklumat kritikal yang dikenali sebagai **OHLC**:
+1. **O (Open) - Harga Buka:** Harga bermula apabila tempoh masa lilin itu baru bermula.
+2. **H (High) - Harga Tertinggi:** Harga paling tinggi yang sempat dicapai sebelum tempoh lilin tamat.
+3. **L (Low) - Harga Terendah:** Harga paling rendah yang sempat dicecah.
+4. **C (Close) - Harga Tutup:** Harga terakhir apabila masa lilin tersebut tamat.
 
-Kuasai candlestick, dan anda akan pandai "membaca" emosi pasaran!
+## Bullish VS Bearish: Siapa Kuat?
+
+Bahagian tengah candlestick yang tebal dipanggil **Badan (Body)**. Warna badan lilin memberitahu siapa yang memenangi pertarungan pada tempoh tersebut.
+
+### 1. Bullish Candlestick (Naik)
+- **Maksud:** Harga tutup (Close) lebih **tinggi** daripada harga buka (Open).
+- **Analogi:** Seperti kumpulan pembeli yang berjaya menolak harga barang menjadi lebih mahal dari pagi hingga petang. Pasaran dikuasai sentimen positif!
+- **Warna di MT4/MT5:** Secara default, ia diwarnakan **Hijau** atau **Putih**. 
+
+### 2. Bearish Candlestick (Turun)
+- **Maksud:** Harga tutup (Close) lebih **rendah** daripada harga buka (Open).
+- **Analogi:** Kumpulan penjual lambakkan barang secara mendadak sehingga harga runtuh. Ketakutan mula menguasai.
+- **Warna di MT4/MT5:** Secara default, ia diwarnakan **Merah** atau **Hitam**.
+
+## Sumbu (Wick / Shadow): Rahsia Penolakan Harga
+
+Garis nipis di bahagian atas dan bawah *body* dikenali sebagai **Sumbu (Wick/Shadow)**. Sumbu ini sebenarnya menyimpan rahsia pergerakan harga yang sangat berguna.
+
+- **Sumbu Atas (Upper Wick):** Menunjukkan harga cuba naik tinggi, tetapi ditolak kembali ke bawah oleh penjual yang ramai *(Selling Pressure)*.
+- **Sumbu Bawah (Lower Wick):** Menunjukkan harga cuba turun jatuh, tetapi pembeli segera masuk memborong pada harga murah, menolak harga kembali ke atas *(Buying Pressure)*.
+
+### Contoh Situasi
+Katakan anda melihat satu candlestick dengan **badan (body) yang kecil, tetapi mempunyai sumbu bawah yang sangat panjang** (biasa dipanggil corak *Pin Bar* atau *Hammer*). Ini adalah petanda kukuh bahawa para penjual pada awalnya berjaya menolak harga jatuh dengan kuat, tetapi para pembeli masuk ke dalam pasaran secara tiba-tiba seperti wira dan menolak harga ke atas semula sebelum graf ditutup. Situasi sebegini kerap menjadi petanda **pertukaran arah trend** dari turun ke naik (Reversal).
+
+## Panduan Langkah Demi Langkah Menukar Warna Candlestick di MT4/MT5
+
+Kalau anda tak suka warna asal (default) di platform MetaTrader, anda boleh tukarkannya supaya lebih sedap mata memandang:
+
+1. Buka aplikasi MT4 / MT5 anda.
+2. Klik kanan (Right Click) pada ruangan graf, kemudian pilih **Properties** (atau tekan F8 pada keyboard).
+3. Pergi ke tab **Colors**.
+4. Cari tetapan **Bull candle** (untuk warna naik) dan **Bear candle** (untuk warna turun).
+5. Tukar kepada warna kegemaran anda. Lazimnya, *trader* suka warna Hijau Terang (Lime) untuk Bull, dan Merah (Red) untuk Bear.
+6. Klik **OK** dan graf anda siap bersedia!
+
+**Pesanan Akhir:**
+Jangan hanya hafalkan nama-nama corak candlestick. Sebaliknya, berlatihlah memikirkan **cerita atau logik pertarungan** di sebalik setiap lilin yang terbentuk. *Practice makes perfect!*
