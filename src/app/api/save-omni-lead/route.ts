@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import fs from 'fs';
 import path from 'path';
 import { saveToGitHub } from '@/lib/github';
+import { sendOmniWelcomeEmail } from '@/lib/email';
 
 export async function POST(request: Request) {
   try {
@@ -23,6 +24,10 @@ export async function POST(request: Request) {
         fs.mkdirSync(dir, { recursive: true });
       }
       fs.writeFileSync(path.join(dir, filename), JSON.stringify(lead, null, 2));
+    }
+
+    if (data.email) {
+      sendOmniWelcomeEmail(data.email, data.name || 'Trader').catch(console.error);
     }
 
     return NextResponse.json({ success: true, message: 'Lead saved' });

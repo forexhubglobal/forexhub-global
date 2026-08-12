@@ -2,6 +2,7 @@ import { createClient } from '@/utils/supabase/server'
 import { redirect } from 'next/navigation'
 import { GraduationCap, LayoutDashboard, Bookmark, Settings, ArrowRight } from 'lucide-react'
 import Link from 'next/link'
+import SavedBrokersList from '@/components/SavedBrokersList'
 
 export default async function DashboardPage() {
   const supabase = await createClient()
@@ -80,15 +81,7 @@ export default async function DashboardPage() {
                 </div>
               </div>
 
-              <div className="bg-black/40 backdrop-blur-xl border border-white/10 rounded-2xl p-6">
-                <div className="flex justify-between items-start mb-4">
-                  <div className="w-12 h-12 rounded-xl bg-gold-400/10 flex items-center justify-center text-gold-400">
-                    <Bookmark className="w-6 h-6" />
-                  </div>
-                </div>
-                <h3 className="text-4xl font-black text-white mb-1">TBA</h3>
-                <p className="text-slate-400 text-sm">Broker Disimpan & Ulasan (Akan Datang)</p>
-              </div>
+              <SavedBrokersList />
             </div>
 
             {/* Next Steps CTA */}

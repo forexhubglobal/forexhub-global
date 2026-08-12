@@ -2,11 +2,12 @@ import { NextResponse } from 'next/server';
 import fs from 'fs';
 import path from 'path';
 import { saveToGitHub } from '@/lib/github';
+import { sendWelcomeEmail } from '@/lib/email';
 
 export async function POST(req: Request) {
   try {
     const data = await req.json();
-    const { name, phone, modalAmt, instrument, requirements, ib_slug } = data;
+    const { name, phone, email, modalAmt, instrument, requirements, ib_slug } = data;
 
     if (!name || !phone) {
       return NextResponse.json({ error: 'Name and phone are required' }, { status: 400 });
@@ -20,6 +21,7 @@ export async function POST(req: Request) {
       date: new Date().toISOString(),
       name,
       phone,
+      email,
       modalAmt,
       instrument,
       requirements,
@@ -35,6 +37,10 @@ export async function POST(req: Request) {
       }
       const filePath = path.join(contentDir, fileName);
       fs.writeFileSync(filePath, JSON.stringify(leadData, null, 2), 'utf-8');
+    }
+
+    if (email) {
+      sendWelcomeEmail(email, name).catch(console.error);
     }
 
     return NextResponse.json({ success: true, leadId: leadData.id });

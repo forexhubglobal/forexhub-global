@@ -6,6 +6,7 @@ import { getDataBySlug } from '@/lib/markdown';
 
 import { Metadata } from 'next';
 import { ShieldCheck, Star, Zap, TrendingUp, DollarSign, Gift, ArrowRight, ExternalLink, ShieldAlert } from 'lucide-react';
+import SaveBrokerButton from '@/components/SaveBrokerButton';
 import BrokerReviewSystem from '@/components/BrokerReviewSystem';
 
 export const dynamic = 'force-dynamic';
@@ -97,8 +98,9 @@ export default async function BrokerDetail({ params }: { params: Promise<{ slug:
                   </span>
                 </div>
               </div>
-              <div className="w-full md:w-auto">
+              <div className="w-full md:w-auto flex flex-col gap-3">
                 <RegisterButton defaultLink={broker.affiliateLink} brokerSlug={slug} />
+                <SaveBrokerButton slug={slug} className="w-full justify-center" />
               </div>
             </div>
           </div>
