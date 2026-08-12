@@ -23,6 +23,7 @@ export default function Header({ user }: { user?: User | null }) {
 
   const navItems = [
     { label: 'HOME', href: '/' },
+    { label: 'ACADEMY', href: '/academy' },
     { label: 'QUIZ', href: '/quiz' },
     { label: 'BROKER', href: '/broker' },
     { label: 'COMPARE', href: '/compare' },
