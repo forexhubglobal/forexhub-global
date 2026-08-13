@@ -54,7 +54,12 @@ export default async function LoginPage({ searchParams }: { searchParams: Promis
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-slate-300 mb-2">Kata Laluan</label>
+              <div className="flex justify-between items-center mb-2">
+                <label className="block text-sm font-medium text-slate-300">Kata Laluan</label>
+                <Link href="/forgot-password" className="text-xs text-neon-blue hover:text-neon-blue/80 transition-colors">
+                  Lupa Kata Laluan?
+                </Link>
+              </div>
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                   <Lock className="w-5 h-5 text-slate-500" />

@@ -42,6 +42,39 @@ export async function signup(formData: FormData) {
   redirect('/dashboard')
 }
 
+export async function resetPassword(formData: FormData) {
+  const supabase = await createClient()
+  const email = formData.get('email') as string
+
+  // Automatically determine base URL depending on environment
+  const origin = process.env.NEXT_PUBLIC_SITE_URL || 'https://forexhubglobal.com'
+
+  const { error } = await supabase.auth.resetPasswordForEmail(email, {
+    redirectTo: `${origin}/update-password`,
+  })
+
+  if (error) {
+    console.error("Reset Password error:", error.message)
+    redirect(`/forgot-password?error=${encodeURIComponent(error.message)}`)
+  }
+
+  redirect('/forgot-password?message=Sila semak emel anda untuk pautan reset.')
+}
+
+export async function updatePassword(formData: FormData) {
+  const supabase = await createClient()
+  const password = formData.get('password') as string
+
+  const { error } = await supabase.auth.updateUser({ password })
+
+  if (error) {
+    console.error("Update Password error:", error.message)
+    redirect(`/update-password?error=${encodeURIComponent(error.message)}`)
+  }
+
+  redirect('/dashboard')
+}
+
 export async function logout() {
   const supabase = await createClient()
   await supabase.auth.signOut()
