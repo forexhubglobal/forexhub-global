@@ -13,7 +13,7 @@ export default function Header({ user }: { user?: User | null }) {
   // Close menu when route changes or resizing to desktop
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth >= 1280) {
+      if (window.innerWidth >= 1536) {
         setIsMobileMenuOpen(false);
       }
     };
@@ -52,12 +52,12 @@ export default function Header({ user }: { user?: User | null }) {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden xl:flex items-center gap-4 xl:gap-6">
+          <nav className="hidden 2xl:flex items-center gap-4">
             {navItems.map((item) => (
               <Link
                 key={item.label}
                 href={item.href}
-                className={`text-xs xl:text-sm font-bold text-slate-300 hover:text-neon-blue transition-colors whitespace-nowrap hover:drop-shadow-[0_0_8px_rgba(0,243,255,0.8)] ${(item.label === 'SCAM ALERT' || item.label === 'AI SCANNER') ? 'text-red-500 hover:text-red-400 drop-shadow-[0_0_5px_rgba(239,68,68,0.5)]' : ''}`}
+                className={`text-xs font-bold text-slate-300 hover:text-neon-blue transition-colors whitespace-nowrap hover:drop-shadow-[0_0_8px_rgba(0,243,255,0.8)] ${(item.label === 'SCAM ALERT' || item.label === 'AI SCANNER') ? 'text-red-500 hover:text-red-400 drop-shadow-[0_0_5px_rgba(239,68,68,0.5)]' : ''}`}
               >
                 {item.label}
               </Link>
@@ -129,7 +129,7 @@ export default function Header({ user }: { user?: User | null }) {
                 </div>
               ) : (
                 <div className="flex items-center gap-2">
-                  <Link href="/login" className="text-sm font-bold text-white hover:text-neon-blue px-4 transition-colors hidden xl:block">
+                  <Link href="/login" className="text-sm font-bold text-white hover:text-neon-blue px-4 transition-colors hidden md:block">
                     Log Masuk
                   </Link>
                   <RegisterButton />
@@ -139,7 +139,7 @@ export default function Header({ user }: { user?: User | null }) {
 
             {/* Mobile menu button */}
             <button 
-              className="xl:hidden text-slate-300 hover:text-white focus:outline-none shrink-0 p-2 border border-slate-700/50 rounded-lg bg-slate-800/30"
+              className="2xl:hidden text-slate-300 hover:text-white focus:outline-none shrink-0 p-2 border border-slate-700/50 rounded-lg bg-slate-800/30"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               aria-label="Toggle Menu"
             >
@@ -159,7 +159,7 @@ export default function Header({ user }: { user?: User | null }) {
 
       {/* Mobile Menu Dropdown */}
       {isMobileMenuOpen && (
-        <div className="xl:hidden bg-[#09090b]/95 backdrop-blur-xl border-t border-white/10 shadow-2xl absolute top-20 left-0 w-full animate-fade-in-down max-h-[calc(100vh-80px)] overflow-y-auto">
+        <div className="2xl:hidden bg-[#09090b]/95 backdrop-blur-xl border-t border-white/10 shadow-2xl absolute top-20 left-0 w-full animate-fade-in-down max-h-[calc(100vh-80px)] overflow-y-auto">
           <div className="px-4 py-4 sm:hidden mb-2 border-b border-white/5 flex justify-center">
             {/* Show translate on mobile strictly inside menu since it was hidden above */}
             <div id="google_translate_element_mobile" className="scale-90 origin-center">
