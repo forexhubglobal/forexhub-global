@@ -10,12 +10,12 @@ export default function Hero() {
         {/* Deep space void */}
         <div className="absolute inset-0 bg-[#030303]"></div>
         
-        {/* Rotating Digital Earth (WebGL) */}
-        <Globe />
-
-        {/* Majestic Aurora Orbs */}
+        {/* Majestic Aurora Orbs (Put behind the globe so they don't wash it out) */}
         <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[60%] rounded-full bg-gradient-to-br from-indigo-600/20 via-purple-600/10 to-transparent blur-[120px] animate-[pulse_8s_ease-in-out_infinite_alternate]"></div>
         <div className="absolute bottom-[-10%] right-[-5%] w-[40%] h-[50%] rounded-full bg-gradient-to-tl from-cyan-600/20 via-blue-600/10 to-transparent blur-[100px] animate-[pulse_10s_ease-in-out_infinite_alternate-reverse]"></div>
+        
+        {/* Rotating Digital Earth (WebGL) - On top of auroras */}
+        <Globe />
         
         {/* Subtle Starlight / Dust overlay (using css radial gradients for a premium feel without cliché grids) */}
         <div className="absolute inset-0 opacity-30 mix-blend-screen" style={{ backgroundImage: 'radial-gradient(circle at center, rgba(255,255,255,0.03) 1px, transparent 1px)', backgroundSize: '32px 32px' }}></div>
