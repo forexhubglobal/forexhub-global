@@ -11,7 +11,14 @@ function AuthCallbackContent() {
   useEffect(() => {
     const handleAuth = async () => {
       const code = searchParams.get('code')
-      const next = searchParams.get('next') ?? '/dashboard'
+      let next = searchParams.get('next') ?? '/dashboard'
+      const hash = window.location.hash
+      
+      // Implicit flow appends type=recovery to the hash fragment
+      if (hash.includes('type=recovery')) {
+        next = '/update-password'
+      }
+
       const supabase = createClient()
 
       if (code) {

@@ -72,7 +72,10 @@ export async function updatePassword(formData: FormData) {
     redirect(`/update-password?error=${encodeURIComponent(error.message)}`)
   }
 
-  redirect('/dashboard')
+  // Log user out so they must login with their new password
+  await supabase.auth.signOut()
+
+  redirect('/login?message=Kata laluan berjaya ditukar. Sila log masuk dengan kata laluan baharu.')
 }
 
 export async function logout() {
