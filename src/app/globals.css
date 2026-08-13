@@ -44,6 +44,16 @@
   animation: glow 3s ease-in-out infinite;
 }
 
+@keyframes gradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+.animate-gradient {
+  background-size: 200% auto;
+  animation: gradient 4s linear infinite;
+}
+
 @keyframes float {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-10px); }
@@ -117,20 +127,25 @@ body {
 /* Hide Google Translate Tooltip & Highlight */
 #goog-gt-tt, 
 .goog-te-balloon-frame,
-.goog-tooltip { 
+.goog-tooltip,
+.VIpgJd-yAWNEb-VIpgJd-fmcmS-sn54Q { 
   display: none !important; 
 }
 .goog-text-highlight,
-.goog-text-highlight * { 
+.goog-text-highlight *,
+.VIpgJd-yAWNEb-VIpgJd-fmcmS-sn54Q { 
   background: transparent !important; 
   background-color: transparent !important; 
   box-shadow: none !important; 
   border: none !important; 
+  outline: none !important;
 }
 /* Prevent hover events on Google Translate's generated font tags */
 font {
   background: transparent !important;
   background-color: transparent !important;
+  box-shadow: none !important;
+  outline: none !important;
 }
 body {
   top: 0 !important;

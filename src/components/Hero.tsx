@@ -11,35 +11,42 @@ export default function Hero() {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
         {/* Futuristic Badge */}
-        <div className="inline-flex items-center gap-2 px-3 sm:px-4 py-1.5 sm:py-2 rounded-full bg-black/40 backdrop-blur-md shadow-[0_0_15px_rgba(0,243,255,0.3)] border border-neon-blue/30 mb-6 sm:mb-8 animate-float">
-          <span className="flex h-2 w-2 relative">
+        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-black/50 backdrop-blur-xl shadow-[0_0_20px_rgba(0,243,255,0.4)] border border-neon-blue/50 mb-8 animate-float cursor-default hover:shadow-[0_0_30px_rgba(188,19,254,0.6)] hover:border-neon-purple/50 transition-all duration-500">
+          <span className="flex h-2.5 w-2.5 relative">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-neon-blue opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-neon-blue"></span>
+            <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-neon-blue shadow-[0_0_8px_rgba(0,243,255,1)]"></span>
           </span>
-          <span className="text-xs sm:text-sm font-medium text-neon-blue tracking-wider uppercase">Forex Global #1 Broker</span>
+          <span className="text-xs sm:text-sm font-bold text-neon-blue tracking-[0.2em] uppercase">Forex Global #1 Broker</span>
         </div>
 
-        <h1 className="text-4xl sm:text-5xl md:text-7xl font-extrabold text-white tracking-tight mb-6 sm:mb-8 leading-tight drop-shadow-lg">
-          Cari Broker Forex Yang <br className="hidden md:block" />
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-neon-blue via-neon-purple to-neon-pink animate-glow drop-shadow-[0_0_10px_rgba(188,19,254,0.5)]">Sesuai Untuk Anda</span>
+        <h1 className="text-4xl sm:text-6xl md:text-8xl font-black text-white tracking-tighter mb-8 leading-[1.1] relative">
+          {/* Mind-blowing aura behind text */}
+          <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-4xl h-32 bg-gradient-to-r from-neon-blue/30 via-neon-purple/30 to-neon-pink/30 blur-[80px] pointer-events-none rounded-full animate-pulse"></span>
+          
+          <span className="relative drop-shadow-2xl">Cari Broker Forex Yang <br className="hidden md:block" /></span>
+          <span className="relative text-transparent bg-clip-text bg-gradient-to-r from-neon-blue via-neon-purple to-neon-pink animate-gradient drop-shadow-[0_0_15px_rgba(188,19,254,0.8)] pb-2 inline-block">
+            Sesuai Untuk Anda
+          </span>
         </h1>
         
-        <p className="mt-4 text-lg sm:text-xl md:text-2xl text-slate-300 max-w-3xl mx-auto mb-8 sm:mb-10 leading-relaxed font-light px-2 sm:px-0">
-          Bandingkan spread, regulation, bonus, cashback, platform dan ciri broker sebelum membuka akaun secara <span className="font-semibold text-white drop-shadow-[0_0_5px_rgba(255,255,255,0.8)]">telus dan pantas.</span>
+        <p className="mt-6 text-lg sm:text-xl md:text-2xl text-slate-300 max-w-3xl mx-auto mb-12 leading-relaxed font-light px-2 sm:px-0">
+          Bandingkan spread, regulation, bonus, cashback, platform dan ciri broker sebelum membuka akaun secara <span className="font-semibold text-transparent bg-clip-text bg-gradient-to-r from-white to-slate-400 drop-shadow-[0_0_8px_rgba(255,255,255,0.6)]">telus dan pantas.</span>
         </p>
 
-        <div className="flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-6 px-2 sm:px-0">
-          <Link href="/compare" className="w-full sm:w-auto px-6 sm:px-8 py-3.5 sm:py-4 bg-transparent border-2 border-neon-blue text-neon-blue hover:bg-neon-blue hover:text-black rounded-xl font-bold text-base sm:text-lg transition-all duration-300 shadow-[0_0_15px_rgba(0,243,255,0.4)] hover:shadow-[0_0_30px_rgba(0,243,255,0.8)] transform hover:-translate-y-1 flex items-center justify-center gap-2 uppercase tracking-wide">
-            Compare Broker
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+        <div className="flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-6 px-2 sm:px-0 relative z-20">
+          <Link href="/compare" className="group w-full sm:w-auto px-8 py-4 bg-black/50 backdrop-blur-md border-2 border-neon-blue text-neon-blue rounded-xl font-bold text-lg transition-all duration-300 shadow-[0_0_20px_rgba(0,243,255,0.4)] hover:shadow-[0_0_40px_rgba(0,243,255,0.8)] hover:bg-neon-blue hover:text-black flex items-center justify-center gap-3 uppercase tracking-wider overflow-hidden relative">
+            <span className="absolute inset-0 w-full h-full -ml-full bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-45 transition-all duration-500 group-hover:ml-full"></span>
+            <span className="relative z-10">Compare Broker</span>
+            <svg className="w-5 h-5 relative z-10 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
             </svg>
           </Link>
-          <Link href="#omni-terminal" className="w-full sm:w-auto px-6 sm:px-8 py-3.5 sm:py-4 bg-gradient-to-r from-neon-purple to-neon-pink text-white border-0 rounded-xl font-bold text-base sm:text-lg transition-all duration-300 shadow-[0_0_20px_rgba(188,19,254,0.5)] hover:shadow-[0_0_40px_rgba(188,19,254,0.8)] transform hover:-translate-y-1 flex items-center justify-center gap-2 uppercase tracking-wide">
-            <svg className="w-5 h-5 text-white animate-pulse" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+          <Link href="#omni-terminal" className="group w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-neon-purple to-neon-pink text-white border-0 rounded-xl font-bold text-lg transition-all duration-300 shadow-[0_0_30px_rgba(188,19,254,0.6)] hover:shadow-[0_0_50px_rgba(255,0,127,0.9)] hover:scale-105 flex items-center justify-center gap-3 uppercase tracking-wider relative overflow-hidden">
+            <span className="absolute inset-0 w-full h-full -ml-full bg-gradient-to-r from-transparent via-white/30 to-transparent -skew-x-45 transition-all duration-500 group-hover:ml-full"></span>
+            <svg className="w-6 h-6 text-white animate-pulse relative z-10" fill="currentColor" viewBox="0 0 20 20">
               <path fillRule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clipRule="evenodd"></path>
             </svg>
-            Claim Indicator
+            <span className="relative z-10 drop-shadow-md">Claim Indicator</span>
           </Link>
         </div>
 
