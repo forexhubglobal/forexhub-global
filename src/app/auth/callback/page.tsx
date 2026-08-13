@@ -20,7 +20,7 @@ function AuthCallbackContent() {
         if (!error) {
           router.push(next)
         } else {
-          router.push('/login?error=Ralat PKCE. Sila cuba lagi.')
+          router.push('/login?error=Sila buka pautan emel menggunakan pelayar (Chrome/Safari) yang SAMA semasa anda memohon. Jangan guna In-App Browser Gmail.')
         }
       } else {
         // Implicit Flow (Hash)
