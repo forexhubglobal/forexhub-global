@@ -2,10 +2,11 @@
 
 import { useState, useEffect } from 'react'
 import { createClient } from '@/utils/supabase/client'
-import { Download, Plus, RefreshCw, TrendingUp, DollarSign, Activity, AlertCircle, Trash2, PieChart as PieChartIcon, BarChart2 } from 'lucide-react'
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, Legend } from 'recharts'
+import { Download, Plus, RefreshCw, TrendingUp, DollarSign, Activity, AlertCircle, Trash2, PieChart as PieChartIcon, BarChart2, Target } from 'lucide-react'
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, Legend, BarChart, Bar } from 'recharts'
 
-const COLORS = ['#00f3ff', '#a855f7', '#10b981', '#f59e0b'];
+const COLORS = ['#00f3ff', '#a855f7', '#10b981', '#f59e0b', '#ef4444', '#3b82f6'];
+const STRATEGY_OPTIONS = ['Tiada Tag', 'Breakout', 'Trend Following', 'Scalping', 'SMC', 'Swing', 'News Trading'];
 
 export default function MT4Dashboard({ user, accounts: initialAccounts, initialTrades }: { user: any, accounts: any[], initialTrades: any[] }) {
   const supabase = createClient()
@@ -35,17 +36,10 @@ export default function MT4Dashboard({ user, accounts: initialAccounts, initialT
     
     const { data, error: dbError } = await supabase
       .from('trading_accounts')
-      .insert({
-        user_id: user.id,
-        broker_name: formData.broker,
-        account_number: parseInt(formData.accountNum),
-        secret_key: secretKey
-      })
-      .select()
-      .single()
+      .insert({ user_id: user.id, broker_name: formData.broker, account_number: parseInt(formData.accountNum), secret_key: secretKey })
+      .select().single()
 
     if (dbError) {
-      console.error(dbError)
       setError('Gagal mendaftar akaun. Sila cuba lagi.')
       setLoading(false)
       return
@@ -60,39 +54,32 @@ export default function MT4Dashboard({ user, accounts: initialAccounts, initialT
 
   const handleDeleteAccount = async (accountId: string) => {
     if (!window.confirm("Adakah anda pasti mahu memadam akaun ini? Semua rekod sejarah trading akan dipadam secara kekal.")) return;
-    
     setLoading(true)
     const { error } = await supabase.from('trading_accounts').delete().eq('id', accountId)
-      
     if (error) {
-      console.error(error)
       alert("Gagal memadam akaun.")
       setLoading(false)
       return
     }
-    
     const remaining = accounts.filter(a => a.id !== accountId)
     setAccounts(remaining)
     setActiveAccount(remaining[0] || null)
-    if (remaining.length === 0) {
-      setIsAdding(true)
-      setTrades([])
-    }
+    if (remaining.length === 0) { setIsAdding(true); setTrades([]); }
     setLoading(false)
   }
 
   const refreshTrades = async (accountId = activeAccount?.id) => {
     if(!accountId) return;
     setFetchingTrades(true);
-    const { data } = await supabase
-      .from('trade_history')
-      .select('*')
-      .eq('account_id', accountId)
-      .order('close_time', { ascending: false })
-      .limit(500); // Fetch more for better graphs
-      
+    const { data } = await supabase.from('trade_history').select('*').eq('account_id', accountId).order('close_time', { ascending: false }).limit(500);
     if(data) setTrades(data);
     setFetchingTrades(false);
+  }
+
+  const handleTagStrategy = async (ticket: string, tag: string) => {
+    const updatedTrades = trades.map(t => t.ticket === ticket ? { ...t, strategy_tag: tag === 'Tiada Tag' ? null : tag } : t);
+    setTrades(updatedTrades);
+    await supabase.from('trade_history').update({ strategy_tag: tag === 'Tiada Tag' ? null : tag }).eq('ticket', ticket).eq('account_id', activeAccount.id);
   }
 
   // ---- Advanced Analytics Calculations ----
@@ -105,20 +92,15 @@ export default function MT4Dashboard({ user, accounts: initialAccounts, initialT
   const grossLoss = trades.filter(t => t.profit < 0).reduce((sum, t) => sum + Math.abs(Number(t.profit)), 0)
   const profitFactor = grossLoss > 0 ? (grossProfit / grossLoss).toFixed(2) : grossProfit > 0 ? '∞' : '0.00'
 
-  // Equity Curve Data (Cumulative Profit)
+  // Equity Curve Data
   const chronologicalTrades = [...trades].sort((a, b) => new Date(a.close_time).getTime() - new Date(b.close_time).getTime());
   let runningProfit = 0;
   const equityData = chronologicalTrades.map(t => {
-    const tradeNet = Number(t.profit) + Number(t.commission) + Number(t.swap);
-    runningProfit += tradeNet;
-    return {
-      date: new Date(t.close_time).toLocaleDateString('en-GB', { day: '2-digit', month: 'short' }),
-      profit: parseFloat(runningProfit.toFixed(2)),
-      ticket: t.ticket
-    }
+    runningProfit += (Number(t.profit) + Number(t.commission) + Number(t.swap));
+    return { date: new Date(t.close_time).toLocaleDateString('en-GB', { day: '2-digit', month: 'short' }), profit: parseFloat(runningProfit.toFixed(2)) }
   });
 
-  // Session Breakdown (Approximated via UTC hours of opening time)
+  // Session Breakdown
   let asian = 0, london = 0, ny = 0;
   trades.forEach(t => {
     const hour = new Date(t.open_time).getUTCHours();
@@ -126,12 +108,40 @@ export default function MT4Dashboard({ user, accounts: initialAccounts, initialT
     else if (hour >= 8 && hour < 13) london++;
     else ny++;
   });
-  
   const sessionData = [
     { name: 'Asian Session', value: asian },
     { name: 'London Session', value: london },
     { name: 'New York Session', value: ny }
   ].filter(s => s.value > 0);
+
+  // Strategy Analytics
+  const strategyDataObj: Record<string, { name: string, profit: number, count: number }> = {};
+  trades.forEach(t => {
+    const tag = t.strategy_tag || 'Tiada Tag';
+    if (!strategyDataObj[tag]) strategyDataObj[tag] = { name: tag, profit: 0, count: 0 };
+    strategyDataObj[tag].profit += (Number(t.profit) + Number(t.commission) + Number(t.swap));
+    strategyDataObj[tag].count++;
+  });
+  const strategyData = Object.values(strategyDataObj).map(d => ({ ...d, profit: parseFloat(d.profit.toFixed(2)) })).sort((a,b) => b.profit - a.profit);
+
+  // Risk-to-Reward Tracking
+  let sumPlannedRR = 0, sumRealizedRR = 0, rrCount = 0;
+  trades.forEach(t => {
+    if (t.sl && t.tp && Number(t.sl) !== 0 && Number(t.tp) !== 0) {
+      const op = Number(t.open_price), sl = Number(t.sl), tp = Number(t.tp), cp = Number(t.close_price);
+      const risk = t.type === 'BUY' ? op - sl : sl - op;
+      const reward = t.type === 'BUY' ? tp - op : op - tp;
+      const realizedReward = t.type === 'BUY' ? cp - op : op - cp;
+      
+      if (risk > 0) {
+        sumPlannedRR += (reward / risk);
+        sumRealizedRR += (realizedReward / risk);
+        rrCount++;
+      }
+    }
+  });
+  const avgPlannedRR = rrCount > 0 ? (sumPlannedRR / rrCount).toFixed(2) : '0.00';
+  const avgRealizedRR = rrCount > 0 ? (sumRealizedRR / rrCount).toFixed(2) : '0.00';
 
   if (isAdding) {
     return (
@@ -154,9 +164,7 @@ export default function MT4Dashboard({ user, accounts: initialAccounts, initialT
             <button type="submit" disabled={loading} className="flex-1 bg-neon-blue text-black font-bold py-3 rounded-xl hover:bg-neon-blue/80 transition-colors disabled:opacity-50">
               {loading ? 'Mendaftar...' : 'Jana Secret Key'}
             </button>
-            {accounts.length > 0 && (
-              <button type="button" onClick={() => setIsAdding(false)} className="px-6 py-3 border border-white/20 rounded-xl text-white hover:bg-white/5">Batal</button>
-            )}
+            {accounts.length > 0 && <button type="button" onClick={() => setIsAdding(false)} className="px-6 py-3 border border-white/20 rounded-xl text-white hover:bg-white/5">Batal</button>}
           </div>
         </form>
       </div>
@@ -188,7 +196,7 @@ export default function MT4Dashboard({ user, accounts: initialAccounts, initialT
         </button>
       </div>
 
-      {/* Top Banner with Secret Key */}
+      {/* Top Banner */}
       <div className="bg-gradient-to-r from-neon-purple/20 to-neon-blue/20 border border-white/10 rounded-2xl p-6 relative overflow-hidden">
         <div className="absolute right-0 top-0 w-64 h-64 bg-neon-blue/30 blur-[100px] rounded-full mix-blend-screen pointer-events-none"></div>
         <div className="relative z-10 flex flex-col md:flex-row justify-between items-center gap-6">
@@ -210,9 +218,6 @@ export default function MT4Dashboard({ user, accounts: initialAccounts, initialT
             <a href="/ea/ForexHub_Tracker.mq4" download className="inline-flex items-center justify-center gap-2 bg-white text-black px-5 py-2 rounded-lg font-bold hover:bg-gray-200 transition-colors text-sm">
               <Download className="w-4 h-4" /> Download EA (MT4)
             </a>
-            <a href="/ea/ForexHub_Tracker.mq5" download className="inline-flex items-center justify-center gap-2 bg-white/10 border border-white/20 text-white px-5 py-2 rounded-lg font-bold hover:bg-white/20 transition-colors text-sm">
-              <Download className="w-4 h-4" /> Download EA (MT5)
-            </a>
             <button onClick={() => handleDeleteAccount(activeAccount.id)} disabled={loading} className="inline-flex items-center justify-center gap-2 bg-red-500/10 border border-red-500/20 text-red-400 px-5 py-2 rounded-lg font-bold hover:bg-red-500/20 transition-colors text-sm mt-2 disabled:opacity-50">
               <Trash2 className="w-4 h-4" /> Padam Akaun Ini
             </button>
@@ -220,33 +225,31 @@ export default function MT4Dashboard({ user, accounts: initialAccounts, initialT
         </div>
       </div>
 
-      {/* Stats Grid - Now with 6 items */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
-        <div className="bg-black border border-white/10 rounded-2xl p-5">
+      {/* Stats Grid */}
+      <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-4">
+        <div className="col-span-2 bg-black border border-white/10 rounded-2xl p-5">
           <div className="text-slate-400 mb-1 text-sm font-medium">Balance</div>
-          <p className="text-xl lg:text-2xl font-black text-white">${activeAccount.balance?.toLocaleString() || '0'}</p>
+          <p className="text-2xl font-black text-white">${activeAccount.balance?.toLocaleString() || '0'}</p>
         </div>
-        <div className="bg-black border border-white/10 rounded-2xl p-5">
-          <div className="text-slate-400 mb-1 text-sm font-medium">Equity</div>
-          <p className="text-xl lg:text-2xl font-black text-white">${activeAccount.equity?.toLocaleString() || '0'}</p>
-        </div>
-        <div className="bg-black border border-white/10 rounded-2xl p-5">
+        <div className="col-span-2 bg-black border border-white/10 rounded-2xl p-5">
           <div className="text-slate-400 mb-1 text-sm font-medium">Net Profit</div>
-          <p className={`text-xl lg:text-2xl font-black ${netProfit >= 0 ? 'text-green-400' : 'text-red-400'}`}>
+          <p className={`text-2xl font-black ${netProfit >= 0 ? 'text-green-400' : 'text-red-400'}`}>
             {netProfit >= 0 ? '+' : '-'}${Math.abs(netProfit).toFixed(2)}
           </p>
         </div>
         <div className="bg-black border border-white/10 rounded-2xl p-5">
           <div className="text-slate-400 mb-1 text-sm font-medium">Win Rate</div>
-          <p className="text-xl lg:text-2xl font-black text-white">{winRate}%</p>
+          <p className="text-2xl font-black text-white">{winRate}%</p>
         </div>
         <div className="bg-black border border-white/10 rounded-2xl p-5">
           <div className="text-slate-400 mb-1 text-sm font-medium">Profit Factor</div>
-          <p className="text-xl lg:text-2xl font-black text-neon-blue">{profitFactor}</p>
+          <p className="text-2xl font-black text-neon-blue">{profitFactor}</p>
         </div>
-        <div className="bg-black border border-white/10 rounded-2xl p-5">
-          <div className="text-slate-400 mb-1 text-sm font-medium">Total Trades</div>
-          <p className="text-xl lg:text-2xl font-black text-neon-purple">{totalTrades}</p>
+        <div className="col-span-2 bg-black border border-white/10 rounded-2xl p-5 relative overflow-hidden">
+          <div className="absolute right-[-10px] bottom-[-10px] opacity-10"><Target className="w-24 h-24 text-neon-purple"/></div>
+          <div className="text-slate-400 mb-1 text-sm font-medium relative z-10">Avg Realized R:R</div>
+          <p className="text-2xl font-black text-neon-purple relative z-10">1 : {avgRealizedRR}</p>
+          <p className="text-xs text-slate-500 relative z-10">Planned: 1 : {avgPlannedRR}</p>
         </div>
       </div>
 
@@ -254,7 +257,7 @@ export default function MT4Dashboard({ user, accounts: initialAccounts, initialT
       {trades.length > 0 && (
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Equity Curve */}
-          <div className="lg:col-span-2 bg-black border border-white/10 rounded-2xl p-6">
+          <div className="lg:col-span-3 bg-black border border-white/10 rounded-2xl p-6">
             <div className="flex items-center gap-3 mb-6">
               <TrendingUp className="w-5 h-5 text-neon-blue" />
               <h3 className="text-lg font-bold text-white">Cumulative Profit (Equity Curve)</h3>
@@ -266,10 +269,7 @@ export default function MT4Dashboard({ user, accounts: initialAccounts, initialT
                   <CartesianGrid stroke="#ffffff10" strokeDasharray="3 3" vertical={false} />
                   <XAxis dataKey="date" stroke="#94a3b8" fontSize={12} tickLine={false} axisLine={false} />
                   <YAxis stroke="#94a3b8" fontSize={12} tickLine={false} axisLine={false} tickFormatter={(value) => `$${value}`} />
-                  <Tooltip 
-                    contentStyle={{ backgroundColor: '#09090b', borderColor: '#ffffff20', borderRadius: '12px', color: '#fff' }}
-                    itemStyle={{ color: '#00f3ff', fontWeight: 'bold' }}
-                  />
+                  <Tooltip contentStyle={{ backgroundColor: '#09090b', borderColor: '#ffffff20', borderRadius: '12px', color: '#fff' }} itemStyle={{ color: '#00f3ff', fontWeight: 'bold' }} />
                 </LineChart>
               </ResponsiveContainer>
             </div>
@@ -284,26 +284,35 @@ export default function MT4Dashboard({ user, accounts: initialAccounts, initialT
             <div className="h-64 w-full flex items-center justify-center">
               <ResponsiveContainer width="100%" height="100%">
                 <PieChart>
-                  <Pie
-                    data={sessionData}
-                    cx="50%"
-                    cy="50%"
-                    innerRadius={60}
-                    outerRadius={80}
-                    paddingAngle={5}
-                    dataKey="value"
-                    stroke="none"
-                  >
-                    {sessionData.map((entry, index) => (
-                      <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                    ))}
+                  <Pie data={sessionData} cx="50%" cy="50%" innerRadius={60} outerRadius={80} paddingAngle={5} dataKey="value" stroke="none">
+                    {sessionData.map((entry, index) => <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />)}
                   </Pie>
-                  <Tooltip 
-                    contentStyle={{ backgroundColor: '#09090b', borderColor: '#ffffff20', borderRadius: '12px', color: '#fff' }}
-                    itemStyle={{ color: '#fff' }}
-                  />
+                  <Tooltip contentStyle={{ backgroundColor: '#09090b', borderColor: '#ffffff20', borderRadius: '12px', color: '#fff' }} itemStyle={{ color: '#fff' }} />
                   <Legend verticalAlign="bottom" height={36} iconType="circle" wrapperStyle={{ fontSize: '12px', color: '#94a3b8' }} />
                 </PieChart>
+              </ResponsiveContainer>
+            </div>
+          </div>
+          
+          {/* Strategy Analytics */}
+          <div className="lg:col-span-2 bg-black border border-white/10 rounded-2xl p-6">
+            <div className="flex items-center gap-3 mb-6">
+              <BarChart2 className="w-5 h-5 text-green-400" />
+              <h3 className="text-lg font-bold text-white">Prestasi Strategi (Setup Analytics)</h3>
+            </div>
+            <div className="h-64 w-full">
+              <ResponsiveContainer width="100%" height="100%">
+                <BarChart data={strategyData} margin={{ top: 5, right: 20, bottom: 5, left: 0 }}>
+                  <CartesianGrid stroke="#ffffff10" strokeDasharray="3 3" vertical={false} />
+                  <XAxis dataKey="name" stroke="#94a3b8" fontSize={12} tickLine={false} axisLine={false} />
+                  <YAxis stroke="#94a3b8" fontSize={12} tickLine={false} axisLine={false} tickFormatter={(value) => `$${value}`} />
+                  <Tooltip cursor={{ fill: '#ffffff10' }} contentStyle={{ backgroundColor: '#09090b', borderColor: '#ffffff20', borderRadius: '12px', color: '#fff' }} />
+                  <Bar dataKey="profit" fill="#10b981" radius={[4, 4, 0, 0]}>
+                    {strategyData.map((entry, index) => (
+                      <Cell key={`cell-${index}`} fill={entry.profit >= 0 ? '#10b981' : '#ef4444'} />
+                    ))}
+                  </Bar>
+                </BarChart>
               </ResponsiveContainer>
             </div>
           </div>
@@ -332,16 +341,14 @@ export default function MT4Dashboard({ user, accounts: initialAccounts, initialT
                 <th className="px-6 py-4 font-medium">Tiket</th>
                 <th className="px-6 py-4 font-medium">Symbol</th>
                 <th className="px-6 py-4 font-medium">Jenis</th>
-                <th className="px-6 py-4 font-medium">Lot</th>
-                <th className="px-6 py-4 font-medium">Buka</th>
-                <th className="px-6 py-4 font-medium">Tutup</th>
+                <th className="px-6 py-4 font-medium">Tag Strategi</th>
                 <th className="px-6 py-4 font-medium text-right">Profit ($)</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-white/5">
               {trades.length === 0 ? (
                 <tr>
-                  <td colSpan={7} className="px-6 py-10 text-center text-slate-500">Tiada rekod trading dijumpai. Pastikan EA sedang berjalan di MT4/MT5.</td>
+                  <td colSpan={5} className="px-6 py-10 text-center text-slate-500">Tiada rekod trading dijumpai. Pastikan EA sedang berjalan.</td>
                 </tr>
               ) : (
                 trades.map((t) => (
@@ -349,13 +356,17 @@ export default function MT4Dashboard({ user, accounts: initialAccounts, initialT
                     <td className="px-6 py-4 text-slate-300">{t.ticket}</td>
                     <td className="px-6 py-4 font-bold text-white">{t.symbol}</td>
                     <td className="px-6 py-4">
-                      <span className={`px-2 py-1 rounded text-xs font-bold ${t.type === 'BUY' ? 'bg-green-500/20 text-green-400' : 'bg-red-500/20 text-red-400'}`}>
-                        {t.type}
-                      </span>
+                      <span className={`px-2 py-1 rounded text-xs font-bold ${t.type === 'BUY' ? 'bg-green-500/20 text-green-400' : 'bg-red-500/20 text-red-400'}`}>{t.type}</span>
                     </td>
-                    <td className="px-6 py-4 text-slate-300">{t.lots}</td>
-                    <td className="px-6 py-4 text-slate-400">{t.open_price}</td>
-                    <td className="px-6 py-4 text-slate-400">{t.close_price}</td>
+                    <td className="px-6 py-4">
+                      <select 
+                        className="bg-black border border-white/20 text-xs text-white rounded px-2 py-1 focus:outline-none focus:border-neon-blue"
+                        value={t.strategy_tag || 'Tiada Tag'}
+                        onChange={(e) => handleTagStrategy(t.ticket, e.target.value)}
+                      >
+                        {STRATEGY_OPTIONS.map(opt => <option key={opt} value={opt}>{opt}</option>)}
+                      </select>
+                    </td>
                     <td className={`px-6 py-4 text-right font-bold ${t.profit > 0 ? 'text-green-400' : t.profit < 0 ? 'text-red-400' : 'text-slate-300'}`}>
                       {t.profit > 0 ? '+' : ''}{t.profit}
                     </td>

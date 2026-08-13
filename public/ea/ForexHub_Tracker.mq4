@@ -64,7 +64,9 @@ void SendTradesData() {
             json += "\"close_time\":" + IntegerToString(OrderCloseTime()) + ",";
             json += "\"profit\":" + DoubleToString(OrderProfit(), 2) + ",";
             json += "\"commission\":" + DoubleToString(OrderCommission(), 2) + ",";
-            json += "\"swap\":" + DoubleToString(OrderSwap(), 2);
+            json += "\"swap\":" + DoubleToString(OrderSwap(), 2) + ",";
+            json += "\"sl\":" + DoubleToString(OrderStopLoss(), 5) + ",";
+            json += "\"tp\":" + DoubleToString(OrderTakeProfit(), 5);
             json += "}";
             count++;
          }
