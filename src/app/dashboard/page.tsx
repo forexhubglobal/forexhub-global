@@ -1,6 +1,6 @@
 import { createClient } from '@/utils/supabase/server'
 import { redirect } from 'next/navigation'
-import { GraduationCap, LayoutDashboard, Bookmark, Settings, ArrowRight } from 'lucide-react'
+import { GraduationCap, LayoutDashboard, Bookmark, Settings, ArrowRight, LineChart } from 'lucide-react'
 import Link from 'next/link'
 import SavedBrokersList from '@/components/SavedBrokersList'
 
@@ -50,6 +50,10 @@ export default async function DashboardPage() {
               <Link href="/academy" className="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-400 hover:text-white hover:bg-white/5 transition-colors font-medium">
                 <GraduationCap className="w-5 h-5" />
                 Akademi
+              </Link>
+              <Link href="/dashboard/mt4" className="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-400 hover:text-white hover:bg-white/5 transition-colors font-medium">
+                <LineChart className="w-5 h-5" />
+                Trading Journal
               </Link>
               <Link href="/dashboard/settings" className="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-400 hover:text-white hover:bg-white/5 transition-colors font-medium">
                 <Settings className="w-5 h-5" />
