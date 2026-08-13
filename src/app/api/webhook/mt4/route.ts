@@ -7,7 +7,11 @@ const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
 export async function POST(request: Request) {
   try {
-    const data = await request.json();
+    // Read raw text first to strip MQL4 null terminators
+    const rawText = await request.text();
+    const cleanText = rawText.replace(/\0/g, ''); // Remove null bytes
+    const data = JSON.parse(cleanText);
+
     const { secret_key, account_number, balance, equity, trades } = data;
 
     if (!secret_key || !account_number) {

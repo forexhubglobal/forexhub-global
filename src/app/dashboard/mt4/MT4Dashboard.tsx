@@ -128,6 +128,10 @@ export default function MT4Dashboard({ user, accounts, initialTrades }: { user: 
         <div className="relative z-10 flex flex-col md:flex-row justify-between items-center gap-6">
           <div>
             <h3 className="text-xl font-bold text-white mb-2">Sistem Tracking Aktif</h3>
+            <div className="flex items-center gap-3 bg-black/50 px-4 py-2 rounded-lg border border-white/10 w-fit mb-2">
+              <span className="text-slate-400">Account No:</span>
+              <span className="text-white font-bold">{activeAccount.account_number}</span>
+            </div>
             <div className="flex items-center gap-3 bg-black/50 px-4 py-2 rounded-lg border border-white/10 w-fit">
               <span className="text-slate-400">Secret Key EA:</span>
               <code className="text-neon-blue font-mono font-bold select-all">{activeAccount.secret_key}</code>
