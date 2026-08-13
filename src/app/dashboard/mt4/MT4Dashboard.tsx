@@ -290,10 +290,10 @@ export default function MT4Dashboard({ user, accounts: initialAccounts, initialT
                 <LineChart data={equityData} margin={{ top: 5, right: 20, bottom: 5, left: 0 }}>
                   <Line type="monotone" dataKey="profit" stroke="#00f3ff" strokeWidth={3} dot={false} activeDot={{ r: 8 }} />
                   <CartesianGrid stroke="#ffffff10" strokeDasharray="3 3" vertical={false} />
-                  <XAxis dataKey="index" stroke="#94a3b8" fontSize={12} tickLine={false} axisLine={false} tickFormatter={(val) => equityData[val]?.dateLabel} minTickGap={30} />
+                  <XAxis dataKey="index" stroke="#94a3b8" fontSize={12} tickLine={false} axisLine={false} tickFormatter={(val: any) => equityData[val]?.dateLabel} minTickGap={30} />
                   <YAxis stroke="#94a3b8" fontSize={12} tickLine={false} axisLine={false} tickFormatter={(value) => `$${value}`} />
                   <Tooltip 
-                    labelFormatter={(val) => equityData[val]?.fullDate}
+                    labelFormatter={(val: any) => equityData[val]?.fullDate}
                     contentStyle={{ backgroundColor: '#09090b', borderColor: '#ffffff20', borderRadius: '12px', color: '#fff' }} 
                     itemStyle={{ color: '#00f3ff', fontWeight: 'bold' }} 
                   />
