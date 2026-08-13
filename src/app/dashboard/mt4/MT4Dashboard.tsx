@@ -95,9 +95,14 @@ export default function MT4Dashboard({ user, accounts: initialAccounts, initialT
   // Equity Curve Data
   const chronologicalTrades = [...trades].sort((a, b) => new Date(a.close_time).getTime() - new Date(b.close_time).getTime());
   let runningProfit = 0;
-  const equityData = chronologicalTrades.map(t => {
+  const equityData = chronologicalTrades.map((t, index) => {
     runningProfit += (Number(t.profit) + Number(t.commission) + Number(t.swap));
-    return { date: new Date(t.close_time).toLocaleDateString('en-GB', { day: '2-digit', month: 'short' }), profit: parseFloat(runningProfit.toFixed(2)) }
+    return { 
+      index: index,
+      dateLabel: new Date(t.close_time).toLocaleDateString('en-GB', { day: '2-digit', month: 'short' }), 
+      fullDate: new Date(t.close_time).toLocaleString('en-GB', { day: '2-digit', month: 'short', hour: '2-digit', minute:'2-digit' }),
+      profit: parseFloat(runningProfit.toFixed(2)) 
+    }
   });
 
   // Session Breakdown
@@ -270,9 +275,13 @@ export default function MT4Dashboard({ user, accounts: initialAccounts, initialT
                 <LineChart data={equityData} margin={{ top: 5, right: 20, bottom: 5, left: 0 }}>
                   <Line type="monotone" dataKey="profit" stroke="#00f3ff" strokeWidth={3} dot={false} activeDot={{ r: 8 }} />
                   <CartesianGrid stroke="#ffffff10" strokeDasharray="3 3" vertical={false} />
-                  <XAxis dataKey="date" stroke="#94a3b8" fontSize={12} tickLine={false} axisLine={false} />
+                  <XAxis dataKey="index" stroke="#94a3b8" fontSize={12} tickLine={false} axisLine={false} tickFormatter={(val) => equityData[val]?.dateLabel} minTickGap={30} />
                   <YAxis stroke="#94a3b8" fontSize={12} tickLine={false} axisLine={false} tickFormatter={(value) => `$${value}`} />
-                  <Tooltip contentStyle={{ backgroundColor: '#09090b', borderColor: '#ffffff20', borderRadius: '12px', color: '#fff' }} itemStyle={{ color: '#00f3ff', fontWeight: 'bold' }} />
+                  <Tooltip 
+                    labelFormatter={(val) => equityData[val]?.fullDate}
+                    contentStyle={{ backgroundColor: '#09090b', borderColor: '#ffffff20', borderRadius: '12px', color: '#fff' }} 
+                    itemStyle={{ color: '#00f3ff', fontWeight: 'bold' }} 
+                  />
                 </LineChart>
               </ResponsiveContainer>
             </div>
