@@ -234,28 +234,28 @@ export default function MT4Dashboard({ user, accounts: initialAccounts, initialT
       </div>
 
       {/* Stats Grid */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-4">
-        <div className="col-span-2 bg-black border border-white/10 rounded-2xl p-5">
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 select-none cursor-default">
+        <div className="bg-black border border-white/10 rounded-2xl p-5 hover:border-white/20 transition-colors">
           <div className="text-slate-400 mb-1 text-sm font-medium">Balance</div>
           <p className="text-2xl font-black text-white">${activeAccount.balance?.toLocaleString() || '0'}</p>
         </div>
-        <div className="col-span-2 bg-black border border-white/10 rounded-2xl p-5">
+        <div className="bg-black border border-white/10 rounded-2xl p-5 hover:border-white/20 transition-colors">
           <div className="text-slate-400 mb-1 text-sm font-medium">Net Profit</div>
           <p className={`text-2xl font-black ${netProfit >= 0 ? 'text-green-400' : 'text-red-400'}`}>
             {netProfit >= 0 ? '+' : '-'}${Math.abs(netProfit).toFixed(2)}
           </p>
         </div>
-        <div className="bg-black border border-white/10 rounded-2xl p-5">
-          <div className="text-slate-400 mb-1 text-sm font-medium">Win Rate</div>
+        <div className="bg-black border border-white/10 rounded-2xl p-5 hover:border-white/20 transition-colors">
+          <div className="text-slate-400 mb-1 text-sm font-medium whitespace-nowrap">Win Rate</div>
           <p className="text-2xl font-black text-white">{winRate}%</p>
         </div>
-        <div className="bg-black border border-white/10 rounded-2xl p-5">
-          <div className="text-slate-400 mb-1 text-sm font-medium">Profit Factor</div>
+        <div className="bg-black border border-white/10 rounded-2xl p-5 hover:border-white/20 transition-colors">
+          <div className="text-slate-400 mb-1 text-sm font-medium whitespace-nowrap">Profit Factor</div>
           <p className="text-2xl font-black text-neon-blue">{profitFactor}</p>
         </div>
-        <div className="col-span-2 bg-black border border-white/10 rounded-2xl p-5 relative overflow-hidden">
-          <div className="absolute right-[-10px] bottom-[-10px] opacity-10"><Target className="w-24 h-24 text-neon-purple"/></div>
-          <div className="text-slate-400 mb-1 text-sm font-medium relative z-10">Avg Realized R:R</div>
+        <div className="bg-black border border-white/10 rounded-2xl p-5 relative overflow-hidden hover:border-white/20 transition-colors">
+          <div className="absolute right-[-10px] bottom-[-10px] opacity-10 pointer-events-none"><Target className="w-24 h-24 text-neon-purple"/></div>
+          <div className="text-slate-400 mb-1 text-sm font-medium relative z-10 whitespace-nowrap">Avg Realized R:R</div>
           <p className="text-2xl font-black text-neon-purple relative z-10">1 : {avgRealizedRR}</p>
           <p className="text-xs text-slate-500 relative z-10">Planned: 1 : {avgPlannedRR}</p>
         </div>
