@@ -2,7 +2,10 @@
 
 import { useState, useEffect } from 'react'
 import { createClient } from '@/utils/supabase/client'
-import { Download, Plus, RefreshCw, TrendingUp, DollarSign, Activity, AlertCircle, Trash2 } from 'lucide-react'
+import { Download, Plus, RefreshCw, TrendingUp, DollarSign, Activity, AlertCircle, Trash2, PieChart as PieChartIcon, BarChart2 } from 'lucide-react'
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, Legend } from 'recharts'
+
+const COLORS = ['#00f3ff', '#a855f7', '#10b981', '#f59e0b'];
 
 export default function MT4Dashboard({ user, accounts: initialAccounts, initialTrades }: { user: any, accounts: any[], initialTrades: any[] }) {
   const supabase = createClient()
@@ -17,7 +20,6 @@ export default function MT4Dashboard({ user, accounts: initialAccounts, initialT
   const [formData, setFormData] = useState({ broker: '', accountNum: '' })
   const [error, setError] = useState('')
 
-  // Handle switching accounts
   useEffect(() => {
     if (activeAccount) {
       refreshTrades(activeAccount.id)
@@ -29,7 +31,6 @@ export default function MT4Dashboard({ user, accounts: initialAccounts, initialT
     setLoading(true)
     setError('')
     
-    // Generate a random 16 char secret key
     const secretKey = 'fh_' + Math.random().toString(36).substring(2, 10) + Math.random().toString(36).substring(2, 10);
     
     const { data, error: dbError } = await supabase
@@ -61,10 +62,7 @@ export default function MT4Dashboard({ user, accounts: initialAccounts, initialT
     if (!window.confirm("Adakah anda pasti mahu memadam akaun ini? Semua rekod sejarah trading akan dipadam secara kekal.")) return;
     
     setLoading(true)
-    const { error } = await supabase
-      .from('trading_accounts')
-      .delete()
-      .eq('id', accountId)
+    const { error } = await supabase.from('trading_accounts').delete().eq('id', accountId)
       
     if (error) {
       console.error(error)
@@ -91,18 +89,50 @@ export default function MT4Dashboard({ user, accounts: initialAccounts, initialT
       .select('*')
       .eq('account_id', accountId)
       .order('close_time', { ascending: false })
-      .limit(100);
+      .limit(500); // Fetch more for better graphs
       
     if(data) setTrades(data);
     setFetchingTrades(false);
   }
 
-  // Calculate stats
+  // ---- Advanced Analytics Calculations ----
   const totalTrades = trades.length;
   const winningTrades = trades.filter(t => t.profit > 0).length;
   const winRate = totalTrades > 0 ? Math.round((winningTrades / totalTrades) * 100) : 0;
   const netProfit = trades.reduce((sum, t) => sum + Number(t.profit) + Number(t.commission) + Number(t.swap), 0);
   
+  const grossProfit = trades.filter(t => t.profit > 0).reduce((sum, t) => sum + Number(t.profit), 0)
+  const grossLoss = trades.filter(t => t.profit < 0).reduce((sum, t) => sum + Math.abs(Number(t.profit)), 0)
+  const profitFactor = grossLoss > 0 ? (grossProfit / grossLoss).toFixed(2) : grossProfit > 0 ? '∞' : '0.00'
+
+  // Equity Curve Data (Cumulative Profit)
+  const chronologicalTrades = [...trades].sort((a, b) => new Date(a.close_time).getTime() - new Date(b.close_time).getTime());
+  let runningProfit = 0;
+  const equityData = chronologicalTrades.map(t => {
+    const tradeNet = Number(t.profit) + Number(t.commission) + Number(t.swap);
+    runningProfit += tradeNet;
+    return {
+      date: new Date(t.close_time).toLocaleDateString('en-GB', { day: '2-digit', month: 'short' }),
+      profit: parseFloat(runningProfit.toFixed(2)),
+      ticket: t.ticket
+    }
+  });
+
+  // Session Breakdown (Approximated via UTC hours of opening time)
+  let asian = 0, london = 0, ny = 0;
+  trades.forEach(t => {
+    const hour = new Date(t.open_time).getUTCHours();
+    if (hour >= 23 || hour < 8) asian++;
+    else if (hour >= 8 && hour < 13) london++;
+    else ny++;
+  });
+  
+  const sessionData = [
+    { name: 'Asian Session', value: asian },
+    { name: 'London Session', value: london },
+    { name: 'New York Session', value: ny }
+  ].filter(s => s.value > 0);
+
   if (isAdding) {
     return (
       <div className="bg-white/5 border border-white/10 rounded-2xl p-8 max-w-2xl mx-auto">
@@ -114,42 +144,18 @@ export default function MT4Dashboard({ user, accounts: initialAccounts, initialT
         <form onSubmit={handleAddAccount} className="space-y-6">
           <div>
             <label className="block text-sm font-medium text-slate-300 mb-2">Nama Broker</label>
-            <input 
-              type="text" 
-              required
-              className="w-full bg-black border border-white/20 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-neon-blue" 
-              placeholder="Cth: Exness, OctaFX, XM"
-              value={formData.broker}
-              onChange={(e) => setFormData({...formData, broker: e.target.value})}
-            />
+            <input type="text" required className="w-full bg-black border border-white/20 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-neon-blue" placeholder="Cth: Exness, OctaFX, XM" value={formData.broker} onChange={(e) => setFormData({...formData, broker: e.target.value})} />
           </div>
           <div>
             <label className="block text-sm font-medium text-slate-300 mb-2">Nombor Akaun MT4/MT5</label>
-            <input 
-              type="number" 
-              required
-              className="w-full bg-black border border-white/20 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-neon-blue" 
-              placeholder="Cth: 12345678"
-              value={formData.accountNum}
-              onChange={(e) => setFormData({...formData, accountNum: e.target.value})}
-            />
+            <input type="number" required className="w-full bg-black border border-white/20 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-neon-blue" placeholder="Cth: 12345678" value={formData.accountNum} onChange={(e) => setFormData({...formData, accountNum: e.target.value})} />
           </div>
           <div className="flex gap-4">
-            <button 
-              type="submit" 
-              disabled={loading}
-              className="flex-1 bg-neon-blue text-black font-bold py-3 rounded-xl hover:bg-neon-blue/80 transition-colors disabled:opacity-50"
-            >
+            <button type="submit" disabled={loading} className="flex-1 bg-neon-blue text-black font-bold py-3 rounded-xl hover:bg-neon-blue/80 transition-colors disabled:opacity-50">
               {loading ? 'Mendaftar...' : 'Jana Secret Key'}
             </button>
             {accounts.length > 0 && (
-              <button 
-                type="button" 
-                onClick={() => setIsAdding(false)}
-                className="px-6 py-3 border border-white/20 rounded-xl text-white hover:bg-white/5"
-              >
-                Batal
-              </button>
+              <button type="button" onClick={() => setIsAdding(false)} className="px-6 py-3 border border-white/20 rounded-xl text-white hover:bg-white/5">Batal</button>
             )}
           </div>
         </form>
@@ -161,7 +167,6 @@ export default function MT4Dashboard({ user, accounts: initialAccounts, initialT
 
   return (
     <div className="space-y-8">
-      
       {/* Account Selector Tabs */}
       <div className="flex flex-wrap items-center gap-3">
         {accounts.map(acc => (
@@ -178,11 +183,7 @@ export default function MT4Dashboard({ user, accounts: initialAccounts, initialT
             {acc.broker_name} ({acc.account_number})
           </button>
         ))}
-        
-        <button 
-          onClick={() => setIsAdding(true)}
-          className="px-5 py-2.5 rounded-xl font-bold text-sm bg-transparent border border-dashed border-white/30 text-slate-400 hover:text-white hover:border-white/60 transition-colors flex items-center gap-2"
-        >
+        <button onClick={() => setIsAdding(true)} className="px-5 py-2.5 rounded-xl font-bold text-sm bg-transparent border border-dashed border-white/30 text-slate-400 hover:text-white hover:border-white/60 transition-colors flex items-center gap-2">
           <Plus className="w-4 h-4" /> Tambah Akaun
         </button>
       </div>
@@ -196,7 +197,6 @@ export default function MT4Dashboard({ user, accounts: initialAccounts, initialT
               <h3 className="text-xl font-bold text-white">Sistem Tracking Aktif</h3>
               <span className="bg-green-500/20 text-green-400 text-xs px-2 py-1 rounded border border-green-500/20 font-bold uppercase tracking-wider">Berhubung</span>
             </div>
-            
             <div className="flex items-center gap-3 bg-black/50 px-4 py-2 rounded-lg border border-white/10 w-fit mb-2">
               <span className="text-slate-400">Account No:</span>
               <span className="text-white font-bold">{activeAccount.account_number}</span>
@@ -205,9 +205,7 @@ export default function MT4Dashboard({ user, accounts: initialAccounts, initialT
               <span className="text-slate-400">Secret Key EA:</span>
               <code className="text-neon-blue font-mono font-bold select-all">{activeAccount.secret_key}</code>
             </div>
-            <p className="text-sm text-slate-400 mt-2">Sila salin Secret Key ini dan tampal (paste) ke dalam tetapan Robot EA di MT4/MT5 anda.</p>
           </div>
-          
           <div className="flex flex-col gap-3 shrink-0">
             <a href="/ea/ForexHub_Tracker.mq4" download className="inline-flex items-center justify-center gap-2 bg-white text-black px-5 py-2 rounded-lg font-bold hover:bg-gray-200 transition-colors text-sm">
               <Download className="w-4 h-4" /> Download EA (MT4)
@@ -215,52 +213,104 @@ export default function MT4Dashboard({ user, accounts: initialAccounts, initialT
             <a href="/ea/ForexHub_Tracker.mq5" download className="inline-flex items-center justify-center gap-2 bg-white/10 border border-white/20 text-white px-5 py-2 rounded-lg font-bold hover:bg-white/20 transition-colors text-sm">
               <Download className="w-4 h-4" /> Download EA (MT5)
             </a>
-            <button 
-              onClick={() => handleDeleteAccount(activeAccount.id)}
-              disabled={loading}
-              className="inline-flex items-center justify-center gap-2 bg-red-500/10 border border-red-500/20 text-red-400 px-5 py-2 rounded-lg font-bold hover:bg-red-500/20 transition-colors text-sm mt-2 disabled:opacity-50"
-            >
+            <button onClick={() => handleDeleteAccount(activeAccount.id)} disabled={loading} className="inline-flex items-center justify-center gap-2 bg-red-500/10 border border-red-500/20 text-red-400 px-5 py-2 rounded-lg font-bold hover:bg-red-500/20 transition-colors text-sm mt-2 disabled:opacity-50">
               <Trash2 className="w-4 h-4" /> Padam Akaun Ini
             </button>
           </div>
         </div>
       </div>
 
-      {/* Stats Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      {/* Stats Grid - Now with 6 items */}
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
         <div className="bg-black border border-white/10 rounded-2xl p-5">
-          <div className="flex items-center gap-3 text-slate-400 mb-2">
-            <DollarSign className="w-5 h-5 text-neon-blue" />
-            <h4 className="font-medium">Baki Terkini (Balance)</h4>
-          </div>
-          <p className="text-3xl font-black text-white">${activeAccount.balance?.toLocaleString() || '0'}</p>
+          <div className="text-slate-400 mb-1 text-sm font-medium">Balance</div>
+          <p className="text-xl lg:text-2xl font-black text-white">${activeAccount.balance?.toLocaleString() || '0'}</p>
         </div>
         <div className="bg-black border border-white/10 rounded-2xl p-5">
-          <div className="flex items-center gap-3 text-slate-400 mb-2">
-            <Activity className="w-5 h-5 text-neon-purple" />
-            <h4 className="font-medium">Ekuiti Semasa (Equity)</h4>
-          </div>
-          <p className="text-3xl font-black text-white">${activeAccount.equity?.toLocaleString() || '0'}</p>
+          <div className="text-slate-400 mb-1 text-sm font-medium">Equity</div>
+          <p className="text-xl lg:text-2xl font-black text-white">${activeAccount.equity?.toLocaleString() || '0'}</p>
         </div>
         <div className="bg-black border border-white/10 rounded-2xl p-5">
-          <div className="flex items-center gap-3 text-slate-400 mb-2">
-            <TrendingUp className="w-5 h-5 text-green-400" />
-            <h4 className="font-medium">Win Rate</h4>
-          </div>
-          <p className="text-3xl font-black text-white">{winRate}%</p>
-        </div>
-        <div className="bg-black border border-white/10 rounded-2xl p-5">
-          <div className="flex items-center gap-3 text-slate-400 mb-2">
-            <DollarSign className="w-5 h-5 text-yellow-400" />
-            <h4 className="font-medium">Keuntungan (Net Profit)</h4>
-          </div>
-          <p className={`text-3xl font-black ${netProfit >= 0 ? 'text-green-400' : 'text-red-400'}`}>
+          <div className="text-slate-400 mb-1 text-sm font-medium">Net Profit</div>
+          <p className={`text-xl lg:text-2xl font-black ${netProfit >= 0 ? 'text-green-400' : 'text-red-400'}`}>
             {netProfit >= 0 ? '+' : '-'}${Math.abs(netProfit).toFixed(2)}
           </p>
         </div>
+        <div className="bg-black border border-white/10 rounded-2xl p-5">
+          <div className="text-slate-400 mb-1 text-sm font-medium">Win Rate</div>
+          <p className="text-xl lg:text-2xl font-black text-white">{winRate}%</p>
+        </div>
+        <div className="bg-black border border-white/10 rounded-2xl p-5">
+          <div className="text-slate-400 mb-1 text-sm font-medium">Profit Factor</div>
+          <p className="text-xl lg:text-2xl font-black text-neon-blue">{profitFactor}</p>
+        </div>
+        <div className="bg-black border border-white/10 rounded-2xl p-5">
+          <div className="text-slate-400 mb-1 text-sm font-medium">Total Trades</div>
+          <p className="text-xl lg:text-2xl font-black text-neon-purple">{totalTrades}</p>
+        </div>
       </div>
 
-      {/* Trade History */}
+      {/* Advanced Analytics Graphs */}
+      {trades.length > 0 && (
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          {/* Equity Curve */}
+          <div className="lg:col-span-2 bg-black border border-white/10 rounded-2xl p-6">
+            <div className="flex items-center gap-3 mb-6">
+              <TrendingUp className="w-5 h-5 text-neon-blue" />
+              <h3 className="text-lg font-bold text-white">Cumulative Profit (Equity Curve)</h3>
+            </div>
+            <div className="h-72 w-full">
+              <ResponsiveContainer width="100%" height="100%">
+                <LineChart data={equityData} margin={{ top: 5, right: 20, bottom: 5, left: 0 }}>
+                  <Line type="monotone" dataKey="profit" stroke="#00f3ff" strokeWidth={3} dot={false} activeDot={{ r: 8 }} />
+                  <CartesianGrid stroke="#ffffff10" strokeDasharray="3 3" vertical={false} />
+                  <XAxis dataKey="date" stroke="#94a3b8" fontSize={12} tickLine={false} axisLine={false} />
+                  <YAxis stroke="#94a3b8" fontSize={12} tickLine={false} axisLine={false} tickFormatter={(value) => `$${value}`} />
+                  <Tooltip 
+                    contentStyle={{ backgroundColor: '#09090b', borderColor: '#ffffff20', borderRadius: '12px', color: '#fff' }}
+                    itemStyle={{ color: '#00f3ff', fontWeight: 'bold' }}
+                  />
+                </LineChart>
+              </ResponsiveContainer>
+            </div>
+          </div>
+
+          {/* Session Breakdown */}
+          <div className="bg-black border border-white/10 rounded-2xl p-6">
+            <div className="flex items-center gap-3 mb-6">
+              <PieChartIcon className="w-5 h-5 text-neon-purple" />
+              <h3 className="text-lg font-bold text-white">Sesi Dagangan</h3>
+            </div>
+            <div className="h-64 w-full flex items-center justify-center">
+              <ResponsiveContainer width="100%" height="100%">
+                <PieChart>
+                  <Pie
+                    data={sessionData}
+                    cx="50%"
+                    cy="50%"
+                    innerRadius={60}
+                    outerRadius={80}
+                    paddingAngle={5}
+                    dataKey="value"
+                    stroke="none"
+                  >
+                    {sessionData.map((entry, index) => (
+                      <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                    ))}
+                  </Pie>
+                  <Tooltip 
+                    contentStyle={{ backgroundColor: '#09090b', borderColor: '#ffffff20', borderRadius: '12px', color: '#fff' }}
+                    itemStyle={{ color: '#fff' }}
+                  />
+                  <Legend verticalAlign="bottom" height={36} iconType="circle" wrapperStyle={{ fontSize: '12px', color: '#94a3b8' }} />
+                </PieChart>
+              </ResponsiveContainer>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Trade History Table */}
       <div className="bg-white/5 border border-white/10 rounded-2xl overflow-hidden relative">
         {fetchingTrades && (
           <div className="absolute inset-0 bg-black/50 backdrop-blur-sm z-20 flex items-center justify-center">
@@ -269,15 +319,15 @@ export default function MT4Dashboard({ user, accounts: initialAccounts, initialT
         )}
         
         <div className="p-6 border-b border-white/10 flex justify-between items-center">
-          <h3 className="text-xl font-bold text-white">Sejarah Transaksi (100 Terakhir)</h3>
+          <h3 className="text-xl font-bold text-white">Sejarah Transaksi</h3>
           <button onClick={() => refreshTrades()} disabled={fetchingTrades} className="text-slate-400 hover:text-white transition-colors">
             <RefreshCw className={`w-5 h-5 ${fetchingTrades ? 'animate-spin' : ''}`} />
           </button>
         </div>
         
-        <div className="overflow-x-auto">
-          <table className="w-full text-left text-sm">
-            <thead className="bg-black/50 text-slate-400">
+        <div className="overflow-x-auto max-h-[500px]">
+          <table className="w-full text-left text-sm relative">
+            <thead className="bg-black/80 text-slate-400 sticky top-0 z-10 backdrop-blur-md">
               <tr>
                 <th className="px-6 py-4 font-medium">Tiket</th>
                 <th className="px-6 py-4 font-medium">Symbol</th>
