@@ -12,17 +12,17 @@ export default function Globe() {
     
     const globe = createGlobe(canvasRef.current, {
       devicePixelRatio: 2,
-      width: 1000,
-      height: 1000,
+      width: 1200,
+      height: 1200,
       phi: 0,
       theta: 0,
       dark: 1, // 1 is fully dark
       diffuse: 1.2,
       mapSamples: 24000,
-      mapBrightness: 6,
-      baseColor: [0.1, 0.1, 0.1], // Dark gray
-      markerColor: [0.1, 0.8, 1], // Cyan
-      glowColor: [0.1, 0.2, 0.3], // Subtle blue glow
+      mapBrightness: 10,
+      baseColor: [0.8, 0.8, 0.8], // Bright light gray/white dots so it's visible!
+      markerColor: [0, 1, 1], // Bright cyan markers
+      glowColor: [0.1, 0.1, 0.1], // Very subtle white/gray glow
       markers: [
         // Kuala Lumpur
         { location: [3.1390, 101.6869], size: 0.1 },
@@ -33,7 +33,8 @@ export default function Globe() {
         // Tokyo
         { location: [35.6762, 139.6503], size: 0.05 }
       ],
-      onRender: (state) => {
+      // @ts-ignore - onRender is missing from cobe's TypeScript definitions
+      onRender: (state: any) => {
         // Called on every animation frame
         state.phi = phi;
         phi += 0.003; // Rotation speed
@@ -46,7 +47,7 @@ export default function Globe() {
   }, []);
 
   return (
-    <div className="w-full h-full flex items-center justify-center opacity-40 mix-blend-screen pointer-events-none">
+    <div className="w-full h-full flex items-center justify-center opacity-80 pointer-events-none">
       <canvas
         ref={canvasRef}
         style={{
@@ -55,7 +56,7 @@ export default function Globe() {
           maxWidth: '100%',
           aspectRatio: 1,
         }}
-        className="animate-[fade-in_2s_ease-in-out]"
+        className="transition-opacity duration-1000"
       />
     </div>
   );
