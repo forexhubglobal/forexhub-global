@@ -218,6 +218,9 @@ export default function MT4Dashboard({ user, accounts: initialAccounts, initialT
             <a href="/ea/ForexHub_Tracker.mq4" download className="inline-flex items-center justify-center gap-2 bg-white text-black px-5 py-2 rounded-lg font-bold hover:bg-gray-200 transition-colors text-sm">
               <Download className="w-4 h-4" /> Download EA (MT4)
             </a>
+            <a href="/ea/ForexHub_Tracker.mq5" download className="inline-flex items-center justify-center gap-2 bg-white/10 border border-white/20 text-white px-5 py-2 rounded-lg font-bold hover:bg-white/20 transition-colors text-sm">
+              <Download className="w-4 h-4" /> Download EA (MT5)
+            </a>
             <button onClick={() => handleDeleteAccount(activeAccount.id)} disabled={loading} className="inline-flex items-center justify-center gap-2 bg-red-500/10 border border-red-500/20 text-red-400 px-5 py-2 rounded-lg font-bold hover:bg-red-500/20 transition-colors text-sm mt-2 disabled:opacity-50">
               <Trash2 className="w-4 h-4" /> Padam Akaun Ini
             </button>
