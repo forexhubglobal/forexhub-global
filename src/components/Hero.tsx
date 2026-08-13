@@ -1,5 +1,9 @@
 import Link from 'next/link';
-import Globe from './Globe';
+import dynamic from 'next/dynamic';
+
+const Globe = dynamic(() => import('./Globe'), {
+  ssr: false,
+});
 
 export default function Hero() {
   return (

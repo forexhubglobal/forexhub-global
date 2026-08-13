@@ -38,14 +38,14 @@ export default function Globe() {
 
   return (
     <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
-      <div className="relative w-full max-w-[900px] aspect-square flex items-center justify-center">
+      <div className="relative w-[800px] h-[800px] max-w-[100vw] max-h-[100vw] flex items-center justify-center">
         <canvas
           ref={canvasRef}
           style={{
             width: '100%',
             height: '100%',
-            contain: 'layout paint size',
-            opacity: 1, // Full opacity
+            opacity: 1,
+            display: 'block'
           }}
         />
       </div>
