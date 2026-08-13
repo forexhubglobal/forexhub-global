@@ -12,32 +12,22 @@ export default function Globe() {
     
     const globe = createGlobe(canvasRef.current, {
       devicePixelRatio: 2,
-      width: 1200,
-      height: 1200,
+      width: 1000,
+      height: 1000,
       phi: 0,
       theta: 0,
-      dark: 1, // 1 is fully dark
-      diffuse: 1.2,
-      mapSamples: 24000,
-      mapBrightness: 10,
-      baseColor: [0.8, 0.8, 0.8], // Bright light gray/white dots so it's visible!
-      markerColor: [0, 1, 1], // Bright cyan markers
-      glowColor: [0.1, 0.1, 0.1], // Very subtle white/gray glow
-      markers: [
-        // Kuala Lumpur
-        { location: [3.1390, 101.6869], size: 0.1 },
-        // London
-        { location: [51.5074, -0.1278], size: 0.05 },
-        // New York
-        { location: [40.7128, -74.0060], size: 0.05 },
-        // Tokyo
-        { location: [35.6762, 139.6503], size: 0.05 }
-      ],
-      // @ts-ignore - onRender is missing from cobe's TypeScript definitions
-      onRender: (state: any) => {
-        // Called on every animation frame
+      dark: 1, // Dark mode
+      diffuse: 1.2, // Subtle lighting
+      mapSamples: 16000, // Dense dots
+      mapBrightness: 6,
+      baseColor: [0.5, 0.5, 0.5], // Light gray dots
+      markerColor: [0.1, 0.8, 1], // Cyan markers
+      glowColor: [0.05, 0.05, 0.05], // Very faint glow
+      markers: [],
+      // @ts-ignore
+      onRender: (state) => {
         state.phi = phi;
-        phi += 0.003; // Rotation speed
+        phi += 0.003;
       },
     });
 
@@ -47,17 +37,17 @@ export default function Globe() {
   }, []);
 
   return (
-    <div className="w-full h-full flex items-center justify-center opacity-80 pointer-events-none">
-      <canvas
-        ref={canvasRef}
-        style={{
-          width: 800,
-          height: 800,
-          maxWidth: '100%',
-          aspectRatio: 1,
-        }}
-        className="transition-opacity duration-1000"
-      />
+    <div className="absolute inset-0 flex items-center justify-center opacity-60 mix-blend-screen pointer-events-none">
+      <div className="relative w-full max-w-[800px] aspect-square flex items-center justify-center">
+        <canvas
+          ref={canvasRef}
+          style={{
+            width: '100%',
+            height: '100%',
+            contain: 'layout paint size',
+          }}
+        />
+      </div>
     </div>
   );
 }

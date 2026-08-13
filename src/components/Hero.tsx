@@ -11,9 +11,7 @@ export default function Hero() {
         <div className="absolute inset-0 bg-[#030303]"></div>
         
         {/* Rotating Digital Earth (WebGL) */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[1200px] h-[1200px] opacity-80 pointer-events-none">
-          <Globe />
-        </div>
+        <Globe />
 
         {/* Majestic Aurora Orbs */}
         <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[60%] rounded-full bg-gradient-to-br from-indigo-600/20 via-purple-600/10 to-transparent blur-[120px] animate-[pulse_8s_ease-in-out_infinite_alternate]"></div>
