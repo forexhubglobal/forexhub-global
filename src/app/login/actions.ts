@@ -50,7 +50,7 @@ export async function resetPassword(formData: FormData) {
   const origin = process.env.NEXT_PUBLIC_SITE_URL || 'https://forexhubglobal.com'
 
   const { error } = await supabase.auth.resetPasswordForEmail(email, {
-    redirectTo: `${origin}/update-password`,
+    redirectTo: `${origin}/auth/callback?next=/update-password`,
   })
 
   if (error) {
