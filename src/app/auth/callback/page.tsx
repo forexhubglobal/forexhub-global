@@ -7,15 +7,16 @@ import { createClient } from '@/utils/supabase/client'
 function AuthCallbackContent() {
   const router = useRouter()
   const searchParams = useSearchParams()
+  
+  // Tangkap hash URL pada detik pertama render sebelum Supabase memadamkannya
+  const isRecovery = typeof window !== 'undefined' && window.location.hash.includes('type=recovery')
 
   useEffect(() => {
     const handleAuth = async () => {
       const code = searchParams.get('code')
       let next = searchParams.get('next') ?? '/dashboard'
-      const hash = window.location.hash
       
-      // Implicit flow appends type=recovery to the hash fragment
-      if (hash.includes('type=recovery')) {
+      if (isRecovery) {
         next = '/update-password'
       }
 
@@ -31,13 +32,18 @@ function AuthCallbackContent() {
         }
       } else {
         // Implicit Flow (Hash)
-        // @supabase/ssr browser client automatically parses the hash in the URL
-        // and sets the session cookie behind the scenes.
+        // Dengar pada event khusus untuk recovery jika hash terlepas
+        const { data: authListener } = supabase.auth.onAuthStateChange((event) => {
+          if (event === 'PASSWORD_RECOVERY') {
+            router.push('/update-password')
+          }
+        })
+
         const { data } = await supabase.auth.getSession()
         if (data.session) {
-          router.push(next)
+          // Hanya redirect jika tidak ditangkap oleh event listener di atas
+          setTimeout(() => router.push(next), 500)
         } else {
-          // Add a tiny delay to allow Supabase client to process the hash if it hasn't yet
           setTimeout(async () => {
             const { data: retryData } = await supabase.auth.getSession()
             if (retryData.session) {
@@ -45,13 +51,17 @@ function AuthCallbackContent() {
             } else {
               router.push('/login?error=Pautan tidak sah atau telah tamat tempoh.')
             }
-          }, 1000)
+          }, 1500)
+        }
+
+        return () => {
+          authListener.subscription.unsubscribe()
         }
       }
     }
     
     handleAuth()
-  }, [router, searchParams])
+  }, [router, searchParams, isRecovery])
 
   return (
     <div className="min-h-screen bg-[#09090b] flex flex-col items-center justify-center">
