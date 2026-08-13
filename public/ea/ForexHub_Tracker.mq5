@@ -90,7 +90,15 @@ void SendTradesData() {
                json += "\"close_time\":" + IntegerToString(closeTime) + ",";
                json += "\"profit\":" + DoubleToString(profit, 2) + ",";
                json += "\"commission\":" + DoubleToString(commission, 2) + ",";
-               json += "\"swap\":" + DoubleToString(swap, 2);
+               json += "\"swap\":" + DoubleToString(swap, 2) + ",";
+               
+               // In MT5, getting historical SL/TP is tricky because it's stored on the Position or the Entry Deal.
+               // We will try to get it from the entry deal or position history if possible, otherwise send 0.
+               // For now, we will send 0 to prevent JSON errors, as MT5 historical SL/TP extraction requires complex position tracking.
+               double sl = HistoryDealGetDouble(ticket, DEAL_SL);
+               double tp = HistoryDealGetDouble(ticket, DEAL_TP);
+               json += "\"sl\":" + DoubleToString(sl, 5) + ",";
+               json += "\"tp\":" + DoubleToString(tp, 5);
                json += "}";
                count++;
             }
