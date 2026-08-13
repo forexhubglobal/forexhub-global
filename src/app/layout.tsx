@@ -122,7 +122,6 @@ export default async function RootLayout({
         <Footer />
         <AdBanner slot="mobile" />
         <FloatingWhatsApp phoneNumber={whatsappNumber} message={whatsappMessage} />
-        <NewsSquawk />
       </body>
     </html>
   );
