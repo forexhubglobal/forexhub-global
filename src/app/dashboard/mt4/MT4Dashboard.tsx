@@ -148,6 +148,21 @@ export default function MT4Dashboard({ user, accounts: initialAccounts, initialT
   const avgPlannedRR = rrCount > 0 ? (sumPlannedRR / rrCount).toFixed(2) : '0.00';
   const avgRealizedRR = rrCount > 0 ? (sumRealizedRR / rrCount).toFixed(2) : '0.00';
 
+  // Daily Profit/Loss Tracking
+  const dailyPnLObj: Record<string, { rawDate: string, dateDisplay: string, profit: number, totalTrades: number, wins: number }> = {};
+  trades.forEach(t => {
+    const rawDate = new Date(t.close_time).toISOString().split('T')[0];
+    const dateDisplay = new Date(t.close_time).toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+    if (!dailyPnLObj[rawDate]) {
+      dailyPnLObj[rawDate] = { rawDate, dateDisplay, profit: 0, totalTrades: 0, wins: 0 };
+    }
+    const tradeNetProfit = Number(t.profit) + Number(t.commission) + Number(t.swap);
+    dailyPnLObj[rawDate].profit += tradeNetProfit;
+    dailyPnLObj[rawDate].totalTrades++;
+    if (tradeNetProfit > 0) dailyPnLObj[rawDate].wins++;
+  });
+  const dailyPnL = Object.values(dailyPnLObj).sort((a, b) => b.rawDate.localeCompare(a.rawDate));
+
   if (isAdding) {
     return (
       <div className="bg-white/5 border border-white/10 rounded-2xl p-8 max-w-2xl mx-auto">
@@ -327,6 +342,49 @@ export default function MT4Dashboard({ user, accounts: initialAccounts, initialT
                 </BarChart>
               </ResponsiveContainer>
             </div>
+          </div>
+        </div>
+      )}
+
+      {/* Daily Trade Record Table */}
+      {dailyPnL.length > 0 && (
+        <div className="bg-white/5 border border-white/10 rounded-2xl overflow-hidden">
+          <div className="p-6 border-b border-white/10">
+            <h3 className="text-xl font-bold text-white">Rekod Keuntungan Harian (Daily PnL)</h3>
+          </div>
+          <div className="overflow-x-auto max-h-[400px]">
+            <table className="w-full text-left text-sm relative">
+              <thead className="bg-black/80 text-slate-400 sticky top-0 z-10 backdrop-blur-md">
+                <tr>
+                  <th className="px-6 py-4 font-medium">Tarikh</th>
+                  <th className="px-6 py-4 font-medium">Jumlah Trade</th>
+                  <th className="px-6 py-4 font-medium">Kadar Kemenangan (Win Rate)</th>
+                  <th className="px-6 py-4 font-medium text-right">Keuntungan Bersih ($)</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-white/5">
+                {dailyPnL.map((d) => (
+                  <tr key={d.rawDate} className="hover:bg-white/5 transition-colors">
+                    <td className="px-6 py-4 font-bold text-white">{d.dateDisplay}</td>
+                    <td className="px-6 py-4 text-slate-300">{d.totalTrades} trades</td>
+                    <td className="px-6 py-4">
+                      <div className="flex items-center gap-2">
+                        <div className="w-full bg-white/10 rounded-full h-2 max-w-[100px]">
+                          <div 
+                            className={`h-2 rounded-full ${d.profit >= 0 ? 'bg-[#10b981]' : 'bg-[#ef4444]'}`} 
+                            style={{ width: `${d.totalTrades > 0 ? Math.round((d.wins / d.totalTrades) * 100) : 0}%` }}
+                          ></div>
+                        </div>
+                        <span className="text-xs text-slate-400">{d.totalTrades > 0 ? Math.round((d.wins / d.totalTrades) * 100) : 0}%</span>
+                      </div>
+                    </td>
+                    <td className={`px-6 py-4 text-right font-bold text-lg ${d.profit >= 0 ? 'text-[#10b981]' : 'text-[#ef4444]'}`}>
+                      {d.profit >= 0 ? '+' : '-'}${Math.abs(d.profit).toFixed(2)}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
         </div>
       )}
