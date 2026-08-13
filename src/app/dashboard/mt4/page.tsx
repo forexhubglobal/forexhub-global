@@ -4,6 +4,9 @@ import { GraduationCap, LayoutDashboard, Settings, LineChart } from 'lucide-reac
 import Link from 'next/link'
 import MT4Dashboard from './MT4Dashboard'
 
+export const dynamic = 'force-dynamic'
+export const revalidate = 0
+
 export default async function MT4DashboardPage() {
   const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()
