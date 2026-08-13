@@ -241,7 +241,7 @@ export default function MT4Dashboard({ user, accounts: initialAccounts, initialT
         </div>
         <div className="bg-black border border-white/10 rounded-2xl p-5 hover:border-white/20 transition-colors">
           <div className="text-slate-400 mb-1 text-sm font-medium">Net Profit</div>
-          <p className={`text-2xl font-black ${netProfit >= 0 ? 'text-green-400' : 'text-red-400'}`}>
+          <p className={`text-2xl font-black ${netProfit >= 0 ? 'text-[#10b981]' : 'text-[#ef4444]'}`}>
             {netProfit >= 0 ? '+' : '-'}${Math.abs(netProfit).toFixed(2)}
           </p>
         </div>
@@ -379,7 +379,7 @@ export default function MT4Dashboard({ user, accounts: initialAccounts, initialT
                         {STRATEGY_OPTIONS.map(opt => <option key={opt} value={opt}>{opt}</option>)}
                       </select>
                     </td>
-                    <td className={`px-6 py-4 text-right font-bold ${t.profit > 0 ? 'text-green-400' : t.profit < 0 ? 'text-red-400' : 'text-slate-300'}`}>
+                    <td className={`px-6 py-4 text-right font-bold ${t.profit > 0 ? 'text-[#10b981]' : t.profit < 0 ? 'text-[#ef4444]' : 'text-slate-300'}`}>
                       {t.profit > 0 ? '+' : ''}{t.profit}
                     </td>
                   </tr>
