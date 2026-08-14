@@ -1,17 +1,15 @@
 ---
-id: "1786651233234"
-title: "Dolar AS Merosot Angkara Spekulasi Fed, Pound Sterling Turut Goyang Selepas Data KDNK UK"
+id: "1786690834658"
+title: "Dolar AS Longlai Angkara Spekulasi Fed, Sterling Turut Merosot Pasca Data KDNK"
 category: "Berita"
-date: "2026-08-13"
+date: "2026-08-14"
 author: "Admin ForexHub"
-excerpt: "Pengurangan pertaruhan terhadap kenaikan kadar faedah Fed telah menolak dolar AS ke bawah, manakala Pound Sterling bergelut susulan data KDNK UK yang mengecewakan. Ketahui bagaimana dinamik ini mempengaruhi pasaran Forex semasa."
-image: "/images/dollar-falls-as-traders-reduce-fed-rate-hike-bets-sterling-slips-after-gdp-data-1786651232281.jpg"
+excerpt: "Dolar AS mengalami kejatuhan selepas para pedagang mengurangkan taruhan terhadap kenaikan kadar faedah oleh Rizab Persekutuan (Fed). Sementara itu, mata wang Sterling turut menerima tekanan berikutan pengeluaran data KDNK UK yang mengecewakan."
+image: "/images/dollar-falls-as-traders-reduce-fed-rate-hike-bets-sterling-slips-after-gdp-data-1786690833585.jpg"
 ---
 
-Pasaran pertukaran asing (Forex) menyaksikan pergerakan drastik apabila dolar AS (USD) mencatatkan penurunan berikutan tindakan para pedagang mengurangkan pertaruhan terhadap kenaikan kadar faedah oleh Rizab Persekutuan (Fed). Data ekonomi AS yang mula mereda memberi isyarat bahawa bank pusat tersebut mungkin akan memperlahankan atau menghentikan kitaran pengetatan monetari mereka lebih awal daripada jangkaan.
+Mata wang Dolar AS terus mempamerkan prestasi hambar berikutan tindakan para pedagang yang mula mengurangkan jangkaan terhadap kenaikan kadar faedah yang agresif oleh Rizab Persekutuan (Fed). Sentimen pasaran kini beralih arah, memandangkan data ekonomi AS yang terbaru memberi isyarat bahawa inflasi mungkin mula mereda, sekali gus mengurangkan tekanan ke atas bank pusat tersebut untuk mengekalkan dasar monetari yang ketat.
 
-Sementara itu, mata wang Pound Sterling (GBP) turut menerima tamparan hebat dan menggelincir berbanding mata wang utama lain. Kelemahan ini dicetuskan oleh pengumuman data Keluaran Dalam Negara Kasar (KDNK) United Kingdom yang menunjukkan pertumbuhan ekonomi yang hambar, sekali gus meningkatkan kebimbangan pasaran terhadap risiko kemelesetan di UK.
+Di seberang Atlantik, mata wang Sterling (GBP) turut bergelut untuk mengekalkan kedudukannya selepas pengumuman data Keluaran Dalam Negara Kasar (KDNK) United Kingdom. Data tersebut menunjukkan pertumbuhan ekonomi yang lebih perlahan daripada jangkaan, mencetuskan kebimbangan mengenai risiko kemelesetan ekonomi di UK dan mengehadkan ruang bagi Bank of England (BoE) untuk mengekalkan langkah pengetatan kadar faedah.
 
-Bagi pedagang Forex, situasi ini mewujudkan volatiliti yang tinggi dalam pasangan mata wang utama seperti EUR/USD dan GBP/USD. Peralihan sentimen ini menuntut strategi pengurusan risiko yang lebih ketat, terutamanya dengan tumpuan pasaran yang kini beralih kepada keputusan dasar monetari bank pusat yang seterusnya.
-
-Sumber asal: [Reuters](https://www.reuters.com)
+Bagi pedagang Forex, situasi semasa ini mewujudkan volatiliti yang tinggi dalam pasangan mata wang utama seperti EUR/USD dan GBP/USD. Peralihan dinamik dasar monetari global ini memerlukan pedagang untuk lebih berhati-hati dan sentiasa memantau kenyataan susulan daripada pegawai-pegawai Fed serta data ekonomi penting yang akan datang bagi menentukan arah aliran pasaran seterusnya.
