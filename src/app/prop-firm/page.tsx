@@ -34,7 +34,7 @@ export default function PropFirmList() {
                   </div>
                   <div className="text-right">
                     <div className="text-xs text-slate-400 font-semibold uppercase tracking-wider mb-1">Max Funding</div>
-                    <div className="text-2xl font-bold text-neon-blue">${Number(firm.maxFunding || 0).toLocaleString()}</div>
+                    <div className="text-2xl font-bold text-neon-blue">${Number(String(firm.maxFunding || 0).replace(/[^0-9.]/g, '') || 0).toLocaleString()}</div>
                   </div>
                 </div>
                 

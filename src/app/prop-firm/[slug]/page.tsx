@@ -41,7 +41,7 @@ export default async function PropFirmDetail({ params }: { params: Promise<{ slu
                 <h1 className="text-3xl md:text-4xl font-bold text-white mb-2">{firm.title} Review</h1>
                 <div className="flex flex-wrap gap-3 mt-4">
                   <span className="inline-flex items-center gap-1 bg-gold-50 text-gold-700 px-3 py-1 rounded-full text-sm font-bold border border-gold-200">
-                    Max Funding: ${Number(firm.maxFunding || 0).toLocaleString()}
+                    Max Funding: ${Number(String(firm.maxFunding || 0).replace(/[^0-9.]/g, '') || 0).toLocaleString()}
                   </span>
                   <span className="inline-flex items-center bg-white/5 text-slate-300 px-3 py-1 rounded-full text-sm font-medium border border-white/10">
                     Profit Split: Up to {firm.profitSplit}%
@@ -70,7 +70,7 @@ export default async function PropFirmDetail({ params }: { params: Promise<{ slu
                   </div>
                   <div className="flex justify-between border-b border-white/10 pb-2">
                     <span className="text-slate-400">Max Funding</span>
-                    <span className="font-semibold text-white">${Number(firm.maxFunding || 0).toLocaleString()}</span>
+                    <span className="font-semibold text-white">${Number(String(firm.maxFunding || 0).replace(/[^0-9.]/g, '') || 0).toLocaleString()}</span>
                   </div>
                   <div className="flex justify-between border-b border-white/10 pb-2">
                     <span className="text-slate-400">Profit Split</span>

@@ -78,8 +78,7 @@ export async function POST(request: Request) {
       body: JSON.stringify({
         contents: [{ parts: [{ text: prompt }] }],
         generationConfig: {
-          temperature: 0.1, // Low temperature for factual responses
-          responseMimeType: "application/json" // Force JSON response if supported
+          temperature: 0.1
         }
       })
     });
@@ -90,7 +89,7 @@ export async function POST(request: Request) {
       if (apiRes.status === 429) {
         return NextResponse.json({ error: 'Sistem AI Forensik sedang memproses ribuan permintaan serentak (Trafik Tinggi). Sila cuba sebentar lagi.' }, { status: 500 });
       }
-      return NextResponse.json({ error: `Sistem AI sedang diselenggara sementara. Sila cuba lagi.` }, { status: 500 });
+      return NextResponse.json({ error: `Sistem AI Ralat (${apiRes.status}): ${errorText.substring(0, 100)}... Sila semak API Key.` }, { status: 500 });
     }
 
     const aiData = await apiRes.json();
