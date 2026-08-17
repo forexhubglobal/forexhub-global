@@ -1,9 +1,9 @@
 ---
-id: "1786938598644"
+id: "1786938643779"
 slug: "ftmo"
 date: "2026-08-17"
 title: "FTMO"
-logo: "https://via.placeholder.com/150/000000/FFFFFF?text=FTMO"
+logo: "/images/1786938638200-ftmo-logo-png-seeklogo-655852.png"
 fee: "155"
 maxFunding: "2000000"
 profitSplit: "90"
