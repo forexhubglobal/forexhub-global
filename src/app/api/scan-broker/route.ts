@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { GoogleGenerativeAI } from '@google/generative-ai';
 
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
 
@@ -24,10 +25,7 @@ export async function POST(request: Request) {
     const searchName = brokerName.toLowerCase().trim();
     const whitelistedBrokers = ['cpt markets', 'moneta markets', 'versus trade', 'exness'];
     
-    // Check if the search term matches any whitelisted broker
     if (whitelistedBrokers.some(wb => searchName.includes(wb) || wb.includes(searchName))) {
-      // Just to be safe, if they type a short string like "ex", we don't want it to match "exness" automatically, 
-      // so let's do a more robust check:
       if (
         searchName === 'cpt' || searchName === 'cpt markets' || searchName === 'cpt market' ||
         searchName === 'moneta' || searchName === 'moneta markets' || searchName === 'moneta market' ||
@@ -35,7 +33,7 @@ export async function POST(request: Request) {
         searchName === 'exness'
       ) {
         return NextResponse.json({
-          score: 2, // Very safe
+          score: 2,
           status: 'Selamat',
           reason: 'Berdasarkan analisis silang-pangkalan data (cross-database analysis), entiti ini memiliki portfolio regulasi Tahap 1 (Tier-1) yang kukuh di peringkat global. Rekod audit menunjukkan ketelusan mutlak dalam pemisahan dana pelanggan (segregated funds) tanpa sebarang sejarah penipuan atau amaran pihak berkuasa. Entiti diklasifikasikan sebagai SANGAT SELAMAT dan berstatus premium.',
           source: 'Global AI Forensics'
@@ -44,7 +42,6 @@ export async function POST(request: Request) {
     }
     // ---------------------------------------
 
-    // Semak Cache sebelum panggil Google AI
     if (aiCache.has(searchName)) {
       return NextResponse.json(aiCache.get(searchName));
     }
@@ -72,28 +69,20 @@ export async function POST(request: Request) {
       }
     `;
 
-    const apiRes = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${GEMINI_API_KEY}`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        contents: [{ parts: [{ text: prompt }] }],
-        generationConfig: {
-          temperature: 0.1
-        }
-      })
+    // Initialize Google Generative AI SDK
+    const genAI = new GoogleGenerativeAI(GEMINI_API_KEY);
+    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+
+    const result = await model.generateContent({
+      contents: [{ role: 'user', parts: [{ text: prompt }] }],
+      generationConfig: {
+        temperature: 0.1,
+      }
     });
 
-    if (!apiRes.ok) {
-      const errorText = await apiRes.text();
-      console.error('Gemini API Error:', errorText);
-      if (apiRes.status === 429) {
-        return NextResponse.json({ error: 'Sistem AI Forensik sedang memproses ribuan permintaan serentak (Trafik Tinggi). Sila cuba sebentar lagi.' }, { status: 500 });
-      }
-      return NextResponse.json({ error: `Sistem AI Ralat (${apiRes.status}): ${errorText.substring(0, 100)}... Sila semak API Key.` }, { status: 500 });
-    }
+    const response = await result.response;
+    let aiText = response.text();
 
-    const aiData = await apiRes.json();
-    let aiText = aiData.candidates[0].content.parts[0].text;
     
     // Better JSON extraction
     const jsonMatch = aiText.match(/\{[\s\S]*\}/);
