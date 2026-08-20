@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import { GoogleGenerativeAI } from '@google/generative-ai';
 
-const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
+const GEMINI_API_KEY = process.env.GEMINI_API_KEY?.trim();
 
 // --- IN-MEMORY CACHE (Untuk jimat kuota AI Google) ---
 // Note: Ini akan kekal selagi serverless function aktif (warm start)
