@@ -14,7 +14,7 @@ export async function GET() {
       });
     }
 
-    const model = genAI.getGenerativeModel({ model: "gemini-2.5-flash" });
+    const model = genAI.getGenerativeModel({ model: "gemini-3.6-flash" });
 
     const prompt = `
       Anda adalah penganalisis kewangan utama untuk ForexHubGlobal, platform kewangan nombor 1 di Malaysia.

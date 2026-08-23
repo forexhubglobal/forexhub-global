@@ -128,7 +128,7 @@ Sila balas dalam format JSON yang sah seperti di bawah:
   "imagePrompt": "A highly descriptive, comma-separated English prompt for an AI image generator based on this article. Must not contain Malay words. e.g., 'US dollar bill rising, forex trading chart, realistic, dark theme, cinematic lighting, 8k'"
 }`;
 
-  const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_API_KEY}`, {
+  const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-3.6-flash:generateContent?key=${GEMINI_API_KEY}`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
